@@ -1,8 +1,8 @@
 package com.game.Entities;
 
 import com.game.Weapon;
-import com.game.CharacterProperties.IAttackPlayer;
-import com.game.CharacterProperties.IGrabbable;
+import com.game.Entities.CharacterProperties.IAttackPlayer;
+import com.game.Entities.CharacterProperties.IGrabbable;
 
 import java.util.ArrayList;
 
@@ -21,6 +21,11 @@ public class Player extends Character implements IAttackPlayer, IGrabbable {
     public Player(Integer hp, Integer maxHp, Float armor, Integer speed, Weapon weapon) {
         super(hp, maxHp, armor, speed);
         this.weapon.add(weapon);
+    }
+
+    @Override
+    public void move(int side) {
+
     }
 
 

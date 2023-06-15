@@ -15,4 +15,8 @@ public class Enemy extends Character {
     public Weapon getSelectedWeapon() {
         return weapon;
     }
+    @Override
+    public void move(int side) {
+
+    }
 }

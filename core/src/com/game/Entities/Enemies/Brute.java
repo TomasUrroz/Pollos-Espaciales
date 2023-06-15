@@ -26,5 +26,8 @@ public class Brute extends Enemy{
     public void throwEntity(int posX, int posY){
         //*le revolea un mogo*
     }
+    @Override
+    public void move(int side) {
 
+    }
 }

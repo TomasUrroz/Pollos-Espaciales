@@ -1,8 +1,8 @@
 package com.game.Entities;
 
-import com.game.CharacterProperties.IDeath;
-import com.game.CharacterProperties.IMelee;
-import com.game.CharacterProperties.ISpeed;
+import com.game.Entities.CharacterProperties.IDeath;
+import com.game.Entities.CharacterProperties.IMelee;
+import com.game.Entities.CharacterProperties.ISpeed;
 
 
 public abstract class Character extends Entity implements IMelee, ISpeed, IDeath {
@@ -13,9 +13,7 @@ public abstract class Character extends Entity implements IMelee, ISpeed, IDeath
         this.speed = speed;
     }
 
-    public void move(int side){
-        //YO EQUISDE
-    }
+
 
     @Override
     public void attack(int side) {
