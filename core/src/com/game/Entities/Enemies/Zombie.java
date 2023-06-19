@@ -13,7 +13,6 @@ public class Zombie extends Enemy implements IGrabbable{
     public Zombie(Stats stats, SizeE sizeE, Weapon weapon) {
         super(stats.getHp(), stats.getMaxHp(), stats.getArmor(), sizeE.getX(), sizeE.getY(), sizeE.getWidth(), sizeE.getHeight(), stats.getSpeed(), weapon);;
     }
-    @Override
     public void move(int side) {
         if(side == Input.Keys.LEFT){
             this.setX(this.getX()-5);
@@ -26,8 +25,4 @@ public class Zombie extends Enemy implements IGrabbable{
         }
     }
 
-    @Override
-    public void move(int side) {
-
-    }
 }

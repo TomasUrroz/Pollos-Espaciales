@@ -37,7 +37,6 @@ public class Brute extends Enemy{
         //*le revolea un mogo*
     }
 
-    @Override
     public void move(int side) {
         if(side == Input.Keys.LEFT){
             this.setX(this.getX()-3);

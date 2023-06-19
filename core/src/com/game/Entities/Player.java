@@ -44,10 +44,7 @@ public class Player extends Character implements IAttackPlayer, IGrabbable {
         this.god = god;
     }
 
-    @Override
-    public void move(int side) {
 
-    }
 
 
     //DODGE STUFF
@@ -75,7 +72,6 @@ public class Player extends Character implements IAttackPlayer, IGrabbable {
         this.weapon.add(weapon);
     }
 
-    @Override
     public Weapon getSelectedWeapon() {
         return weapon.get(selectedWeapon);
     }
@@ -87,7 +83,6 @@ public class Player extends Character implements IAttackPlayer, IGrabbable {
         } else selectedWeapon =0;
     }
 
-    @Override
     public void move(int side) {
         if(side == Keys.LEFT){
             this.setX(this.getX()-10);

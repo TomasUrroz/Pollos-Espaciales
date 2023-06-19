@@ -18,12 +18,10 @@ public class Enemy extends Character {
         this.weapon = weapon;
     }
 
-    @Override
     public Weapon getSelectedWeapon() {
         return weapon;
     }
 
-    @Override
     public void move(int side) {
         if(side == Input.Keys.LEFT){
             this.setX(this.getX()-10);
