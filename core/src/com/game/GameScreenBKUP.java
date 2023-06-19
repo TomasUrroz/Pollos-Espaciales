@@ -13,29 +13,22 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.game.CharacterProperties.SizeE;
-import com.game.CharacterProperties.Stats;
-import com.game.Entities.Character;
-import com.game.Entities.CharacterProperties.Weapon;
-import com.game.Entities.Enemies.Enemy;
-import com.game.Entities.Player;
 
 import java.util.Iterator;
 
-
-public class GameScreen implements Screen {
+public class GameScreenBKUP implements Screen {
     final Drop game;
     Texture dropImage;
     Texture bucketImage;
     Sound dropSound;
     Music rainMusic;
     OrthographicCamera camera;
-    Player bucket;
-    Array<Enemy> raindrops;
+    Rectangle bucket;
+    Array<Rectangle> raindrops;
     long lastDropTime;
     int dropsGathered;
 
-    public GameScreen(final Drop gam) {
+    public GameScreenBKUP(final Drop gam) {
         this.game = gam;
 
         // load the images for the droplet and the bucket, 64x64 pixels each
@@ -51,24 +44,26 @@ public class GameScreen implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 800, 480);
 
-        Stats charStat = new Stats(10,10,0.5f,5);
-        SizeE size = new SizeE(800 / 2 - 64 / 2, 20, 64, 64);
-        Weapon palo = new Weapon(5,10);
-        bucket = new Player(charStat,size,2,0,palo,false);
+        // create a Rectangle to logically represent the bucket
+        bucket = new Rectangle();
+        bucket.x = 800 / 2 - 64 / 2; // center the bucket horizontally
+        bucket.y = 20; // bottom left corner of the bucket is 20 pixels above
+        // the bottom screen edge
+        bucket.width = 64;
+        bucket.height = 64;
 
         // create the raindrops array and spawn the first raindrop
-        raindrops = new Array<Enemy>();
+        raindrops = new Array<Rectangle>();
         spawnRaindrop();
 
     }
 
     private void spawnRaindrop() {
-        Stats charStat = new Stats(10,10,0.5f,5);
-        SizeE size = new SizeE(MathUtils.random(0, 800 - 64), 480, 64, 64);
-        Weapon palo = new Weapon(5,10);
-
-        Enemy raindrop = new Enemy(charStat,size,palo);
-
+        Rectangle raindrop = new Rectangle();
+        raindrop.x = MathUtils.random(0, 800 - 64);
+        raindrop.y = 480;
+        raindrop.width = 64;
+        raindrop.height = 64;
         raindrops.add(raindrop);
         lastDropTime = TimeUtils.nanoTime();
     }
@@ -92,9 +87,9 @@ public class GameScreen implements Screen {
         // all drops
         game.batch.begin();
         game.font.draw(game.batch, "Drops Collected: " + dropsGathered, 0, 480);
-        game.batch.draw(bucketImage, bucket.getX(), bucket.getY());
-        for (Enemy raindrop : raindrops) {
-            game.batch.draw(dropImage, raindrop.getX(), raindrop.getY());
+        game.batch.draw(bucketImage, bucket.x, bucket.y);
+        for (Rectangle raindrop : raindrops) {
+            game.batch.draw(dropImage, raindrop.x, raindrop.y);
         }
         game.batch.end();
 
@@ -103,17 +98,18 @@ public class GameScreen implements Screen {
             Vector3 touchPos = new Vector3();
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             camera.unproject(touchPos);
-            bucket.setX((int)(touchPos.x - 64 / 2));
+            bucket.x = touchPos.x - 64 / 2;
         }
         if (Gdx.input.isKeyPressed(Keys.LEFT))
-            bucket.setX((int)(bucket.getX()- 200 * Gdx.graphics.getDeltaTime()));
+            bucket.x -= 200 * Gdx.graphics.getDeltaTime();
         if (Gdx.input.isKeyPressed(Keys.RIGHT))
-            bucket.setX((int)(bucket.getX()+ 200 * Gdx.graphics.getDeltaTime()));
+            bucket.x += 200 * Gdx.graphics.getDeltaTime();
+
         // make sure the bucket stays within the screen bounds
-        if (bucket.getX() < 0)
-            bucket.setX(0);
-        if (bucket.getX() > 800 - 64)
-            bucket.setX( 800 - 64);
+        if (bucket.x < 0)
+            bucket.x = 0;
+        if (bucket.x > 800 - 64)
+            bucket.x = 800 - 64;
 
         // check if we need to create a new raindrop
         if (TimeUtils.nanoTime() - lastDropTime > 1000000000)
@@ -122,11 +118,11 @@ public class GameScreen implements Screen {
         // move the raindrops, remove any that are beneath the bottom edge of
         // the screen or that hit the bucket. In the later case we play back
         // a sound effect as well.
-        Iterator<Enemy> iter = raindrops.iterator();
+        Iterator<Rectangle> iter = raindrops.iterator();
         while (iter.hasNext()) {
-            Enemy raindrop = iter.next();
-            raindrop.setY((int)(raindrop.getY() - 200 * Gdx.graphics.getDeltaTime()));
-            if (raindrop.getY() + 64 < 0)
+            Rectangle raindrop = iter.next();
+            raindrop.y -= 200 * Gdx.graphics.getDeltaTime();
+            if (raindrop.y + 64 < 0)
                 iter.remove();
             if (raindrop.overlaps(bucket)) {
                 dropsGathered++;

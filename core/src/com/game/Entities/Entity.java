@@ -1,6 +1,7 @@
 package com.game.Entities;
 
 
+import com.badlogic.gdx.math.Rectangle;
 import com.game.CharacterProperties.SizeE;
 import com.game.CharacterProperties.Stats;
 
@@ -83,6 +84,9 @@ public abstract class Entity {
         this.y = sizeE.getY();
         this.width = sizeE.getWidth();
         this.height = sizeE.getHeight();
+    }
+    public boolean overlaps (Entity r) {
+        return x < r.getX() + r.getWidth() && x + width > r.getX() && y < r.getY() + r.getHeight() && y + height > r.getY();
     }
 
 }

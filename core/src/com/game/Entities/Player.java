@@ -1,20 +1,19 @@
 package com.game.Entities;
 
-import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Keys;
 import com.game.CharacterProperties.SizeE;
 import com.game.CharacterProperties.Stats;
-import com.game.Weapon;
 import com.game.Entities.CharacterProperties.IAttackPlayer;
 import com.game.Entities.CharacterProperties.IGrabbable;
+import com.game.Entities.CharacterProperties.Weapon;
 
-import java.security.Key;
 import java.util.ArrayList;
-import com.badlogic.gdx.Input.Keys;
+
 public class Player extends Character implements IAttackPlayer, IGrabbable {
 
     private Integer dodges = 2;
     private Integer ammo = 0;
-    private ArrayList<Weapon> weapon;
+    private ArrayList<Weapon> weapon = new ArrayList<>();
     private Integer selectedWeapon = 0;
     private Boolean god=false;
 
@@ -67,14 +66,18 @@ public class Player extends Character implements IAttackPlayer, IGrabbable {
 
 
     //WEAPON STUFF
+
+
     @Override
     public void addWeapon(Weapon weapon) {
         this.weapon.add(weapon);
     }
 
+    @Override
     public Weapon getSelectedWeapon() {
-        return weapon.get(selectedWeapon);
+        return this.weapon.get(selectedWeapon);
     }
+
     @Override
     public void switchWeapon() {
         if(weapon.size()<selectedWeapon)
@@ -85,13 +88,13 @@ public class Player extends Character implements IAttackPlayer, IGrabbable {
 
     public void move(int side) {
         if(side == Keys.LEFT){
-            this.setX(this.getX()-10);
+            this.setX(this.getX()-this.getSpeed());
         }else if(side == Keys.RIGHT){
-            this.setX(this.getX()+10);
+            this.setX(this.getX()+this.getSpeed());
         }else if(side == Keys.UP){
-            this.setY(this.getY()+10);
+            this.setY(this.getY()+this.getSpeed());
         }else if(side == Keys.DOWN){
-            this.setY(this.getY()-10);
+            this.setY(this.getY()-this.getSpeed());
         }
     }
 

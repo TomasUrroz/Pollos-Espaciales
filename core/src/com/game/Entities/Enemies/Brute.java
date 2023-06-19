@@ -4,7 +4,8 @@ import com.badlogic.gdx.Input;
 import com.game.CharacterProperties.SizeE;
 import com.game.CharacterProperties.Stats;
 import com.game.Entities.Entity;
-import com.game.Weapon;
+import com.game.Entities.CharacterProperties.Weapon;
+
 
 public class Brute extends Enemy{
     private Entity ammo;
@@ -39,13 +40,13 @@ public class Brute extends Enemy{
 
     public void move(int side) {
         if(side == Input.Keys.LEFT){
-            this.setX(this.getX()-3);
+            this.setX(this.getX()-this.getSpeed());
         }else if(side == Input.Keys.RIGHT){
-            this.setX(this.getX()+3);
+            this.setX(this.getX()+this.getSpeed());
         }else if(side == Input.Keys.UP){
-            this.setY(this.getY()+3);
+            this.setY(this.getY()+this.getSpeed());
         }else if(side == Input.Keys.DOWN){
-            this.setY(this.getY()-3);
+            this.setY(this.getY()-this.getSpeed());
         }
     }
 

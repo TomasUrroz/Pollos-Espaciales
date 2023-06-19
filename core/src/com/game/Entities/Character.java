@@ -1,7 +1,10 @@
 package com.game.Entities;
 
-import com.game.CharacterProperties.*;
-
+import com.game.CharacterProperties.ISpeed;
+import com.game.CharacterProperties.SizeE;
+import com.game.CharacterProperties.Stats;
+import com.game.Entities.CharacterProperties.IDeath;
+import com.game.Entities.CharacterProperties.IMelee;
 
 public abstract class Character extends Entity implements IMelee, ISpeed, IDeath {
     private Integer speed;
@@ -22,12 +25,12 @@ public abstract class Character extends Entity implements IMelee, ISpeed, IDeath
 
     @Override
     public Integer getSpeed() {
-        return this.speed;
+        return speed;
     }
 
     @Override
-    public void setSpeed(Integer newSpeed) {
-        this.speed -= newSpeed;
+    public void setSpeed(Integer speed) {
+        this.speed = speed;
     }
 
     @Override

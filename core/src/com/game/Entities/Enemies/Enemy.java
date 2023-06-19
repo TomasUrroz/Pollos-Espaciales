@@ -4,7 +4,7 @@ import com.badlogic.gdx.Input;
 import com.game.CharacterProperties.SizeE;
 import com.game.CharacterProperties.Stats;
 import com.game.Entities.Character;
-import com.game.Weapon;
+import com.game.Entities.CharacterProperties.Weapon;
 
 public class Enemy extends Character {
     private Weapon weapon;
@@ -18,19 +18,21 @@ public class Enemy extends Character {
         this.weapon = weapon;
     }
 
+    @Override
     public Weapon getSelectedWeapon() {
-        return weapon;
+        return this.weapon;
     }
 
     public void move(int side) {
         if(side == Input.Keys.LEFT){
-            this.setX(this.getX()-10);
+            this.setX(this.getX()-this.getSpeed());
         }else if(side == Input.Keys.RIGHT){
-            this.setX(this.getX()+10);
+            this.setX(this.getX()+this.getSpeed());
         }else if(side == Input.Keys.UP){
-            this.setY(this.getY()+10);
+            this.setY(this.getY()+this.getSpeed());
         }else if(side == Input.Keys.DOWN){
-            this.setY(this.getY()-10);
+            this.setY(this.getY()-this.getSpeed());
         }
     }
+
 }

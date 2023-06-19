@@ -1,4 +1,4 @@
-package com.game.Weapons;
+package com.game.Entities.CharacterProperties;
 
 public class Weapon {
     private Integer dmg;
