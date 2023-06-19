@@ -1,20 +1,18 @@
 package com.game.Entities;
 
-import com.game.CharacterProperties.IDeath;
-import com.game.CharacterProperties.IMelee;
-import com.game.CharacterProperties.ISpeed;
+import com.game.CharacterProperties.*;
 
 
 public abstract class Character extends Entity implements IMelee, ISpeed, IDeath {
     private Integer speed;
 
-    public Character(Integer hp, Integer maxHp, Float armor, Integer speed) {
-        super(hp, maxHp, armor);
+    public Character(Integer hp, Integer maxHp, Float armor, Integer x, Integer y, Integer width, Integer height, Integer speed) {
+        super(hp, maxHp, armor, x, y, width, height);
         this.speed = speed;
     }
-
-    public void move(int side){
-        //YO EQUISDE
+    public Character(Stats stats, SizeE sizeE, Integer speed) {
+        super(stats.getHp(), stats.getMaxHp(), stats.getArmor(), sizeE.getX(), sizeE.getY(), sizeE.getWidth(), sizeE.getHeight());;
+        this.speed = speed;
     }
 
     @Override
