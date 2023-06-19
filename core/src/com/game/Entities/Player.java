@@ -19,7 +19,7 @@ public class Player extends Character implements IAttackPlayer, IGrabbable {
     private Boolean god=false;
 
 
-    //3 constructores. 1:Poner todo de una. 2:Poner todo pero organizado en las clases stats y sizeE. 3:Uno en el que agregas un arma y listo,
+    //3 constructores. 1:Poner to.do de una. 2:Poner to.do pero organizado en las clases stats y sizeE. 3:Uno en el que agregas un arma y listo,
     public Player(Integer hp, Integer maxHp, Float armor, Integer x, Integer y, Integer width, Integer height, Integer speed, Integer dodges, Integer ammo, ArrayList<Weapon> weapon, Integer selectedWeapon, Boolean god) {
         super(hp, maxHp, armor, x, y, width, height, speed);
         this.dodges = dodges;
