@@ -4,7 +4,7 @@ import com.badlogic.gdx.Input;
 import com.game.CharacterProperties.SizeE;
 import com.game.CharacterProperties.Stats;
 import com.game.Weapon;
-import com.game.CharacterProperties.IGrabbable;
+import com.game.Entities.CharacterProperties.IGrabbable;
 
 public class Zombie extends Enemy implements IGrabbable{
     public Zombie(Integer hp, Integer maxHp, Float armor, Integer x, Integer y, Integer width, Integer height, Integer speed, Weapon weapon) {
@@ -24,5 +24,10 @@ public class Zombie extends Enemy implements IGrabbable{
         }else if(side == Input.Keys.DOWN){
             this.setY(this.getY()-5);
         }
+    }
+
+    @Override
+    public void move(int side) {
+
     }
 }

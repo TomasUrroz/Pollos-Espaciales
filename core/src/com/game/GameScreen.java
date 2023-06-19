@@ -17,9 +17,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 
 public class GameScreen implements Screen {
-
     final Drop game;
-
     Texture dropImage;
     Texture bucketImage;
     Sound dropSound;

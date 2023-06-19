@@ -4,8 +4,8 @@ import com.badlogic.gdx.Input;
 import com.game.CharacterProperties.SizeE;
 import com.game.CharacterProperties.Stats;
 import com.game.Weapon;
-import com.game.CharacterProperties.IAttackPlayer;
-import com.game.CharacterProperties.IGrabbable;
+import com.game.Entities.CharacterProperties.IAttackPlayer;
+import com.game.Entities.CharacterProperties.IGrabbable;
 
 import java.security.Key;
 import java.util.ArrayList;
@@ -42,6 +42,11 @@ public class Player extends Character implements IAttackPlayer, IGrabbable {
         this.ammo = ammo;
         this.weapon.add(weapon);
         this.god = god;
+    }
+
+    @Override
+    public void move(int side) {
+
     }
 
 
