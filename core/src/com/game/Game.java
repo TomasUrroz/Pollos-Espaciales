@@ -56,7 +56,7 @@ public class Game extends ApplicationAdapter {
         addSprites();
 
         Box2D.init();
-        world = new World(new Vector2(0, -120), true);
+        world = new World(new Vector2(0, 0), true);
         physicsBodies = new PhysicsShapeCache("physics.xml");
         generateFruit();
 
@@ -78,7 +78,12 @@ public class Game extends ApplicationAdapter {
             sprites.put(region.name, sprite);
         }
     }
-
+/*todo Funcion para agregar enemigos a un arreglo de enemigos
+agregarle un personaje y poder moverlo
+investigar ia para los enemigos
+ataques
+limitaciones de la pantalla
+* */
     private void generateFruit() {
         String[] fruitNames = new String[]{"banana", "cherries", "orange"};
 
@@ -88,7 +93,7 @@ public class Game extends ApplicationAdapter {
             String name = fruitNames[random.nextInt(fruitNames.length)];
 
             float x = random.nextFloat() * 50;
-            float y = random.nextFloat() * 50 + 50;
+            float y = 35;
 
             names[i] = name;
             fruitBodies[i] = createBody(name, x, y, 0);
