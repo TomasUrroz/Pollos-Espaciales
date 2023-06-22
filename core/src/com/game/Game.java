@@ -19,6 +19,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
+import com.game.Entities.Player;
 import com.game.psysicsEditor.PhysicsShapeCache;
 
 import java.util.HashMap;
@@ -43,6 +44,9 @@ public class Game extends ApplicationAdapter {
     PhysicsShapeCache physicsBodies;
     float accumulator = 0;
     Body ground;
+    Body wallLeft;
+    Body wallRight;
+    Player player;
     Body[] fruitBodies = new Body[COUNT];
     String[] names = new String[COUNT];
 
@@ -78,12 +82,13 @@ public class Game extends ApplicationAdapter {
             sprites.put(region.name, sprite);
         }
     }
+
 /*todo Funcion para agregar enemigos a un arreglo de enemigos
 agregarle un personaje y poder moverlo
 investigar ia para los enemigos
 ataques
-limitaciones de la pantalla
 * */
+
     private void generateFruit() {
         String[] fruitNames = new String[]{"banana", "cherries", "orange"};
 
@@ -92,7 +97,7 @@ limitaciones de la pantalla
         for (int i = 0; i < fruitBodies.length; i++) {
             String name = fruitNames[random.nextInt(fruitNames.length)];
 
-            float x = random.nextFloat() * 50;
+            float x = random.nextFloat() * 80;
             float y = 35;
 
             names[i] = name;
@@ -114,6 +119,9 @@ limitaciones de la pantalla
         batch.setProjectionMatrix(camera.combined);
 
         createGround();
+
+        createWalls(wallLeft,0,0, 1.5708F);
+        createWalls(wallRight,84,0,1.5708F);
     }
 
     private void createGround() {
@@ -132,6 +140,26 @@ limitaciones de la pantalla
         ground = world.createBody(bodyDef);
         ground.createFixture(fixtureDef);
         ground.setTransform(0, 0, 0);
+
+        shape.dispose();
+    }
+
+    private void createWalls(Body wall, int x, int y, float angle) {
+        if (wall != null) world.destroyBody(wall);
+
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.StaticBody;
+
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.friction = 1;
+
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(camera.viewportWidth, 1);
+        fixtureDef.shape = shape;
+
+        wall = world.createBody(bodyDef);
+        wall.createFixture(fixtureDef);
+        wall.setTransform(x, y, angle);
 
         shape.dispose();
     }
@@ -157,7 +185,7 @@ limitaciones de la pantalla
         batch.end();
 
         // uncomment to show the polygons
-        // debugRenderer.render(world, camera.combined);
+        debugRenderer.render(world, camera.combined);
     }
 
     private void stepWorld() {

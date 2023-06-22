@@ -1,33 +1,61 @@
 sprites.png
-size: 512, 128
+size: 267, 255
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 banana
   rotate: false
-  xy: 0, 0
-  size: 128, 128
+  xy: 1, 1
+  size: 127, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 cherries
   rotate: false
-  xy: 128, 0
-  size: 128, 128
+  xy: 130, 1
+  size: 120, 125
   orig: 128, 128
-  offset: 0, 0
+  offset: 5, 0
   index: -1
 crate
-  rotate: false
-  xy: 256, 0
-  size: 128, 128
+  rotate: true
+  xy: 130, 128
+  size: 123, 121
   orig: 128, 128
-  offset: 0, 0
+  offset: 3, 0
   index: -1
 orange
   rotate: false
-  xy: 384, 0
-  size: 128, 128
+  xy: 1, 131
+  size: 127, 123
   orig: 128, 128
-  offset: 0, 0
+  offset: 1, 0
+  index: -1
+playerBack
+  rotate: false
+  xy: 252, 1
+  size: 14, 16
+  orig: 16, 16
+  offset: 1, 0
+  index: -1
+playerFront
+  rotate: false
+  xy: 252, 19
+  size: 14, 16
+  orig: 16, 16
+  offset: 1, 0
+  index: -1
+playerLeft
+  rotate: false
+  xy: 252, 37
+  size: 13, 16
+  orig: 16, 16
+  offset: 1, 0
+  index: -1
+playerRight
+  rotate: false
+  xy: 252, 55
+  size: 13, 16
+  orig: 16, 16
+  offset: 2, 0
   index: -1
