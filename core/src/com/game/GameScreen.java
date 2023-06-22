@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.game.CharacterProperties.SizeE;
 import com.game.CharacterProperties.Stats;
-import com.game.Entities.Character;
+import com.game.Entities.Personaje;
 import com.game.Entities.CharacterProperties.Weapon;
 import com.game.Entities.Enemies.Enemy;
 import com.game.Entities.Player;
@@ -54,7 +54,9 @@ public class GameScreen implements Screen {
         Stats charStat = new Stats(10,10,0.5f,5);
         SizeE size = new SizeE(800 / 2 - 64 / 2, 20, 64, 64);
         Weapon palo = new Weapon(5,10);
+/*
         bucket = new Player(charStat,size,2,0,palo,false);
+*/
 
         // create the raindrops array and spawn the first raindrop
         raindrops = new Array<Enemy>();
@@ -67,9 +69,13 @@ public class GameScreen implements Screen {
         SizeE size = new SizeE(MathUtils.random(0, 800 - 64), 480, 64, 64);
         Weapon palo = new Weapon(5,10);
 
+/*
         Enemy raindrop = new Enemy(charStat,size,palo);
+*/
 
+/*
         raindrops.add(raindrop);
+*/
         lastDropTime = TimeUtils.nanoTime();
     }
 

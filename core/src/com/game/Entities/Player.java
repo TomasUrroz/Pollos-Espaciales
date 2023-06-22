@@ -1,6 +1,7 @@
 package com.game.Entities;
 
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.physics.box2d.World;
 import com.game.CharacterProperties.SizeE;
 import com.game.CharacterProperties.Stats;
 import com.game.Entities.CharacterProperties.IAttackPlayer;
@@ -9,7 +10,7 @@ import com.game.Entities.CharacterProperties.Weapon;
 
 import java.util.ArrayList;
 
-public class Player extends Character implements IAttackPlayer, IGrabbable {
+public class Player extends Personaje implements IAttackPlayer, IGrabbable {
 
     private Integer dodges = 2;
     private Integer ammo = 0;
@@ -19,24 +20,24 @@ public class Player extends Character implements IAttackPlayer, IGrabbable {
 
 
     //3 constructores. 1:Poner to.do de una. 2:Poner to.do pero organizado en las clases stats y sizeE. 3:Uno en el que agregas un arma y listo,
-    public Player(Integer hp, Integer maxHp, Float armor, Integer x, Integer y, Integer width, Integer height, Integer speed, Integer dodges, Integer ammo, ArrayList<Weapon> weapon, Integer selectedWeapon, Boolean god) {
-        super(hp, maxHp, armor, x, y, width, height, speed);
+    public Player(World world, long addr,  Integer hp, Integer maxHp, Float armor, Integer x, Integer y, Integer width, Integer height, Integer speed, Integer dodges, Integer ammo, ArrayList<Weapon> weapon, Integer selectedWeapon, Boolean god) {
+        super(world, addr, hp, maxHp, armor, x, y, width, height, speed);
         this.dodges = dodges;
         this.ammo = ammo;
         this.weapon = weapon;
         this.selectedWeapon = selectedWeapon;
         this.god = god;
     }
-    public Player(Stats stats, SizeE sizeE, Integer dodges, Integer ammo, ArrayList<Weapon> weapon, Integer selectedWeapon, Boolean god) {
-        super(stats.getHp(), stats.getMaxHp(), stats.getArmor(), sizeE.getX(), sizeE.getY(), sizeE.getWidth(), sizeE.getHeight(), stats.getSpeed());;
+    public Player(World world, long addr, Stats stats, SizeE sizeE, Integer dodges, Integer ammo, ArrayList<Weapon> weapon, Integer selectedWeapon, Boolean god) {
+        super(world, addr, stats.getHp(), stats.getMaxHp(), stats.getArmor(), sizeE.getX(), sizeE.getY(), sizeE.getWidth(), sizeE.getHeight(), stats.getSpeed());;
         this.dodges = dodges;
         this.ammo = ammo;
         this.weapon = weapon;
         this.selectedWeapon = selectedWeapon;
         this.god = god;
     }
-    public Player(Stats stats, SizeE sizeE, Integer dodges, Integer ammo, Weapon weapon, Boolean god) {
-        super(stats.getHp(), stats.getMaxHp(), stats.getArmor(), sizeE.getX(), sizeE.getY(), sizeE.getWidth(), sizeE.getHeight(), stats.getSpeed());;
+    public Player(World world, long addr,Stats stats, SizeE sizeE, Integer dodges, Integer ammo, Weapon weapon, Boolean god) {
+        super(world, addr, stats.getHp(), stats.getMaxHp(), stats.getArmor(), sizeE.getX(), sizeE.getY(), sizeE.getWidth(), sizeE.getHeight(), stats.getSpeed());;
         this.dodges = dodges;
         this.ammo = ammo;
         this.weapon.add(weapon);

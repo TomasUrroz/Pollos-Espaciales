@@ -46,7 +46,7 @@ public class Game extends ApplicationAdapter {
     Body ground;
     Body wallLeft;
     Body wallRight;
-    Player player;
+    Body player;
     Body[] fruitBodies = new Body[COUNT];
     String[] names = new String[COUNT];
 
@@ -60,9 +60,12 @@ public class Game extends ApplicationAdapter {
         addSprites();
 
         Box2D.init();
-        world = new World(new Vector2(0, 0), true);
+        world = new World(new Vector2(0, -10), true);
         physicsBodies = new PhysicsShapeCache("physics.xml");
         generateFruit();
+
+        player = new Player(world,);
+        BodyDef
 
         debugRenderer = new Box2DDebugRenderer();
     }
@@ -104,6 +107,7 @@ ataques
             fruitBodies[i] = createBody(name, x, y, 0);
         }
     }
+
 
     private Body createBody(String name, float x, float y, float rotation) {
         Body body = physicsBodies.createBody(name, world, SCALE, SCALE);

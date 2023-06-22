@@ -1,20 +1,22 @@
 package com.game.Entities.Enemies;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.physics.box2d.World;
 import com.game.CharacterProperties.SizeE;
 import com.game.CharacterProperties.Stats;
-import com.game.Entities.Character;
+import com.game.Entities.Personaje;
 import com.game.Entities.CharacterProperties.Weapon;
+import com.game.Entities.Personaje;
 
-public class Enemy extends Character {
+public class Enemy extends Personaje {
     private Weapon weapon;
 
-    public Enemy(Integer hp, Integer maxHp, Float armor, Integer x, Integer y, Integer width, Integer height, Integer speed, Weapon weapon) {
-        super(hp, maxHp, armor, x, y, width, height, speed);
+    public Enemy(World world, long addr,  Integer hp, Integer maxHp, Float armor, Integer x, Integer y, Integer width, Integer height, Integer speed, Weapon weapon) {
+        super(world,addr, hp, maxHp, armor, x, y, width, height, speed);
         this.weapon = weapon;
     }
-    public Enemy(Stats stats, SizeE sizeE, Weapon weapon) {
-        super(stats.getHp(), stats.getMaxHp(), stats.getArmor(), sizeE.getX(), sizeE.getY(), sizeE.getWidth(), sizeE.getHeight(), stats.getSpeed());
+    public Enemy(World world, long addr,Stats stats, SizeE sizeE, Weapon weapon) {
+        super(world,addr,stats.getHp(), stats.getMaxHp(), stats.getArmor(), sizeE.getX(), sizeE.getY(), sizeE.getWidth(), sizeE.getHeight(), stats.getSpeed());
         this.weapon = weapon;
     }
 

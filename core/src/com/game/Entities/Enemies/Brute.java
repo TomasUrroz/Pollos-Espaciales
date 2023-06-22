@@ -1,6 +1,7 @@
 package com.game.Entities.Enemies;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.physics.box2d.World;
 import com.game.CharacterProperties.SizeE;
 import com.game.CharacterProperties.Stats;
 import com.game.Entities.Entity;
@@ -10,13 +11,13 @@ import com.game.Entities.CharacterProperties.Weapon;
 public class Brute extends Enemy{
     private Entity ammo;
 
-    public Brute(Integer hp, Integer maxHp, Float armor, Integer x, Integer y, Integer width, Integer height, Integer speed, Weapon weapon, Entity ammo) {
-        super(hp, maxHp, armor, x, y, width, height, speed, weapon);
+    public Brute(World world, long addr, Integer hp, Integer maxHp, Float armor, Integer x, Integer y, Integer width, Integer height, Integer speed, Weapon weapon, Entity ammo) {
+        super(world,addr, hp, maxHp, armor, x, y, width, height, speed, weapon);
         this.ammo = ammo;
     }
 
-    public Brute(Stats stats, SizeE sizeE, Weapon weapon, Entity ammo) {
-        super(stats, sizeE, weapon);
+    public Brute(World world, long addr, Stats stats, SizeE sizeE, Weapon weapon, Entity ammo) {
+        super(world, addr, stats, sizeE, weapon);
         this.ammo = ammo;
     }
 
