@@ -11,12 +11,12 @@ import com.game.Entities.Personaje;
 public class Enemy extends Personaje {
     private Weapon weapon;
 
-    public Enemy(World world, long addr,  Integer hp, Integer maxHp, Float armor, Integer x, Integer y, Integer width, Integer height, Integer speed, Weapon weapon) {
-        super(world,addr, hp, maxHp, armor, x, y, width, height, speed);
+    public Enemy(Integer hp, Integer maxHp, Float armor, Integer x, Integer y, Integer width, Integer height, Integer speed, Weapon weapon) {
+        super(hp, maxHp, armor, x, y, width, height, speed);
         this.weapon = weapon;
     }
-    public Enemy(World world, long addr,Stats stats, SizeE sizeE, Weapon weapon) {
-        super(world,addr,stats.getHp(), stats.getMaxHp(), stats.getArmor(), sizeE.getX(), sizeE.getY(), sizeE.getWidth(), sizeE.getHeight(), stats.getSpeed());
+    public Enemy(Stats stats, SizeE sizeE, Weapon weapon) {
+        super(stats.getHp(), stats.getMaxHp(), stats.getArmor(), sizeE.getX(), sizeE.getY(), sizeE.getWidth(), sizeE.getHeight(), stats.getSpeed());
         this.weapon = weapon;
     }
 

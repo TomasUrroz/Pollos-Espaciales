@@ -6,14 +6,15 @@ import com.game.CharacterProperties.Stats;
 
 public class Furniture extends Entity{
 
-    public Furniture(World world, long addr, Integer hp, Integer maxHp, Float armor, Integer x, Integer y, Integer width, Integer height) {
-        super(world, addr, hp, maxHp, armor, x, y, width, height);
+    public Furniture( Integer hp, Integer maxHp, Float armor, Float x, Float y, Float width, Float height) {
+        super(hp, maxHp, armor, x, y, width, height);
     }
 
-    public Furniture(World world, long addr, Stats stats, SizeE sizeE) {
-        super(world, addr, stats, sizeE);
+    /*
+    public Furniture(Stats stats, SizeE sizeE) {
+        super(stats, sizeE);
     }
-
+    */
     public Integer getState(){
         if(getHp() == getMaxHp()) return 0;
         else if (0 < getHp() && getHp() >= getMaxHp()*0.5) return 1;

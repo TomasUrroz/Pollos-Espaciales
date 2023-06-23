@@ -2,20 +2,21 @@ package com.game.Entities;
 
 
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.game.CharacterProperties.SizeE;
 import com.game.CharacterProperties.Stats;
 
-public abstract class Entity extends Body {
+public abstract class Entity {
     private Integer hp;
     private Integer maxHp;
     private Float armor;
 
-    private Integer x;
-    private Integer y;
-    private Integer width;
-    private Integer height;
+    Vector2 position;
+    Vector2 velocity;
+    private Float width;
+    private Float height;
 
 
     public Integer getHp() {
@@ -37,52 +38,49 @@ public abstract class Entity extends Body {
         this.armor = armor;
     }
 
-    public Integer getX() {
-        return x;
+    public Float getX() {
+        return position.x;
     }
 
-    public void setX(Integer x) {
-        this.x = x;
+    public void setX(Float x) {
+        this.position.x = x;
     }
 
-    public Integer getY() {
-        return y;
+    public Float getY() {
+        return position.y;
     }
 
-    public void setY(Integer y) {
-        this.y = y;
+    public void setY(Float y) {
+        this.position.y = y;
     }
 
-    public Integer getWidth() {
+    public Float getWidth() {
         return width;
     }
 
-    public void setWidth(Integer width) {
+    public void setWidth(Float width) {
         this.width = width;
     }
 
-    public Integer getHeight() {
+    public Float getHeight() {
         return height;
     }
 
-    public void setHeight(Integer height) {
+    public void setHeight(Float height) {
         this.height = height;
     }
 
-    public Entity(World world, long addr, Integer hp, Integer maxHp, Float armor, Integer x, Integer y, Integer width, Integer height) {
-        super(world, addr);
+    public Entity(Integer hp, Integer maxHp, Float armor, Float x, Float y, Float width, Float height) {
         this.hp = hp;
         this.maxHp = maxHp;
         this.armor = armor;
-        this.x = x;
-        this.y = y;
+        position = new Vector2(x, y);
         this.width = width;
         this.height = height;
     }
 
-
-    public Entity(World world, long addr, Stats stats, SizeE sizeE) {
-        super(world, addr);
+/*
+    public Entity(Stats stats, SizeE sizeE) {
         this.hp = stats.getHp();
         this.maxHp = stats.getMaxHp();
         this.armor = stats.getArmor();
@@ -91,8 +89,6 @@ public abstract class Entity extends Body {
         this.width = sizeE.getWidth();
         this.height = sizeE.getHeight();
     }
-    public boolean overlaps (Entity r) {
-        return x < r.getX() + r.getWidth() && x + width > r.getX() && y < r.getY() + r.getHeight() && y + height > r.getY();
-    }
+*/
 
 }

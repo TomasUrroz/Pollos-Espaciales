@@ -64,8 +64,6 @@ public class Game extends ApplicationAdapter {
         physicsBodies = new PhysicsShapeCache("physics.xml");
         generateFruit();
 
-        player = new Player(world,);
-        BodyDef
 
         debugRenderer = new Box2DDebugRenderer();
     }

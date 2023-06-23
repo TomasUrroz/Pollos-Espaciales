@@ -11,13 +11,13 @@ import com.game.Entities.CharacterProperties.Weapon;
 public class Brute extends Enemy{
     private Entity ammo;
 
-    public Brute(World world, long addr, Integer hp, Integer maxHp, Float armor, Integer x, Integer y, Integer width, Integer height, Integer speed, Weapon weapon, Entity ammo) {
-        super(world,addr, hp, maxHp, armor, x, y, width, height, speed, weapon);
+    public Brute(Integer hp, Integer maxHp, Float armor, Integer x, Integer y, Integer width, Integer height, Integer speed, Weapon weapon, Entity ammo) {
+        super(hp, maxHp, armor, x, y, width, height, speed, weapon);
         this.ammo = ammo;
     }
 
-    public Brute(World world, long addr, Stats stats, SizeE sizeE, Weapon weapon, Entity ammo) {
-        super(world, addr, stats, sizeE, weapon);
+    public Brute(long addr, Stats stats, SizeE sizeE, Weapon weapon, Entity ammo) {
+        super(stats, sizeE, weapon);
         this.ammo = ammo;
     }
 
