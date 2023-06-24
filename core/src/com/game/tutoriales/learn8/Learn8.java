@@ -29,7 +29,7 @@ public class Learn8 extends Screens {
         super(game);
         AssetsLearn8.load(0);
 
-        Vector2 gravity = new Vector2(0, -15);
+        Vector2 gravity = new Vector2(0, 0);
         oWorld = new World(gravity, true);
 
         arrBodies = new Array<>();
@@ -38,6 +38,7 @@ public class Learn8 extends Screens {
         renderer = new Box2DDebugRenderer();
 
         createFloor();
+        createWalls();
         createPlayer();
     }
 
@@ -56,7 +57,57 @@ public class Learn8 extends Screens {
 
         Body oBody = oWorld.createBody(bd);
         oBody.createFixture(fixDef);
+        BodyDef bd2 = new BodyDef();
+        bd2.position.set(0, .6f);
+        bd2.type = BodyType.StaticBody;
+
+        EdgeShape shape2 = new EdgeShape();
+        shape2.set(0, WORLD_HEIGHT-0.58F, WORLD_WIDTH, WORLD_HEIGHT-0.58F);
+
+        FixtureDef fixDef2 = new FixtureDef();
+        fixDef2.shape = shape2;
+        fixDef2.friction = 1f;
+
+        Body oBody2 = oWorld.createBody(bd2);
+        oBody2.createFixture(fixDef2);
+
+        shape2.dispose();
         shape.dispose();
+    }
+
+    private void createWalls() {
+
+        BodyDef bd = new BodyDef();
+        bd.position.set(0, .6f);
+        bd.type = BodyType.StaticBody;
+
+        EdgeShape shape = new EdgeShape();
+        shape.set(0, 0, 0, WORLD_HEIGHT);
+
+        FixtureDef fixDef = new FixtureDef();
+        fixDef.shape = shape;
+        fixDef.friction = 1f;
+
+        Body oBody = oWorld.createBody(bd);
+        oBody.createFixture(fixDef);
+
+        BodyDef bd2 = new BodyDef();
+        bd2.position.set(0, .6f);
+        bd2.type = BodyType.StaticBody;
+
+        EdgeShape shape2 = new EdgeShape();
+        shape2.set(WORLD_WIDTH, 0, WORLD_WIDTH, WORLD_HEIGHT);
+
+        FixtureDef fixDef2 = new FixtureDef();
+        fixDef2.shape = shape2;
+        fixDef2.friction = 1f;
+
+        Body oBody2 = oWorld.createBody(bd2);
+        oBody2.createFixture(fixDef2);
+
+        shape.dispose();
+        shape2.dispose();
+
     }
 
     private void createPlayer() {
@@ -86,7 +137,7 @@ public class Learn8 extends Screens {
     public void update(float delta) {
         float accelX = 0;
         float accelY = 0;
-
+        String action = "";
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
             accelX = -1;
@@ -101,7 +152,7 @@ public class Learn8 extends Screens {
             accelY = 1;
 
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE))
-            player.setIsAttacking(true);
+            action = "attk";
 
 
         oWorld.step(delta, 8, 6);
@@ -110,7 +161,7 @@ public class Learn8 extends Screens {
         for (Body body : arrBodies) {
             if (body.getUserData() instanceof Player) {
                 Player obj = (Player) body.getUserData();
-                obj.update(body, delta, accelX, accelY);
+                obj.update(body, delta, accelX, accelY, action);
             }
         }
     }
@@ -142,8 +193,7 @@ public class Learn8 extends Screens {
             if (player.isIsWalking()) {
                 keyframe = AssetsLearn8.walk.getKeyFrame(player.getStateTime(), true);
             }else if (player.isIsAttacking()) {
-                player.setStateTime(0);
-                keyframe = AssetsLearn8.attack1.getKeyFrame(player.getStateTime(), false);
+                keyframe = AssetsLearn8.attack1.getKeyFrame(player.getStateTime(), true);
                 player.setIsAttacking(false);
             }
 
@@ -156,10 +206,10 @@ public class Learn8 extends Screens {
             }
         }catch (NullPointerException npe){
             keyframe = AssetsLearn8.entity;
+        }finally {
+            keyframe.draw(spriteBatch);
         }
 
-
-        keyframe.draw(spriteBatch);
     }
 
     @Override
