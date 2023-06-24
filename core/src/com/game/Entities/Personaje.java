@@ -5,14 +5,14 @@ import com.game.Entities.CharacterProperties.*;
 
 public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath {
     static Float speed;
-    static Float iddle_frame_duration ;
-    static Float run_frame_duration ;
-    static Float walk_frame_duration ;
-    static Float attk1_frame_duration ;
-    static Float attk2_frame_duration ;
-    static Float attk3_frame_duration ;
-    static Float death_frame_duration ;
-    static Float hurt_frame_duration ;
+    public static final Float IDDLE_FRAME_DURATION = 0.04f;
+    public static final Float RUN_FRAME_DURATION = 0.06f;
+    public static final Float WALK_FRAME_DURATION = 0.06f;
+    public static final Float ATTK1_FRAME_DURATION = 0.06f;
+    public static final Float ATTK2_FRAME_DURATION = 0.06f;
+    public static final Float ATTK3_FRAME_DURATION = 0.06f;
+    public static final Float DEATH_FRAME_DURATION = 0.06f;
+    public static final Float HURT_FRAME_DURATION = 0.03f;
     static boolean isWalking;
     static boolean isIddle;
     static boolean isRunning;
@@ -20,28 +20,13 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
     static boolean isDying;
 
     static float stateTime = 0;
-    public Personaje(Integer hp, Integer maxHp, Float armor, Float x, Float y, Float width, Float height, Float draw_width, Float draw_height, Float iddle_frame_duration, Float run_frame_duration, Float walk_frame_duration, Float attk1_frame_duration, Float attk2_frame_duration, Float attk3_frame_duration, Float death_frame_duration, Float hurt_frame_duration) {
+    public Personaje(Integer hp, Integer maxHp, Float armor, Float x, Float y, Float width, Float height, Float draw_width, Float draw_height, Float speed) {
         super(hp, maxHp, armor, x, y, width, height, draw_width, draw_height);
-        this.iddle_frame_duration = iddle_frame_duration;
-        this.run_frame_duration = run_frame_duration;
-        this.walk_frame_duration = walk_frame_duration;
-        this.attk1_frame_duration = attk1_frame_duration;
-        this.attk2_frame_duration = attk2_frame_duration;
-        this.attk3_frame_duration = attk3_frame_duration;
-        this.death_frame_duration = death_frame_duration;
-        this.hurt_frame_duration = hurt_frame_duration;
+        this.speed = speed;
     }
-    public Personaje(Stats stats, SizeE sizeE, CharacterAnimations charAn) {
+    public Personaje(Stats stats, SizeE sizeE) {
         super(stats.getHp(), stats.getMaxHp(), stats.getArmor(), sizeE.getX(), sizeE.getY(), sizeE.getWidth(), sizeE.getHeight(), sizeE.getDrawWidth(), sizeE.getDrawHeight());
         this.speed = stats.getSpeed();
-        this.iddle_frame_duration =charAn.getIddle_frame_duration();
-        this.run_frame_duration = charAn.getRun_frame_duration();
-        this.walk_frame_duration = charAn.getWalk_frame_duration();
-        this.attk1_frame_duration = charAn.getAttk1_frame_duration();
-        this.attk2_frame_duration = charAn.getAttk2_frame_duration();
-        this.attk3_frame_duration = charAn.getAttk3_frame_duration();
-        this.death_frame_duration = charAn.getDeath_frame_duration();
-        this.hurt_frame_duration = charAn.getHurt_frame_duration();
     }
 
     @Override
@@ -50,15 +35,19 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
         position.y = body.getPosition().y;
 
         velocity = body.getLinearVelocity();
+
         isIddle = true;
+
         if (accelX == -1) {
             isIddle = false;
             velocity.x = -speed;
             isWalking = true;
+            stateTime = 0;
         } else if (accelX == 1) {
             isIddle = false;
             velocity.x = speed;
             isWalking = true;
+            stateTime = 0;
         } else {
             isIddle = true;
             velocity.x = 0;
@@ -68,17 +57,22 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
             isIddle = false;
             isWalking = true;
             velocity.y = -speed;
+            stateTime = 0;
         } else if (accelY == 1) {
             isIddle = false;
             velocity.y = speed;
             isWalking = true;
+            stateTime = 0;
         } else {
             isIddle = true;
             velocity.y = 0;
             isWalking = false;
+
         }
         body.setLinearVelocity(velocity);
+
         stateTime += delta;
+        System.out.println(stateTime);
     }
 
 
@@ -149,71 +143,6 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
         Personaje.isDying = isDying;
     }
 
-    public static Float getIddle_frame_duration() {
-        return iddle_frame_duration;
-    }
-
-    public void setIddle_frame_duration(Float iddle_frame_duration) {
-        this.iddle_frame_duration = iddle_frame_duration;
-    }
-
-    public static Float getRun_frame_duration() {
-        return run_frame_duration;
-    }
-
-    public void setRun_frame_duration(Float run_frame_duration) {
-        this.run_frame_duration = run_frame_duration;
-    }
-
-    public static Float getWalk_frame_duration() {
-        return walk_frame_duration;
-    }
-
-    public void setWalk_frame_duration(Float walk_frame_duration) {
-        this.walk_frame_duration = walk_frame_duration;
-    }
-
-    public static Float getAttk1_frame_duration() {
-        return attk1_frame_duration;
-    }
-
-    public void setAttk1_frame_duration(Float attk1_frame_duration) {
-        this.attk1_frame_duration = attk1_frame_duration;
-    }
-
-    public static Float getAttk2_frame_duration() {
-        return attk2_frame_duration;
-    }
-
-    public void setAttk2_frame_duration(Float attk2_frame_duration) {
-        this.attk2_frame_duration = attk2_frame_duration;
-    }
-
-    public static Float getAttk3_frame_duration() {
-        return attk3_frame_duration;
-    }
-
-    public void setAttk3_frame_duration(Float attk3_frame_duration) {
-        this.attk3_frame_duration = attk3_frame_duration;
-    }
-
-    public static Float getDeath_frame_duration() {
-        return death_frame_duration;
-    }
-
-    public void setDeath_frame_duration(Float death_frame_duration) {
-        this.death_frame_duration = death_frame_duration;
-    }
-
-    public static Float getHurt_frame_duration() {
-        return hurt_frame_duration;
-    }
-
-    public void setHurt_frame_duration(Float hurt_frame_duration) {
-        this.hurt_frame_duration = hurt_frame_duration;
-    }
-
-
     public static float getStateTime() {
         return stateTime;
     }
@@ -221,4 +150,8 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
     public static void setStateTime(float stateTime) {
         Personaje.stateTime = stateTime;
     }
+
+
+
+
 }

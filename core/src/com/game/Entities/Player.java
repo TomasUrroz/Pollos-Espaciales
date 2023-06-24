@@ -13,7 +13,7 @@ public class Player extends Personaje implements IAttackPlayer, IGrabbable {
     private Boolean god=false;
 
     public Player(Float x, Float y) {
-        super(100, 100, 1.0f, x, y, .45f, .6f, 1.3f,1.7f,0.05f,0.05f,0.05f,0.05f,0.05f,0.05f,0.05f,0.05f);
+        super(100, 100, 1.0f, x, y, 0.15f, 0.50f, 0.5f,0.9f,3f);
         this.dodges = 2;
         this.ammo = 0;
         this.weapon = new ArrayList<>();
@@ -21,7 +21,7 @@ public class Player extends Personaje implements IAttackPlayer, IGrabbable {
         this.god = false;
     }
     public Player(Float x, Float y, Weapon weapon) {
-        super(100, 100, 1.0f, x, y, .45f, .6f, 1.3f,1.7f,0.05f,0.05f,0.05f,0.05f,0.05f,0.05f,0.05f,0.05f);
+        super(100, 100, 1.0f, x, y, .45f, .6f, 1.3f,1.7f,3f);
         this.dodges = 2;
         this.ammo = 0;
         this.weapon.add(weapon);
@@ -29,42 +29,22 @@ public class Player extends Personaje implements IAttackPlayer, IGrabbable {
         this.god = false;
     }
 
-    public Player(Integer hp, Integer maxHp, Float armor, Float x, Float y, Float width, Float height, Float draw_width, Float draw_height, Float iddle_frame_duration, Float run_frame_duration, Float walk_frame_duration, Float attk1_frame_duration, Float attk2_frame_duration, Float attk3_frame_duration, Float death_frame_duration, Float hurt_frame_duration, Integer dodges, Integer ammo, ArrayList<Weapon> weapon, Integer selectedWeapon, Boolean god) {
-        super(hp, maxHp, armor, x, y, width, height, draw_width, draw_height, iddle_frame_duration, run_frame_duration, walk_frame_duration, attk1_frame_duration, attk2_frame_duration, attk3_frame_duration, death_frame_duration, hurt_frame_duration);
+    public Player(Integer hp, Integer maxHp, Float armor, Float x, Float y, Float width, Float height, Float draw_width, Float draw_height, Integer dodges, Integer ammo, ArrayList<Weapon> weapon, Integer selectedWeapon, Boolean god, Float speed) {
+        super(hp, maxHp, armor, x, y, width, height, draw_width, draw_height,speed);
         this.dodges = dodges;
         this.ammo = ammo;
         this.weapon = weapon;
         this.selectedWeapon = selectedWeapon;
         this.god = god;
     }
-    public Player(Stats stats, SizeE sizeE, CharacterAnimations chrAn, ArrayList<Weapon> weapon) {
-        super(stats,sizeE,chrAn);
+    public Player(Stats stats, SizeE sizeE, ArrayList<Weapon> weapon) {
+        super(stats,sizeE);
         this.dodges = 2;
         this.ammo = 0;
         this.weapon = weapon;
         this.selectedWeapon = 0;
         this.god = false;
     }
-
-
-
-/*
-    public Player(Stats stats, SizeE sizeE, Integer dodges, Integer ammo, ArrayList<Weapon> weapon, Integer selectedWeapon, Boolean god) {
-        super(stats.getHp(), stats.getMaxHp(), stats.getArmor(), sizeE.getX(), sizeE.getY(), sizeE.getWidth(), sizeE.getHeight(), stats.getSpeed());;
-        this.dodges = dodges;
-        this.ammo = ammo;
-        this.weapon = weapon;
-        this.selectedWeapon = selectedWeapon;
-        this.god = god;
-    }
-    public Player(Stats stats, SizeE sizeE, Integer dodges, Integer ammo, Weapon weapon, Boolean god) {
-        super(stats.getHp(), stats.getMaxHp(), stats.getArmor(), sizeE.getX(), sizeE.getY(), sizeE.getWidth(), sizeE.getHeight(), stats.getSpeed());;
-        this.dodges = dodges;
-        this.ammo = ammo;
-        this.weapon.add(weapon);
-        this.god = god;
-    }
-*/
 
 
 

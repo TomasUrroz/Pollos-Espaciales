@@ -22,90 +22,88 @@ public class AssetsLearn8 {
     static TextureAtlas atlas;
 
     public static void load(Integer choice) {
-        atlas = new TextureAtlas(Gdx.files.internal("Entities/entities.txt"));
+        atlas = new TextureAtlas(Gdx.files.internal("Entities/Zombie Man/ZM.txt"));
 
-        if(choice == 0){
-            entity = atlas.createSprite("Woodcutter");
+        if(choice == 0){/*
             idle = new Animation<>(
-                    Personaje.getIddle_frame_duration(),
+                    Personaje.IDDLE_FRAME_DURATION ,
                     atlas.createSprite("Woodcutter_idle1"),
                     atlas.createSprite("Woodcutter_idle2"),
                     atlas.createSprite("Woodcutter_idle3"),
                     atlas.createSprite("Woodcutter_idle4")
-            );
+            );*/
+            entity = atlas.createSprite("Walk_A");
+
             walk = new Animation<>(
-                    Personaje.getWalk_frame_duration(),
-                    atlas.createSprite("Woodcutter_walk1"),
-                    atlas.createSprite("Woodcutter_walk2"),
-                    atlas.createSprite("Woodcutter_walk3"),
-                    atlas.createSprite("Woodcutter_walk4"),
-                    atlas.createSprite("Woodcutter_walk5"),
-                    atlas.createSprite("Woodcutter_walk6"),
-                    atlas.createSprite("Woodcutter_walk7")
+                    Personaje.RUN_FRAME_DURATION,
+                    atlas.createSprite("Walk_A"),
+                    atlas.createSprite("Walk_B"),
+                    atlas.createSprite("Walk_C"),
+                    atlas.createSprite("Walk_D"),
+                    atlas.createSprite("Walk_E"),
+                    atlas.createSprite("Walk_F"),
+                    atlas.createSprite("Walk_G"),
+                    atlas.createSprite("Walk_H")
             );
             run = new Animation<>(
-                    Personaje.getRun_frame_duration(),
-                    atlas.createSprite("Woodcutter_run1"),
-                    atlas.createSprite("Woodcutter_run2"),
-                    atlas.createSprite("Woodcutter_run3"),
-                    atlas.createSprite("Woodcutter_run4"),
-                    atlas.createSprite("Woodcutter_run5"),
-                    atlas.createSprite("Woodcutter_run6")
+                    Personaje.WALK_FRAME_DURATION,
+                    atlas.createSprite("Run_A"),
+                    atlas.createSprite("Run_B"),
+                    atlas.createSprite("Run_C"),
+                    atlas.createSprite("Run_D"),
+                    atlas.createSprite("Run_E"),
+                    atlas.createSprite("Run_F")
             );
             attack1 = new Animation<>(
-                    Personaje.getAttk1_frame_duration(),
-                    atlas.createSprite("Woodcutter_attack11"),
-                    atlas.createSprite("Woodcutter_attack12"),
-                    atlas.createSprite("Woodcutter_attack13"),
-                    atlas.createSprite("Woodcutter_attack14"),
-                    atlas.createSprite("Woodcutter_attack15"),
-                    atlas.createSprite("Woodcutter_attack16")
+                    Personaje.ATTK1_FRAME_DURATION,
+                    atlas.createSprite("Attack_1_A"),
+                    atlas.createSprite("Attack_1_B"),
+                    atlas.createSprite("Attack_1_C"),
+                    atlas.createSprite("Attack_1_D"),
+                    atlas.createSprite("Attack_1_E")
             );
             attack2 = new Animation<>(
-                    Personaje.getAttk2_frame_duration(),
-                    atlas.createSprite("Woodcutter_attack21"),
-                    atlas.createSprite("Woodcutter_attack22"),
-                    atlas.createSprite("Woodcutter_attack23"),
-                    atlas.createSprite("Woodcutter_attack24"),
-                    atlas.createSprite("Woodcutter_attack25"),
-                    atlas.createSprite("Woodcutter_attack26")
+                    Personaje.ATTK2_FRAME_DURATION,
+                    atlas.createSprite("Attack_2_A"),
+                    atlas.createSprite("Attack_2_B"),
+                    atlas.createSprite("Attack_2_C"),
+                    atlas.createSprite("Attack_2_D"),
+                    atlas.createSprite("Attack_2_E")
             );
             attack3 = new Animation<>(
-                    Personaje.getAttk3_frame_duration(),
-                    atlas.createSprite("Woodcutter_attack31"),
-                    atlas.createSprite("Woodcutter_attack32"),
-                    atlas.createSprite("Woodcutter_attack33"),
-                    atlas.createSprite("Woodcutter_attack34"),
-                    atlas.createSprite("Woodcutter_attack35"),
-                    atlas.createSprite("Woodcutter_attack36")
+                    Personaje.ATTK3_FRAME_DURATION,
+                    atlas.createSprite("Attack_3_A"),
+                    atlas.createSprite("Attack_3_B"),
+                    atlas.createSprite("Attack_3_C"),
+                    atlas.createSprite("Attack_3_D"),
+                    atlas.createSprite("Attack_3_E")
             );
             death = new Animation<>(
-                    Personaje.getDeath_frame_duration(),
-                    atlas.createSprite("Woodcutter_death1"),
-                    atlas.createSprite("Woodcutter_death2"),
-                    atlas.createSprite("Woodcutter_death3"),
-                    atlas.createSprite("Woodcutter_death4"),
-                    atlas.createSprite("Woodcutter_death5"),
-                    atlas.createSprite("Woodcutter_death6")
+                    Personaje.DEATH_FRAME_DURATION,
+                    atlas.createSprite("Dead_A"),
+                    atlas.createSprite("Dead_B"),
+                    atlas.createSprite("Dead_C"),
+                    atlas.createSprite("Dead_D"),
+                    atlas.createSprite("Dead_E")
             );
             hurt = new Animation<>(
-                    Personaje.getHurt_frame_duration(),
-                    atlas.createSprite("Woodcutter_hurt1"),
-                    atlas.createSprite("Woodcutter_hurt2"),
-                    atlas.createSprite("Woodcutter_hurt3")
+                    Personaje.HURT_FRAME_DURATION,
+                    atlas.createSprite("Hurt_A"),
+                    atlas.createSprite("Hurt_B"),
+                    atlas.createSprite("Hurt_C")
             );
-        } else if (choice == 1) {
+        } /*else if (choice == 1) {
             entity = atlas.createSprite("GraveRobber");
 
             idle = new Animation<>(
-                    Personaje.getIddle_frame_duration(),
+                    Personaje.IDDLE_FRAME_DURATION ,
                     atlas.createSprite("GraveRobber_idle1"),
                     atlas.createSprite("GraveRobber_idle2"),
                     atlas.createSprite("GraveRobber_idle3"),
                     atlas.createSprite("GraveRobber_idle4")
             );
             walk = new Animation<>(
-                    Personaje.getWalk_frame_duration(),
+                    Personaje.RUN_FRAME_DURATION,
                     atlas.createSprite("GraveRobber_walk1"),
                     atlas.createSprite("GraveRobber_walk2"),
                     atlas.createSprite("GraveRobber_walk3"),
@@ -115,7 +113,7 @@ public class AssetsLearn8 {
                     atlas.createSprite("GraveRobber_walk7")
             );
             run = new Animation<>(
-                    Personaje.getRun_frame_duration(),
+                    Personaje.WALK_FRAME_DURATION,
                     atlas.createSprite("GraveRobber_run1"),
                     atlas.createSprite("GraveRobber_run2"),
                     atlas.createSprite("GraveRobber_run3"),
@@ -124,7 +122,7 @@ public class AssetsLearn8 {
                     atlas.createSprite("GraveRobber_run6")
             );
             attack1 = new Animation<>(
-                    Personaje.getAttk1_frame_duration(),
+                    Personaje.ATTK1_FRAME_DURATION,
                     atlas.createSprite("GraveRobber_attack11"),
                     atlas.createSprite("GraveRobber_attack12"),
                     atlas.createSprite("GraveRobber_attack13"),
@@ -133,7 +131,7 @@ public class AssetsLearn8 {
                     atlas.createSprite("GraveRobber_attack16")
             );
             attack2 = new Animation<>(
-                    Personaje.getAttk2_frame_duration(),
+                    Personaje.ATTK2_FRAME_DURATION,
                     atlas.createSprite("GraveRobber_attack21"),
                     atlas.createSprite("GraveRobber_attack22"),
                     atlas.createSprite("GraveRobber_attack23"),
@@ -142,7 +140,7 @@ public class AssetsLearn8 {
                     atlas.createSprite("GraveRobber_attack26")
             );
             attack3 = new Animation<>(
-                    Personaje.getAttk3_frame_duration(),
+                    Personaje.ATTK3_FRAME_DURATION,
                     atlas.createSprite("GraveRobber_attack31"),
                     atlas.createSprite("GraveRobber_attack32"),
                     atlas.createSprite("GraveRobber_attack33"),
@@ -151,7 +149,7 @@ public class AssetsLearn8 {
                     atlas.createSprite("GraveRobber_attack36")
             );
             death = new Animation<>(
-                    Personaje.getDeath_frame_duration(),
+                    Personaje.DEATH_FRAME_DURATION,
                     atlas.createSprite("GraveRobber_death1"),
                     atlas.createSprite("GraveRobber_death2"),
                     atlas.createSprite("GraveRobber_death3"),
@@ -160,7 +158,7 @@ public class AssetsLearn8 {
                     atlas.createSprite("GraveRobber_death6")
             );
             hurt = new Animation<>(
-                    Personaje.getHurt_frame_duration(),
+                    Personaje.HURT_FRAME_DURATION,
                     atlas.createSprite("GraveRobber_hurt1"),
                     atlas.createSprite("GraveRobber_hurt2"),
                     atlas.createSprite("GraveRobber_hurt3")
@@ -168,14 +166,14 @@ public class AssetsLearn8 {
         }else if (choice == 2) {
             entity = atlas.createSprite("SteamMan");
             idle = new Animation<>(
-                    Personaje.getIddle_frame_duration(),
+                    Personaje.IDDLE_FRAME_DURATION ,
                     atlas.createSprite("SteamMan_idle1"),
                     atlas.createSprite("SteamMan_idle2"),
                     atlas.createSprite("SteamMan_idle3"),
                     atlas.createSprite("SteamMan_idle4")
             );
             walk = new Animation<>(
-                    Personaje.getWalk_frame_duration(),
+                    Personaje.RUN_FRAME_DURATION,
                     atlas.createSprite("SteamMan_walk1"),
                     atlas.createSprite("SteamMan_walk2"),
                     atlas.createSprite("SteamMan_walk3"),
@@ -185,7 +183,7 @@ public class AssetsLearn8 {
                     atlas.createSprite("SteamMan_walk7")
             );
             run = new Animation<>(
-                    Personaje.getRun_frame_duration(),
+                    Personaje.WALK_FRAME_DURATION,
                     atlas.createSprite("SteamMan_run1"),
                     atlas.createSprite("SteamMan_run2"),
                     atlas.createSprite("SteamMan_run3"),
@@ -194,7 +192,7 @@ public class AssetsLearn8 {
                     atlas.createSprite("SteamMan_run6")
             );
             attack1 = new Animation<>(
-                    Personaje.getAttk1_frame_duration(),
+                    Personaje.ATTK1_FRAME_DURATION,
                     atlas.createSprite("SteamMan_attack11"),
                     atlas.createSprite("SteamMan_attack12"),
                     atlas.createSprite("SteamMan_attack13"),
@@ -203,7 +201,7 @@ public class AssetsLearn8 {
                     atlas.createSprite("SteamMan_attack16")
             );
             attack2 = new Animation<>(
-                    Personaje.getAttk2_frame_duration(),
+                    Personaje.ATTK2_FRAME_DURATION,
                     atlas.createSprite("SteamMan_attack21"),
                     atlas.createSprite("SteamMan_attack22"),
                     atlas.createSprite("SteamMan_attack23"),
@@ -212,7 +210,7 @@ public class AssetsLearn8 {
                     atlas.createSprite("SteamMan_attack26")
             );
             attack3 = new Animation<>(
-                    Personaje.getAttk3_frame_duration(),
+                    Personaje.ATTK3_FRAME_DURATION,
                     atlas.createSprite("SteamMan_attack31"),
                     atlas.createSprite("SteamMan_attack32"),
                     atlas.createSprite("SteamMan_attack33"),
@@ -221,7 +219,7 @@ public class AssetsLearn8 {
                     atlas.createSprite("SteamMan_attack36")
             );
             death = new Animation<>(
-                    Personaje.getDeath_frame_duration(),
+                    Personaje.DEATH_FRAME_DURATION,
                     atlas.createSprite("SteamMan_death1"),
                     atlas.createSprite("SteamMan_death2"),
                     atlas.createSprite("SteamMan_death3"),
@@ -230,12 +228,12 @@ public class AssetsLearn8 {
                     atlas.createSprite("SteamMan_death6")
             );
             hurt = new Animation<>(
-                    Personaje.getHurt_frame_duration(),
+                    Personaje.HURT_FRAME_DURATION,
                     atlas.createSprite("SteamMan_hurt1"),
                     atlas.createSprite("SteamMan_hurt2"),
                     atlas.createSprite("SteamMan_hurt3")
                     );
-        }
+        }*/
     }
 
 

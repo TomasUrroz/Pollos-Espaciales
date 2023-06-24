@@ -134,16 +134,14 @@ public class Learn8 extends Screens {
 
         if (player.isIsWalking()) {
             keyframe = AssetsLearn8.walk.getKeyFrame(player.getStateTime(), true);
-        }else if(player.isIsIddle()){
-            keyframe = AssetsLearn8.idle.getKeyFrame(player.getStateTime(), true);
         }
 
         if (player.getVelocityX() < 0) {
             keyframe.setPosition(player.getX() + player.getDraw_width() / 2, player.getY() - player.getDraw_height() / 2 + .25f);
-            keyframe.setSize(-player.getWidth(), player.getDraw_height());
+            keyframe.setSize(-player.getDraw_width(), player.getDraw_height());
         } else {
             keyframe.setPosition(player.getX() - player.getDraw_width() / 2, player.getY() - player.getDraw_height() / 2 + .25f);
-            keyframe.setSize(player.getWidth(), player.getDraw_height());
+            keyframe.setSize(player.getDraw_width(), player.getDraw_height());
         }
 
         keyframe.draw(spriteBatch);

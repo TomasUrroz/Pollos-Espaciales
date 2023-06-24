@@ -6,8 +6,8 @@ public abstract class Entity {
     private Integer hp;
     private Integer maxHp;
     private Float armor;
-    Vector2 position;
-    Vector2 velocity;
+    Vector2 position = new Vector2();
+    Vector2 velocity = new Vector2();
     private Float width ;
     private Float height;
     private Float draw_width;
