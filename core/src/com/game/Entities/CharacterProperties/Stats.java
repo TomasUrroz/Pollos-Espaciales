@@ -1,23 +1,23 @@
-package com.game.CharacterProperties;
+package com.game.Entities.CharacterProperties;
 
 public class Stats {
     private Integer hp;
     private Integer maxHp;
     private Float armor;
-    private Integer speed;
+    private Float speed;
 
-    public Stats(Integer hp, Integer maxHp, Float armor, Integer speed) {
+    public Stats(Integer hp, Integer maxHp, Float armor, Float speed) {
         this.hp = hp;
         this.maxHp = maxHp;
         this.armor = armor;
         this.speed = speed;
     }
 
-    public Integer getSpeed() {
+    public Float getSpeed() {
         return speed;
     }
 
-    public void setSpeed(Integer speed) {
+    public void setSpeed(Float speed) {
         this.speed = speed;
     }
 

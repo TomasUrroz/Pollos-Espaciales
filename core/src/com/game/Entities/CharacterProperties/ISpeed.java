@@ -1,8 +1,9 @@
-package com.game.CharacterProperties;
+package com.game.Entities.CharacterProperties;
+
+import com.badlogic.gdx.physics.box2d.Body;
 
 public interface ISpeed {
-    Integer getSpeed();
-    void setSpeed(Integer newSpeed);
-    void move(int side);
-
+    Float getSpeed();
+    void setSpeed(Float speed);
+    void update(Body body, Float delta, Float accelX, Float accelY);
 }

@@ -1,61 +1,56 @@
 package com.game;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.game.utils.Learn;
 
-public class MainMenuScreen implements Screen {
 
-    final Drop game;
-    OrthographicCamera camera;
+public class MainMenuScreen extends Screens {
 
-    public MainMenuScreen(final Drop gam) {
-        game = gam;
+    ScrollPane scroll;
 
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 480);
+    public MainMenuScreen(MainLearn game) {
+        super(game);
+
+        Table menu = new Table();
+        menu.defaults().expandY().fillY();
+
+        for (final Learn learn : Learn.values()) {
+            TextButton bt = new TextButton(learn.name, Assets.txButtonStyle);
+            bt.addListener(new ClickListener() {
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    setScreen(learn);
+                }
+            });
+
+            menu.row().padTop(15).height(50);
+            menu.add(bt).fillX();
+        }
+        scroll = new ScrollPane(menu, Assets.scrollPaneStyle);
+        scroll.setSize(500, SCREEN_HEIGHT);
+        scroll.setPosition(150, 0);
+        stage.addActor(scroll);
     }
 
-    @Override
-    public void render(float delta) {
-        ScreenUtils.clear(0, 0, 0.2f, 1);
-
-        camera.update();
-        game.batch.setProjectionMatrix(camera.combined);
-
-        game.batch.begin();
-        game.font.draw(game.batch, "Welcome to Drop!!! ", 100, 150);
-        game.font.draw(game.batch, "Tap anywhere to begin!", 100, 100);
-        game.batch.end();
-
-        if (Gdx.input.isTouched()) {
-            game.setScreen(new GameScreen(game));
-            dispose();
+    private void setScreen(Learn learn) {
+        try {
+            Screens newScreen = learn.clazz.getConstructor(MainLearn.class).newInstance(game);
+            game.setScreen(newScreen);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     @Override
-    public void resize(int width, int height) {
+    public void draw(float delta) {
     }
 
     @Override
-    public void show() {
+    public void update(float delta) {
     }
 
-    @Override
-    public void hide() {
-    }
-
-    @Override
-    public void pause() {
-    }
-
-    @Override
-    public void resume() {
-    }
-
-    @Override
-    public void dispose() {
-    }
 }
