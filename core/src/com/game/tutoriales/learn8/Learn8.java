@@ -12,6 +12,8 @@ import com.game.Entities.Player;
 import com.game.MainLearn;
 import com.game.Screens;
 
+import java.nio.channels.ScatteringByteChannel;
+
 
 public class Learn8 extends Screens {
 
@@ -58,7 +60,7 @@ public class Learn8 extends Screens {
     }
 
     private void createPlayer() {
-        player = new Player(4f,5f);
+        player = new Player(4f,1f);
         BodyDef bd = new BodyDef();
         bd.position.x = player.getX();
         bd.position.y = player.getY();
@@ -85,18 +87,22 @@ public class Learn8 extends Screens {
         float accelX = 0;
         float accelY = 0;
 
+
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
             accelX = -1;
+
         else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
             accelX = 1;
 
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
             accelY = -1;
-        }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.UP))
             accelY = 1;
-        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE))
+            player.setIsAttacking(true);
+
 
         oWorld.step(delta, 8, 6);
         oWorld.getBodies(arrBodies);
@@ -132,17 +138,26 @@ public class Learn8 extends Screens {
     private void drawplayer() {
         Sprite keyframe = AssetsLearn8.entity;
 
-        if (player.isIsWalking()) {
-            keyframe = AssetsLearn8.walk.getKeyFrame(player.getStateTime(), true);
+        try{
+            if (player.isIsWalking()) {
+                keyframe = AssetsLearn8.walk.getKeyFrame(player.getStateTime(), true);
+            }else if (player.isIsAttacking()) {
+                player.setStateTime(0);
+                keyframe = AssetsLearn8.attack1.getKeyFrame(player.getStateTime(), false);
+                player.setIsAttacking(false);
+            }
+
+            if (player.getVelocityX() < 0) {
+                keyframe.setPosition(player.getX() + player.getDraw_width() / 2, player.getY() - player.getDraw_height() / 2 +.25f);
+                keyframe.setSize(-player.getDraw_width(), player.getDraw_height());
+            } else {
+                keyframe.setPosition(player.getX() - player.getDraw_width() / 2, player.getY() - player.getDraw_height() / 2 + .25f);
+                keyframe.setSize(player.getDraw_width(), player.getDraw_height());
+            }
+        }catch (NullPointerException npe){
+            keyframe = AssetsLearn8.entity;
         }
 
-        if (player.getVelocityX() < 0) {
-            keyframe.setPosition(player.getX() + player.getDraw_width() / 2, player.getY() - player.getDraw_height() / 2 + .25f);
-            keyframe.setSize(-player.getDraw_width(), player.getDraw_height());
-        } else {
-            keyframe.setPosition(player.getX() - player.getDraw_width() / 2, player.getY() - player.getDraw_height() / 2 + .25f);
-            keyframe.setSize(player.getDraw_width(), player.getDraw_height());
-        }
 
         keyframe.draw(spriteBatch);
     }

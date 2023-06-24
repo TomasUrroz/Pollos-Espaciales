@@ -35,7 +35,7 @@ public class AssetsLearn8 {
             entity = atlas.createSprite("Walk_A");
 
             walk = new Animation<>(
-                    Personaje.RUN_FRAME_DURATION,
+                    Personaje.WALK_FRAME_DURATION,
                     atlas.createSprite("Walk_A"),
                     atlas.createSprite("Walk_B"),
                     atlas.createSprite("Walk_C"),
@@ -46,7 +46,7 @@ public class AssetsLearn8 {
                     atlas.createSprite("Walk_H")
             );
             run = new Animation<>(
-                    Personaje.WALK_FRAME_DURATION,
+                    Personaje.RUN_FRAME_DURATION,
                     atlas.createSprite("Run_A"),
                     atlas.createSprite("Run_B"),
                     atlas.createSprite("Run_C"),

@@ -7,19 +7,20 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
     static Float speed;
     public static final Float IDDLE_FRAME_DURATION = 0.04f;
     public static final Float RUN_FRAME_DURATION = 0.06f;
-    public static final Float WALK_FRAME_DURATION = 0.06f;
+    public static final Float WALK_FRAME_DURATION = 0.1f;
     public static final Float ATTK1_FRAME_DURATION = 0.06f;
     public static final Float ATTK2_FRAME_DURATION = 0.06f;
     public static final Float ATTK3_FRAME_DURATION = 0.06f;
     public static final Float DEATH_FRAME_DURATION = 0.06f;
     public static final Float HURT_FRAME_DURATION = 0.03f;
-    static boolean isWalking;
-    static boolean isIddle;
-    static boolean isRunning;
-    static boolean isAttacking;
-    static boolean isDying;
+    static boolean isWalking = false;
+    static boolean isIddle = false;
+    static boolean isRunning = false;
+    static boolean isAttacking = false;
+    static boolean isDying = false;
 
     static float stateTime = 0;
+
     public Personaje(Integer hp, Integer maxHp, Float armor, Float x, Float y, Float width, Float height, Float draw_width, Float draw_height, Float speed) {
         super(hp, maxHp, armor, x, y, width, height, draw_width, draw_height);
         this.speed = speed;
@@ -35,44 +36,33 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
         position.y = body.getPosition().y;
 
         velocity = body.getLinearVelocity();
+//HACER ACA TODO EL TEMA DEL MOVMIENTO Y ESO DEL PERSONAJE. SI NO COMO QUE SE BUGEA TODO AL RE PINGO SI LO HAGO SEPARADO
 
-        isIddle = true;
+
+        if(accelX != 0 || accelY !=0){
+            isWalking = true;
+            isIddle = false;
+        }else {
+            isWalking = false;
+            isIddle = true;
+        }
 
         if (accelX == -1) {
-            isIddle = false;
             velocity.x = -speed;
-            isWalking = true;
-            stateTime = 0;
         } else if (accelX == 1) {
-            isIddle = false;
             velocity.x = speed;
-            isWalking = true;
-            stateTime = 0;
         } else {
-            isIddle = true;
             velocity.x = 0;
-            isWalking = false;
         }
         if (accelY == -1) {
-            isIddle = false;
-            isWalking = true;
             velocity.y = -speed;
-            stateTime = 0;
         } else if (accelY == 1) {
-            isIddle = false;
             velocity.y = speed;
-            isWalking = true;
-            stateTime = 0;
         } else {
-            isIddle = true;
             velocity.y = 0;
-            isWalking = false;
-
         }
         body.setLinearVelocity(velocity);
-
         stateTime += delta;
-        System.out.println(stateTime);
     }
 
 

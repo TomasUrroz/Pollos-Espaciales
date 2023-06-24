@@ -13,7 +13,7 @@ public class Player extends Personaje implements IAttackPlayer, IGrabbable {
     private Boolean god=false;
 
     public Player(Float x, Float y) {
-        super(100, 100, 1.0f, x, y, 0.15f, 0.50f, 0.5f,0.9f,3f);
+        super(100, 100, 1.0f, x, y, 0.18f, 0.5f, 1f,1.4f,3f);
         this.dodges = 2;
         this.ammo = 0;
         this.weapon = new ArrayList<>();
@@ -21,7 +21,7 @@ public class Player extends Personaje implements IAttackPlayer, IGrabbable {
         this.god = false;
     }
     public Player(Float x, Float y, Weapon weapon) {
-        super(100, 100, 1.0f, x, y, .45f, .6f, 1.3f,1.7f,3f);
+        super(100, 100, 1.0f, x, y, .45f, .25f, 1.3f,1.7f,3f);
         this.dodges = 2;
         this.ammo = 0;
         this.weapon.add(weapon);
