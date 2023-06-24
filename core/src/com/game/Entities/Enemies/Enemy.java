@@ -9,13 +9,13 @@ import com.game.Entities.CharacterProperties.Weapon;
 public class Enemy extends Personaje {
     private Weapon weapon;
 
-    public Enemy(Integer hp, Integer maxHp, Float armor, Float x, Float y, Float width, Float height, Float draw_width, Float draw_height, Weapon weapon, Float speed) {
-        super(hp, maxHp, armor, x, y, width, height, draw_width, draw_height, speed);
+    public Enemy(Integer hp, Integer maxHp, Float armor, Float x, Float y, Float width, Float height, Float draw_width, Float draw_height, Weapon weapon, Float speed, CharacterAnimations anim) {
+        super(hp, maxHp, armor, x, y, width, height, draw_width, draw_height, speed, anim);
         this.weapon = weapon;
     }
 
-    public Enemy(Stats stats, SizeE sizeE, Weapon weapon) {
-        super(stats, sizeE);
+    public Enemy(Stats stats, SizeE sizeE, Weapon weapon, CharacterAnimations anim) {
+        super(stats, sizeE, anim);
         this.weapon = weapon;
     }
 

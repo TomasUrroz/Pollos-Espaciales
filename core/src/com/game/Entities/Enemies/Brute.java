@@ -1,5 +1,6 @@
 package com.game.Entities.Enemies;
 
+import com.game.Entities.CharacterProperties.CharacterAnimations;
 import com.game.Entities.Entity;
 import com.game.Entities.CharacterProperties.Weapon;
 
@@ -7,13 +8,13 @@ import com.game.Entities.CharacterProperties.Weapon;
 public class Brute extends Enemy{
     private Entity ammo;
 
-    public Brute(Float x, Float y, Weapon weapon) {
-        super(100, 100, 0.3f, x, y, .45f, .6f, 1.3f,1.7f, new Weapon(5,1), 1.5f);
+    public Brute(Float x, Float y, Weapon weapon, CharacterAnimations anim) {
+        super(100, 100, 0.3f, x, y, .45f, .6f, 1.3f,1.7f, new Weapon(5,1), 1.5f, anim);
         this.ammo = null;
     }
 
-    public Brute(Integer hp, Integer maxHp, Float armor, Float x, Float y, Float width, Float height, Float draw_width, Float draw_height, Weapon weapon, Entity ammo, Float speed) {
-        super(hp, maxHp, armor, x, y, width, height, draw_width, draw_height, weapon, speed);
+    public Brute(Integer hp, Integer maxHp, Float armor, Float x, Float y, Float width, Float height, Float draw_width, Float draw_height, Weapon weapon, Entity ammo, Float speed, CharacterAnimations anim) {
+        super(hp, maxHp, armor, x, y, width, height, draw_width, draw_height, weapon, speed, anim);
         this.ammo = ammo;
     }
 

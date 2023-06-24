@@ -88,16 +88,16 @@ public class Learn8 extends Screens {
         float accelY = 0;
 
 
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
+        if (Gdx.input.isKeyPressed(Input.Keys.A))
             accelX = -1;
 
-        else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
+        else if (Gdx.input.isKeyPressed(Input.Keys.D))
             accelX = 1;
 
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
+        if (Gdx.input.isKeyPressed(Input.Keys.S))
             accelY = -1;
 
-        if (Gdx.input.isKeyPressed(Input.Keys.UP))
+        if (Gdx.input.isKeyPressed(Input.Keys.W))
             accelY = 1;
 
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE))
@@ -142,8 +142,7 @@ public class Learn8 extends Screens {
             if (player.isIsWalking()) {
                 keyframe = AssetsLearn8.walk.getKeyFrame(player.getStateTime(), true);
             }else if (player.isIsAttacking()) {
-                player.setStateTime(0);
-                keyframe = AssetsLearn8.attack1.getKeyFrame(player.getStateTime(), false);
+                keyframe = AssetsLearn8.attack1.getKeyFrame(player.getStateTime(), true);
                 player.setIsAttacking(false);
             }
 

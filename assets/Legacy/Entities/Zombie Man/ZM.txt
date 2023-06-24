@@ -1,0 +1,398 @@
+
+ZM.png
+size: 572, 269
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Attack_1_A
+  rotate: false
+  xy: 91, 50
+  size: 39, 61
+  orig: 97, 96
+  offset: 22, 0
+  index: -1
+Attack_1_C
+  rotate: false
+  xy: 2, 120
+  size: 43, 74
+  orig: 97, 96
+  offset: 22, 0
+  index: -1
+Attack_1_D
+  rotate: false
+  xy: 60, 204
+  size: 59, 63
+  orig: 97, 96
+  offset: 26, 0
+  index: -1
+Attack_1_E
+  rotate: false
+  xy: 421, 140
+  size: 39, 63
+  orig: 97, 96
+  offset: 37, 2
+  index: -1
+Attack_1_b
+  rotate: false
+  xy: 475, 206
+  size: 50, 61
+  orig: 97, 96
+  offset: 22, 0
+  index: -1
+Attack_2_A
+  rotate: false
+  xy: 205, 136
+  size: 33, 69
+  orig: 98, 96
+  offset: 33, 0
+  index: -1
+Attack_2_B
+  rotate: false
+  xy: 47, 121
+  size: 27, 73
+  orig: 98, 96
+  offset: 26, 0
+  index: -1
+Attack_2_C
+  rotate: false
+  xy: 421, 205
+  size: 52, 62
+  orig: 98, 96
+  offset: 28, 0
+  index: -1
+Attack_2_D
+  rotate: false
+  xy: 305, 145
+  size: 42, 62
+  orig: 98, 96
+  offset: 28, 0
+  index: -1
+Attack_3_A
+  rotate: false
+  xy: 415, 74
+  size: 36, 64
+  orig: 98, 96
+  offset: 28, 0
+  index: -1
+Attack_3_B
+  rotate: false
+  xy: 121, 204
+  size: 58, 63
+  orig: 98, 96
+  offset: 22, 0
+  index: -1
+Attack_3_C
+  rotate: false
+  xy: 487, 141
+  size: 38, 63
+  orig: 98, 96
+  offset: 28, 0
+  index: -1
+Attack_3_D
+  rotate: false
+  xy: 2, 196
+  size: 56, 71
+  orig: 98, 96
+  offset: 28, 0
+  index: -1
+Attack_3_E
+  rotate: false
+  xy: 174, 131
+  size: 29, 71
+  orig: 98, 96
+  offset: 37, 0
+  index: -1
+Bite_A
+  rotate: false
+  xy: 2, 53
+  size: 42, 65
+  orig: 98, 96
+  offset: 31, 0
+  index: -1
+Bite_B
+  rotate: false
+  xy: 527, 141
+  size: 36, 64
+  orig: 98, 96
+  offset: 42, 1
+  index: -1
+Bite_C
+  rotate: false
+  xy: 132, 76
+  size: 40, 64
+  orig: 98, 96
+  offset: 31, 1
+  index: -1
+Bite_D
+  rotate: false
+  xy: 174, 2
+  size: 41, 61
+  orig: 98, 96
+  offset: 37, 0
+  index: -1
+Bite_E
+  rotate: false
+  xy: 132, 12
+  size: 40, 62
+  orig: 98, 96
+  offset: 37, 0
+  index: -1
+Bite_F
+  rotate: false
+  xy: 348, 15
+  size: 36, 61
+  orig: 98, 96
+  offset: 29, 2
+  index: -1
+Bite_G
+  rotate: false
+  xy: 46, 52
+  size: 43, 59
+  orig: 98, 96
+  offset: 34, 0
+  index: -1
+Bite_H
+  rotate: false
+  xy: 305, 79
+  size: 41, 64
+  orig: 98, 96
+  offset: 29, 0
+  index: -1
+Bite_I
+  rotate: false
+  xy: 205, 70
+  size: 34, 64
+  orig: 98, 96
+  offset: 43, 1
+  index: -1
+Bite_J
+  rotate: false
+  xy: 241, 72
+  size: 29, 65
+  orig: 98, 96
+  offset: 35, 0
+  index: -1
+Bite_K
+  rotate: false
+  xy: 348, 78
+  size: 24, 65
+  orig: 98, 96
+  offset: 41, 0
+  index: -1
+Dead_A
+  rotate: false
+  xy: 129, 142
+  size: 43, 60
+  orig: 96, 95
+  offset: 24, 2
+  index: -1
+Dead_B
+  rotate: false
+  xy: 490, 82
+  size: 32, 57
+  orig: 96, 95
+  offset: 28, 0
+  index: -1
+Dead_C
+  rotate: false
+  xy: 503, 27
+  size: 25, 53
+  orig: 96, 95
+  offset: 30, 0
+  index: -1
+Dead_D
+  rotate: false
+  xy: 76, 113
+  size: 50, 28
+  orig: 96, 95
+  offset: 30, 0
+  index: -1
+Dead_E
+  rotate: false
+  xy: 274, 2
+  size: 64, 10
+  orig: 96, 95
+  offset: 29, 0
+  index: -1
+Hurt_A
+  rotate: false
+  xy: 374, 79
+  size: 39, 60
+  orig: 96, 95
+  offset: 17, 0
+  index: -1
+Hurt_B
+  rotate: false
+  xy: 527, 207
+  size: 43, 60
+  orig: 96, 95
+  offset: 33, 0
+  index: -1
+Hurt_C
+  rotate: false
+  xy: 453, 77
+  size: 35, 60
+  orig: 90, 95
+  offset: 27, 1
+  index: -1
+Jump_A
+  rotate: false
+  xy: 274, 18
+  size: 29, 60
+  orig: 90, 95
+  offset: 26, 0
+  index: -1
+Jump_B
+  rotate: false
+  xy: 524, 84
+  size: 29, 55
+  orig: 95, 96
+  offset: 28, 0
+  index: -1
+Jump_C
+  rotate: false
+  xy: 76, 143
+  size: 51, 59
+  orig: 96, 96
+  offset: 33, 4
+  index: -1
+Jump_D
+  rotate: false
+  xy: 272, 80
+  size: 31, 64
+  orig: 96, 96
+  offset: 30, 17
+  index: -1
+Jump_E
+  rotate: false
+  xy: 269, 146
+  size: 34, 63
+  orig: 96, 96
+  offset: 27, 1
+  index: -1
+Jump_F
+  rotate: false
+  xy: 2, 2
+  size: 33, 49
+  orig: 96, 96
+  offset: 36, 0
+  index: -1
+Jump_G
+  rotate: false
+  xy: 530, 30
+  size: 30, 52
+  orig: 96, 96
+  offset: 26, 1
+  index: -1
+Jump_H
+  rotate: false
+  xy: 452, 13
+  size: 26, 59
+  orig: 96, 96
+  offset: 33, 0
+  index: -1
+Run_A
+  rotate: false
+  xy: 415, 10
+  size: 35, 62
+  orig: 91, 94
+  offset: 27, 1
+  index: -1
+Run_B
+  rotate: false
+  xy: 349, 146
+  size: 43, 59
+  orig: 91, 95
+  offset: 21, 0
+  index: -1
+Run_C
+  rotate: false
+  xy: 305, 209
+  size: 58, 58
+  orig: 91, 95
+  offset: 18, 2
+  index: -1
+Run_D
+  rotate: false
+  xy: 181, 207
+  size: 58, 60
+  orig: 91, 95
+  offset: 19, 0
+  index: -1
+Run_E
+  rotate: false
+  xy: 365, 207
+  size: 54, 60
+  orig: 91, 95
+  offset: 19, 0
+  index: -1
+Run_F
+  rotate: false
+  xy: 241, 211
+  size: 62, 56
+  orig: 91, 95
+  offset: 21, 0
+  index: -1
+Run_G
+  rotate: false
+  xy: 305, 17
+  size: 41, 60
+  orig: 91, 96
+  offset: 16, 0
+  index: -1
+Walk_A
+  rotate: false
+  xy: 217, 2
+  size: 30, 66
+  orig: 91, 96
+  offset: 32, 0
+  index: -1
+Walk_B
+  rotate: false
+  xy: 462, 139
+  size: 23, 64
+  orig: 91, 96
+  offset: 26, 0
+  index: -1
+Walk_C
+  rotate: false
+  xy: 394, 141
+  size: 25, 64
+  orig: 91, 96
+  offset: 31, 0
+  index: -1
+Walk_D
+  rotate: false
+  xy: 386, 14
+  size: 27, 63
+  orig: 91, 96
+  offset: 27, 2
+  index: -1
+Walk_E
+  rotate: false
+  xy: 174, 65
+  size: 29, 64
+  orig: 91, 96
+  offset: 27, 1
+  index: -1
+Walk_F
+  rotate: false
+  xy: 480, 17
+  size: 21, 58
+  orig: 91, 96
+  offset: 31, 7
+  index: -1
+Walk_G
+  rotate: false
+  xy: 249, 5
+  size: 23, 65
+  orig: 91, 96
+  offset: 29, 0
+  index: -1
+Walk_H
+  rotate: false
+  xy: 240, 139
+  size: 27, 66
+  orig: 91, 96
+  offset: 28, 0
+  index: -1
