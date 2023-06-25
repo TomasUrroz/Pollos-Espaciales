@@ -14,7 +14,6 @@ import com.game.Entities.Enemies.Zombie;
 import com.game.Entities.Player;
 import com.game.MainLearn;
 import com.game.Screens;
-import com.game.psysicsEditor.PhysicsShapeCache;
 import com.game.utils.CollisionListener;
 
 import java.util.ArrayList;
@@ -23,7 +22,6 @@ import java.util.List;
 public class Learn8 extends Screens {
 
     World oWorld;
-    PhysicsShapeCache physicsBodies;
     Player player;
     Player player2;
     int hits1=0;

@@ -3,11 +3,9 @@ package com.game.Entities.Enemies;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.game.Entities.CharacterProperties.IGrabbable;
-import com.game.Entities.CharacterProperties.Weapon;
 
 
-public class Zombie extends Enemy implements IGrabbable {
+public class Zombie extends Enemy {
     static final float EXPLOSION_DURATION = 0.95f;
     final int STATE_NORMAL = 0;
     final int STATE_EXPLODE = 1;
@@ -19,7 +17,7 @@ public class Zombie extends Enemy implements IGrabbable {
     private Sprite draw;
 
     public Zombie(Float x, Float y) {
-        super(30, 30, 1.0f, x, y, .12f, .28f, 1.3f, 1.7f, new Weapon(5, 1), 1.5f);
+        super(30, 30, 1.0f, x, y, .12f, .28f, 1.3f, 1.7f, 1.5f);
         state = STATE_NORMAL;
     }
 

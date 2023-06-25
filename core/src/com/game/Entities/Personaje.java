@@ -3,15 +3,7 @@ package com.game.Entities;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.game.Entities.CharacterProperties.*;
 
-public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath {
-    public static final Float IDDLE_FRAME_DURATION = 0.04f;
-    public static final Float RUN_FRAME_DURATION = 0.06f;
-    public static final Float WALK_FRAME_DURATION = 0.1f;
-    public static final Float ATTK1_FRAME_DURATION = 0.135f;
-    public static final Float ATTK2_FRAME_DURATION = 0.06f;
-    public static final Float ATTK3_FRAME_DURATION = 0.06f;
-    public static final Float DEATH_FRAME_DURATION = 0.06f;
-    public static final Float HURT_FRAME_DURATION = 0.03f;
+public abstract class Personaje extends Entity implements ISpeed, IDeath {
     static Float speed;
     static boolean isAttacking = false;
     static boolean isHurt = false;
@@ -23,10 +15,6 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
         this.speed = speed;
     }
 
-    public Personaje(Stats stats, SizeE sizeE) {
-        super(stats.getHp(), stats.getMaxHp(), stats.getArmor(), sizeE.getX(), sizeE.getY(), sizeE.getWidth(), sizeE.getHeight(), sizeE.getDrawWidth(), sizeE.getDrawHeight());
-        this.speed = stats.getSpeed();
-    }
 
     public static boolean isIsHurt() {
         return isHurt;
@@ -83,10 +71,6 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
         stateTime += delta;
     }
 
-    @Override
-    public void attack(int side) {
-        //MOMENTO MARIAN
-    }
 
     @Override
     public Float getSpeed() {
