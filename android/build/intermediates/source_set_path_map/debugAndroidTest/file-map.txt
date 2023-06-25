@@ -1,5 +1,0 @@
-com.game.test.android-androidTest-0 C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\android\build\generated\res\resValues\androidTest\debug
-com.game.test.android-androidTest-1 C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\android\build\generated\res\rs\androidTest\debug
-com.game.test.android-mergeDebugAndroidTestResources-2 C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\android\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
-com.game.test.android-mergeDebugAndroidTestResources-3 C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\android\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
-com.game.test.android-merged_res-4 C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\android\build\intermediates\merged_res\debugAndroidTest
