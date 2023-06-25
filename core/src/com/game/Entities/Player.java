@@ -14,8 +14,10 @@ public class Player extends Personaje implements IAttackPlayer, IGrabbable {
     private Integer selectedWeapon = 0;
     private Boolean god=false;
 
+    public Float angle ;
+
     public Player(Float x, Float y) {
-        super(100, 100, 1.0f, x, y, 0.18f, 0.5f, 1f,1.4f,3f);
+        super(100, 100, 1.0f, x, y, 0.38f, 0.58f, 1f,1.38f,3f);
         this.id = this.count;
         ++this.count;
         this.dodges = 2;

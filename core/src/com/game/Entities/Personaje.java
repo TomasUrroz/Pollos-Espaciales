@@ -80,7 +80,6 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
             velocity.y = speed/ 2;
         }
         body.setLinearVelocity(velocity);
-        System.out.println(stateTime);
         stateTime += delta;
     }
 

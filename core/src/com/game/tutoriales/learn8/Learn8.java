@@ -2,6 +2,7 @@ package com.game.tutoriales.learn8;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
@@ -12,24 +13,28 @@ import com.game.Entities.Enemies.Zombie;
 import com.game.Entities.Player;
 import com.game.MainLearn;
 import com.game.Screens;
-
-import java.nio.channels.ScatteringByteChannel;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.World;
+import com.game.psysicsEditor.PhysicsShapeCache;
 
 
 public class Learn8 extends Screens {
 
     World oWorld;
-
+    PhysicsShapeCache physicsBodies;
     Player player;
     Player player2;
-
     Array<Body> arrBodies;
 
-    Box2DDebugRenderer renderer;
+    //Box2DDebugRenderer renderer;
 
     public Learn8(MainLearn game) {
         super(game);
-        AssetsLearn8.load(0);
+        AssetsLearn8.load();
 
         Vector2 gravity = new Vector2(0, 0);
         oWorld = new World(gravity, true);
@@ -37,12 +42,10 @@ public class Learn8 extends Screens {
         arrBodies = new Array<>();
 
 
-        renderer = new Box2DDebugRenderer();
-
         createFloor();
         createWalls();
-        createPlayer(player);
-        createPlayer(player2);
+        player = createPlayer(3f,1f);
+        player2 = createPlayer(5f,1f);
     }
 
     private void createFloor() {
@@ -52,11 +55,12 @@ public class Learn8 extends Screens {
         bd.type = BodyType.StaticBody;
 
         EdgeShape shape = new EdgeShape();
-        shape.set(0, 0, WORLD_WIDTH, 0);
+        shape.set(0, -0.7f, WORLD_WIDTH, -0.7f);
 
         FixtureDef fixDef = new FixtureDef();
         fixDef.shape = shape;
         fixDef.friction = 1f;
+        fixDef.restitution = 1f;
 
         Body oBody = oWorld.createBody(bd);
         oBody.createFixture(fixDef);
@@ -70,6 +74,7 @@ public class Learn8 extends Screens {
         FixtureDef fixDef2 = new FixtureDef();
         fixDef2.shape = shape2;
         fixDef2.friction = 1f;
+        fixDef2.restitution = 1f;
 
         Body oBody2 = oWorld.createBody(bd2);
         oBody2.createFixture(fixDef2);
@@ -90,6 +95,7 @@ public class Learn8 extends Screens {
         FixtureDef fixDef = new FixtureDef();
         fixDef.shape = shape;
         fixDef.friction = 1f;
+        fixDef.restitution = 1f;
 
         Body oBody = oWorld.createBody(bd);
         oBody.createFixture(fixDef);
@@ -113,8 +119,8 @@ public class Learn8 extends Screens {
 
     }
 
-    private void createPlayer(Player player) {
-        player = new Player(4f,1f);
+    private Player createPlayer(Float x, Float y) {
+        Player player = new Player(x,y);
         BodyDef bd = new BodyDef();
         bd.position.x = player.getX();
         bd.position.y = player.getY();
@@ -130,10 +136,11 @@ public class Learn8 extends Screens {
         fixDef.density = 15;
 
         Body oBody = oWorld.createBody(bd);
+        oBody.setTransform(x,y,0);
         oBody.createFixture(fixDef);
         oBody.setUserData(player);
-
         shape.dispose();
+        return player;
     }
 
 
@@ -188,9 +195,11 @@ public class Learn8 extends Screens {
             if ((body.getUserData() instanceof Player) && ((Player) body.getUserData()).getId() ==0) {
                 Player obj = (Player) body.getUserData();
                 obj.update(body, delta, accelX, accelY, action);
+                obj.angle = (float) Math.toDegrees(body.getAngle());
             }else if((body.getUserData() instanceof Player) && ((Player) body.getUserData()).getId() ==1){
                 Player obj = (Player) body.getUserData();
                 obj.update(body, delta, accelX2, accelY2, action2);
+                obj.angle = (float) Math.toDegrees(body.getAngle());
             }
         }
     }
@@ -201,6 +210,8 @@ public class Learn8 extends Screens {
         spriteBatch.setProjectionMatrix(oCamUI.combined);
 
         spriteBatch.begin();
+        AssetsLearn8.backgroundSprite.draw(spriteBatch);
+
         Assets.font.draw(spriteBatch, "fps:" + Gdx.graphics.getFramesPerSecond(), 0, 20);
         spriteBatch.end();
 
@@ -209,38 +220,28 @@ public class Learn8 extends Screens {
         spriteBatch.setProjectionMatrix(oCamBox2D.combined);
         spriteBatch.begin();
 
-        drawplayer();
+        drawplayer(player);
+        drawplayer(player2);
 
         spriteBatch.end();
-        renderer.render(oWorld, oCamBox2D.combined);
+        //renderer.render(oWorld, oCamBox2D.combined);
     }
 
-    private void drawplayer() {
-        Sprite keyframe = AssetsLearn8.entity;
+    private void drawplayer(Player player) {
+        Sprite keyframe;
+        if (player.getId()==0){
+            keyframe = AssetsLearn8.polloBlanco;
+        }else keyframe = AssetsLearn8.polloMarron;
 
-        try{
-            if (player.isIsWalking()) {
-                keyframe = AssetsLearn8.walk.getKeyFrame(player.getStateTime(), true);
-            }else if (player.isIsAttacking()) {
-                keyframe = AssetsLearn8.attack1.getKeyFrame(player.getStateTime(), true);
-                player.setIsAttacking(false);
-            }
+        keyframe.setOrigin(player.getDraw_width()/2, player.getDraw_height()/2);
+        keyframe.setRotation(player.angle);
+        keyframe.setPosition(player.getX() - player.getDraw_width() / 2, player.getY() - player.getDraw_height() / 2+0.03f);
+        keyframe.setSize(player.getDraw_width(), player.getDraw_height());
+        keyframe.draw(spriteBatch);
 
-            if (player.getVelocityX() < 0) {
-                keyframe.setPosition(player.getX() + player.getDraw_width() / 2, player.getY() - player.getDraw_height() / 2 +.25f);
-                keyframe.setSize(-player.getDraw_width(), player.getDraw_height());
-            } else {
-                keyframe.setPosition(player.getX() - player.getDraw_width() / 2, player.getY() - player.getDraw_height() / 2 + .25f);
-                keyframe.setSize(player.getDraw_width(), player.getDraw_height());
-            }
-        }catch (NullPointerException npe){
-            keyframe = AssetsLearn8.entity;
-        }finally {
-            keyframe.draw(spriteBatch);
-        }
+
 
     }
-
     @Override
     public void dispose() {
         AssetsLearn8.dispose();
