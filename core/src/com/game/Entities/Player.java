@@ -14,10 +14,9 @@ public class Player extends Personaje implements IAttackPlayer, IGrabbable {
     private Integer selectedWeapon = 0;
     private Boolean god=false;
 
-    public Float angle ;
 
     public Player(Float x, Float y) {
-        super(100, 100, 1.0f, x, y, 0.38f, 0.58f, 1f,1.38f,3f);
+        super(100, 100, 1.0f, x, y, 0.38f, 0.47f, 1f,1.38f,20f);
         this.id = this.count;
         ++this.count;
         this.dodges = 2;
@@ -26,7 +25,7 @@ public class Player extends Personaje implements IAttackPlayer, IGrabbable {
         this.god = false;
     }
     public Player(Float x, Float y, Weapon weapon) {
-        super(100, 100, 1.0f, x, y, .45f, .25f, 1.3f,1.7f,3f);
+        super(100, 100, 1.0f, x, y, .45f, .25f, 1.3f,1.7f,10f);
         this.dodges = 2;
         this.weapon.add(weapon);
         this.selectedWeapon = 0;
@@ -106,5 +105,7 @@ public class Player extends Personaje implements IAttackPlayer, IGrabbable {
     public void setAmmo(Integer ammo) {
         this.ammo = ammo;
     }
+
+
 
 }

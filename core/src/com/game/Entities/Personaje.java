@@ -24,6 +24,7 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
     static boolean isAttacking = false;
     static boolean isDying = false;
     static boolean isHurt = false;
+    public Float angle ;
 
     static float stateTime = 0;
 
@@ -55,10 +56,7 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
             isDying = false;
             isHurt = false;
         }else if(action.equalsIgnoreCase("attk")){
-            isAttacking = true;
-
-            isWalking = false;
-            isIddle = false;
+            setStraight();
         }else if(action.equalsIgnoreCase("hurt")){
             isHurt = true;
 
@@ -70,14 +68,14 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
         }
 
         if (accelX == -1) {
-            velocity.x = -speed/ 2;
+            velocity.x = -speed;
         } else if (accelX == 1) {
-            velocity.x = speed/ 2;
+            velocity.x = speed;
         }
         if (accelY == -1) {
-            velocity.y = -speed/ 2;
+            velocity.y = -speed;
         } else if (accelY == 1) {
-            velocity.y = speed/ 2;
+            velocity.y = speed;
         }
         body.setLinearVelocity(velocity);
         stateTime += delta;
@@ -105,7 +103,9 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
         else return false;
     }
 
-
+    public void setStraight(){
+        this.angle=0f;
+    }
 
 
 

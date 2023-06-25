@@ -1,33 +1,33 @@
 
 pollos.png
-size: 1049, 620
+size: 1045, 616
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
-brown_chicken-removebg-preview
+brown chicken
   rotate: false
-  xy: 596, 2
+  xy: 596, 309
   size: 305, 305
   orig: 347, 347
   offset: 21, 21
   index: -1
 chiquen1
   rotate: false
-  xy: 596, 309
-  size: 309, 309
+  xy: 596, 2
+  size: 305, 305
   orig: 347, 347
-  offset: 19, 19
+  offset: 21, 21
   index: -1
 egg
   rotate: false
-  xy: 907, 448
+  xy: 903, 444
   size: 140, 170
   orig: 150, 230
   offset: 0, 30
   index: -1
 pata
   rotate: false
-  xy: 2, 26
+  xy: 2, 22
   size: 592, 592
   orig: 593, 593
   offset: 1, 0

@@ -20,7 +20,10 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.game.psysicsEditor.PhysicsShapeCache;
+import com.game.utils.Utils;
 
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Learn8 extends Screens {
 
@@ -28,96 +31,30 @@ public class Learn8 extends Screens {
     PhysicsShapeCache physicsBodies;
     Player player;
     Player player2;
+    ArrayList<Zombie> zombies;
     Array<Body> arrBodies;
 
-    //Box2DDebugRenderer renderer;
+    Utils util = new Utils();
+    Box2DDebugRenderer renderer = new Box2DDebugRenderer();
 
     public Learn8(MainLearn game) {
         super(game);
         AssetsLearn8.load();
 
-        Vector2 gravity = new Vector2(0, 0);
+        Vector2 gravity = new Vector2(-1.5f, 0);
         oWorld = new World(gravity, true);
 
         arrBodies = new Array<>();
 
 
-        createFloor();
-        createWalls();
-        player = createPlayer(3f,1f);
-        player2 = createPlayer(5f,1f);
+        util.createFloor(oWorld);
+        //util.createWalls(oWorld);
+
+        player = createPlayer(1f,3f);
+        player2 = createPlayer(1f,1f);
+        zombies = createZombies(50);
     }
 
-    private void createFloor() {
-
-        BodyDef bd = new BodyDef();
-        bd.position.set(0, .6f);
-        bd.type = BodyType.StaticBody;
-
-        EdgeShape shape = new EdgeShape();
-        shape.set(0, -0.7f, WORLD_WIDTH, -0.7f);
-
-        FixtureDef fixDef = new FixtureDef();
-        fixDef.shape = shape;
-        fixDef.friction = 1f;
-        fixDef.restitution = 1f;
-
-        Body oBody = oWorld.createBody(bd);
-        oBody.createFixture(fixDef);
-        BodyDef bd2 = new BodyDef();
-        bd2.position.set(0, .6f);
-        bd2.type = BodyType.StaticBody;
-
-        EdgeShape shape2 = new EdgeShape();
-        shape2.set(0, WORLD_HEIGHT-0.58F, WORLD_WIDTH, WORLD_HEIGHT-0.58F);
-
-        FixtureDef fixDef2 = new FixtureDef();
-        fixDef2.shape = shape2;
-        fixDef2.friction = 1f;
-        fixDef2.restitution = 1f;
-
-        Body oBody2 = oWorld.createBody(bd2);
-        oBody2.createFixture(fixDef2);
-
-        shape2.dispose();
-        shape.dispose();
-    }
-
-    private void createWalls() {
-
-        BodyDef bd = new BodyDef();
-        bd.position.set(0, .6f);
-        bd.type = BodyType.StaticBody;
-
-        EdgeShape shape = new EdgeShape();
-        shape.set(0, 0, 0, WORLD_HEIGHT);
-
-        FixtureDef fixDef = new FixtureDef();
-        fixDef.shape = shape;
-        fixDef.friction = 1f;
-        fixDef.restitution = 1f;
-
-        Body oBody = oWorld.createBody(bd);
-        oBody.createFixture(fixDef);
-
-        BodyDef bd2 = new BodyDef();
-        bd2.position.set(0, .6f);
-        bd2.type = BodyType.StaticBody;
-
-        EdgeShape shape2 = new EdgeShape();
-        shape2.set(WORLD_WIDTH, 0, WORLD_WIDTH, WORLD_HEIGHT);
-
-        FixtureDef fixDef2 = new FixtureDef();
-        fixDef2.shape = shape2;
-        fixDef2.friction = 1f;
-
-        Body oBody2 = oWorld.createBody(bd2);
-        oBody2.createFixture(fixDef2);
-
-        shape.dispose();
-        shape2.dispose();
-
-    }
 
     private Player createPlayer(Float x, Float y) {
         Player player = new Player(x,y);
@@ -143,6 +80,104 @@ public class Learn8 extends Screens {
         return player;
     }
 
+
+    private void drawplayer(Player player) {
+        Sprite keyframe;
+        if (player.getId()==0){
+            keyframe = AssetsLearn8.polloBlanco ;
+        }else keyframe = AssetsLearn8.polloMarron;
+
+        keyframe.setOrigin(player.getDraw_width()/2, player.getDraw_height()/2);
+        keyframe.setRotation(player.angle);
+        keyframe.setPosition(player.getX() - player.getDraw_width() / 2, player.getY() - player.getDraw_height() / 2+0.03f);
+        keyframe.setSize(player.getDraw_width(), player.getDraw_height());
+        keyframe.setScale(0.8f);
+
+        keyframe.draw(spriteBatch);
+    }
+
+
+    private Zombie createZombie(Float x, Float y) {
+        Zombie zombie = new Zombie(x,y);
+        BodyDef bd = new BodyDef();
+        bd.position.x = zombie.getX();
+        bd.position.y = zombie.getY();
+        bd.type = BodyType.DynamicBody;
+
+        zombie.setDraw(getRandSprite());
+
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(zombie.getWidth(), zombie.getHeight());
+
+        FixtureDef fixDef = new FixtureDef();
+        fixDef.shape = shape;
+        fixDef.friction = 0;
+        fixDef.restitution = 0;
+        fixDef.density = 15;
+
+        Body oBody = oWorld.createBody(bd);
+        oBody.setTransform(x,y,0);
+        oBody.createFixture(fixDef);
+        oBody.setUserData(zombie);
+        shape.dispose();
+        return zombie;
+    }
+
+    private ArrayList<Zombie> createZombies(int size){
+        ArrayList<Zombie> zombies = new ArrayList<>();
+        int i = 0;
+        Float randX;
+        Float randY;
+        while (i<=size){
+            randX = (float) (Math.random() * (30-7.8f+ 1.5f)+7.8f);
+            randY = (float) (Math.random() * (5-1+ 1.5f)+0.5f);
+            zombies.add(createZombie(randX,randY));
+            i++;
+        }
+        return zombies;
+    }
+
+    private Sprite getRandSprite(){
+        int rand2 = (int) (Math.random() * (2 + 1));
+        Sprite sprite = null;
+
+        if(rand2 ==0){
+            sprite = AssetsLearn8.zm.get((int) (Math.random() * (AssetsLearn8.zm.size())));
+        }else if(rand2 ==1){
+            sprite = AssetsLearn8.zw.get((int) (Math.random() * (AssetsLearn8.wz.size())));
+        }else{
+            sprite = AssetsLearn8.wz.get((int) (Math.random() * (AssetsLearn8.wz.size())));
+        }
+        return sprite;
+    }
+
+    private void drawZombie(Zombie zombie){
+        Sprite keyframe = zombie.getDraw();
+        try
+        {
+            keyframe.setOrigin(zombie.getDraw_width()/2, zombie.getDraw_height()/2);
+            keyframe.setRotation(zombie.angle);
+            keyframe.setPosition(zombie.getX() - zombie.getDraw_width() / 2, zombie.getY() - zombie.getDraw_height() / 2+0.03f);
+            keyframe.setSize(zombie.getDraw_width(), zombie.getDraw_height());
+            keyframe.setScale(0.5f);
+        }catch (NullPointerException npe){
+            keyframe = AssetsLearn8.zm.get(0);
+        }
+        keyframe.draw(spriteBatch);
+
+    }
+
+    private void drawZombies(ArrayList<Zombie> zombies){
+        int i = 0;
+        try {
+            while(i<zombies.size() ){
+                drawZombie(zombies.get(i));
+                i++;
+            }
+        }catch (NullPointerException npe){
+            drawZombie(createZombie(3f,5f));
+        }
+    }
 
     @Override
     public void update(float delta) {
@@ -200,9 +235,15 @@ public class Learn8 extends Screens {
                 Player obj = (Player) body.getUserData();
                 obj.update(body, delta, accelX2, accelY2, action2);
                 obj.angle = (float) Math.toDegrees(body.getAngle());
+            }else if ((body.getUserData() instanceof Zombie)){
+                Zombie obj = (Zombie) body.getUserData();
+                obj.update(body, delta, 0f, 0f, action2);
+                obj.angle = (float) Math.toDegrees(body.getAngle());
             }
         }
     }
+
+
 
     @Override
     public void draw(float delta) {
@@ -220,28 +261,14 @@ public class Learn8 extends Screens {
         spriteBatch.setProjectionMatrix(oCamBox2D.combined);
         spriteBatch.begin();
 
+        drawZombies(zombies);
+        System.out.println(player.angle);
         drawplayer(player);
         drawplayer(player2);
-
         spriteBatch.end();
-        //renderer.render(oWorld, oCamBox2D.combined);
+        renderer.render(oWorld, oCamBox2D.combined);
     }
 
-    private void drawplayer(Player player) {
-        Sprite keyframe;
-        if (player.getId()==0){
-            keyframe = AssetsLearn8.polloBlanco;
-        }else keyframe = AssetsLearn8.polloMarron;
-
-        keyframe.setOrigin(player.getDraw_width()/2, player.getDraw_height()/2);
-        keyframe.setRotation(player.angle);
-        keyframe.setPosition(player.getX() - player.getDraw_width() / 2, player.getY() - player.getDraw_height() / 2+0.03f);
-        keyframe.setSize(player.getDraw_width(), player.getDraw_height());
-        keyframe.draw(spriteBatch);
-
-
-
-    }
     @Override
     public void dispose() {
         AssetsLearn8.dispose();

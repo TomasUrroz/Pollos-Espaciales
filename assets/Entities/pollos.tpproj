@@ -34,7 +34,7 @@ prettyPrint=false
 legacyOutput=true
 
 scaleFactors=[{suffix:"",factor:1,resampling:bicubic}]
-inputFiles=[{path:../../../../New folder/chiquen1.png,type:Input,regionName:null},{path:../../../../New folder/egg.png,type:Input,regionName:null},{path:D:\\Downloads\\deletable\\pata.png,type:Input,regionName:pata},{path:D:\\Downloads\\deletable\\brown_chicken-removebg-preview.png,type:Input,regionName:null}]
+inputFiles=[{path:../../../../New folder/egg.png,type:Input,regionName:null},{path:D:\\Downloads\\deletable\\pata.png,type:Input,regionName:pata},{path:../../../../New folder/chiquen1.png,type:Input,regionName:null},{path:../../../../New folder/brown chicken.png,type:Input,regionName:null}]
 keepInputFileExtensions=false
 
 

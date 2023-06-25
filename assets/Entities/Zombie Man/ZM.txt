@@ -1,0 +1,90 @@
+
+ZM.png
+size: 417, 78
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Attack_1_C
+  rotate: false
+  xy: 99, 2
+  size: 43, 74
+  orig: 97, 96
+  offset: 32, 0
+  index: -1
+Attack_1_E
+  rotate: false
+  xy: 187, 13
+  size: 39, 63
+  orig: 97, 96
+  offset: 21, 2
+  index: -1
+Attack_2_A
+  rotate: false
+  xy: 228, 7
+  size: 33, 69
+  orig: 98, 96
+  offset: 32, 0
+  index: -1
+Attack_2_B
+  rotate: false
+  xy: 328, 3
+  size: 27, 73
+  orig: 98, 96
+  offset: 45, 0
+  index: -1
+Bite_H
+  rotate: false
+  xy: 144, 12
+  size: 41, 64
+  orig: 98, 96
+  offset: 28, 0
+  index: -1
+Dead_E
+  rotate: false
+  xy: 2, 4
+  size: 64, 10
+  orig: 96, 95
+  offset: 29, 0
+  index: -1
+Hurt_A
+  rotate: false
+  xy: 58, 16
+  size: 39, 60
+  orig: 96, 95
+  offset: 40, 0
+  index: -1
+Jump_B
+  rotate: false
+  xy: 386, 21
+  size: 29, 55
+  orig: 95, 96
+  offset: 38, 0
+  index: -1
+Jump_D
+  rotate: false
+  xy: 263, 12
+  size: 31, 64
+  orig: 96, 96
+  offset: 35, 17
+  index: -1
+Run_E
+  rotate: false
+  xy: 2, 16
+  size: 54, 60
+  orig: 91, 95
+  offset: 18, 0
+  index: -1
+Walk_A
+  rotate: false
+  xy: 296, 10
+  size: 30, 66
+  orig: 91, 96
+  offset: 29, 0
+  index: -1
+Walk_H
+  rotate: false
+  xy: 357, 10
+  size: 27, 66
+  orig: 91, 96
+  offset: 36, 0
+  index: -1
