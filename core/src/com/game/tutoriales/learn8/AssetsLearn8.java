@@ -22,6 +22,9 @@ public class AssetsLearn8 {
     static TextureAtlas atlas;
 
     public static void load(Integer choice) {
+/*
+        atlas = new TextureAtlas(Gdx.files.internal("Entities/Zombie Man/ZM.txt"));
+*/
         atlas = new TextureAtlas(Gdx.files.internal("Entities/Zombie Man/ZM.txt"));
 
         if(choice == 0){/*

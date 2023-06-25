@@ -1,8 +1,12 @@
 package com.game.Entities;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.game.Entities.CharacterProperties.*;
-import com.sun.org.apache.bcel.internal.generic.FALOAD;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath {
     static Float speed;
@@ -66,20 +70,17 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
         }
 
         if (accelX == -1) {
-            velocity.x = -speed;
+            velocity.x = -speed/ 2;
         } else if (accelX == 1) {
-            velocity.x = speed;
-        } else {
-            velocity.x = 0;
+            velocity.x = speed/ 2;
         }
         if (accelY == -1) {
-            velocity.y = -speed;
+            velocity.y = -speed/ 2;
         } else if (accelY == 1) {
-            velocity.y = speed;
-        } else {
-            velocity.y = 0;
+            velocity.y = speed/ 2;
         }
         body.setLinearVelocity(velocity);
+        System.out.println(stateTime);
         stateTime += delta;
     }
 
@@ -166,8 +167,6 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
     public static void setStateTime(float stateTime) {
         Personaje.stateTime = stateTime;
     }
-
-
 
 
 }

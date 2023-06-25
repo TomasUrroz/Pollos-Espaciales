@@ -1,0 +1,97 @@
+
+player.png
+size: 810, 146
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+GraveRobber
+  rotate: false
+  xy: 786, 37
+  size: 19, 33
+  orig: 48, 48
+  offset: 6, 0
+  index: -1
+GraveRobber_attack1
+  rotate: false
+  xy: 2, 66
+  size: 258, 43
+  orig: 288, 48
+  offset: 9, 0
+  index: -1
+GraveRobber_attack2
+  rotate: false
+  xy: 262, 75
+  size: 265, 34
+  orig: 288, 48
+  offset: 6, 0
+  index: -1
+GraveRobber_attack3
+  rotate: false
+  xy: 544, 109
+  size: 264, 35
+  orig: 288, 48
+  offset: 7, 0
+  index: -1
+GraveRobber_climb
+  rotate: false
+  xy: 525, 37
+  size: 259, 33
+  orig: 288, 48
+  offset: 7, 0
+  index: -1
+GraveRobber_craft
+  rotate: false
+  xy: 258, 3
+  size: 256, 33
+  orig: 288, 48
+  offset: 9, 0
+  index: -1
+GraveRobber_death
+  rotate: false
+  xy: 2, 111
+  size: 272, 33
+  orig: 288, 48
+  offset: 6, 0
+  index: -1
+GraveRobber_hurt
+  rotate: false
+  xy: 681, 2
+  size: 115, 33
+  orig: 144, 48
+  offset: 6, 0
+  index: -1
+GraveRobber_idle
+  rotate: false
+  xy: 516, 2
+  size: 163, 33
+  orig: 192, 48
+  offset: 6, 0
+  index: -1
+GraveRobber_jump
+  rotate: false
+  xy: 2, 22
+  size: 254, 42
+  orig: 288, 48
+  offset: 9, 0
+  index: -1
+GraveRobber_push
+  rotate: false
+  xy: 262, 38
+  size: 261, 35
+  orig: 288, 48
+  offset: 8, 0
+  index: -1
+GraveRobber_run
+  rotate: false
+  xy: 276, 111
+  size: 266, 33
+  orig: 288, 48
+  offset: 4, 0
+  index: -1
+GraveRobber_walk
+  rotate: false
+  xy: 529, 72
+  size: 262, 35
+  orig: 288, 48
+  offset: 9, 0
+  index: -1

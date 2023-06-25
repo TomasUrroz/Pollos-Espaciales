@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.utils.Array;
 import com.game.Assets;
+import com.game.Entities.Enemies.Zombie;
 import com.game.Entities.Player;
 import com.game.MainLearn;
 import com.game.Screens;
@@ -20,6 +21,7 @@ public class Learn8 extends Screens {
     World oWorld;
 
     Player player;
+    Player player2;
 
     Array<Body> arrBodies;
 
@@ -39,7 +41,8 @@ public class Learn8 extends Screens {
 
         createFloor();
         createWalls();
-        createPlayer();
+        createPlayer(player);
+        createPlayer(player2);
     }
 
     private void createFloor() {
@@ -110,7 +113,7 @@ public class Learn8 extends Screens {
 
     }
 
-    private void createPlayer() {
+    private void createPlayer(Player player) {
         player = new Player(4f,1f);
         BodyDef bd = new BodyDef();
         bd.position.x = player.getX();
@@ -122,6 +125,7 @@ public class Learn8 extends Screens {
 
         FixtureDef fixDef = new FixtureDef();
         fixDef.shape = shape;
+        fixDef.friction = 0;
         fixDef.restitution = 0;
         fixDef.density = 15;
 
@@ -137,7 +141,10 @@ public class Learn8 extends Screens {
     public void update(float delta) {
         float accelX = 0;
         float accelY = 0;
+        float accelX2 = 0;
+        float accelY2 = 0;
         String action = "";
+        String action2 = "";
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
             accelX = -1;
@@ -155,13 +162,35 @@ public class Learn8 extends Screens {
             action = "attk";
 
 
+
+
+        if (Gdx.input.isKeyPressed(Input.Keys.A))
+            accelX2 = -1;
+
+        else if (Gdx.input.isKeyPressed(Input.Keys.D))
+            accelX2 = 1;
+
+        if (Gdx.input.isKeyPressed(Input.Keys.S))
+            accelY2 = -1;
+
+        if (Gdx.input.isKeyPressed(Input.Keys.W))
+            accelY2 = 1;
+
+        if (Gdx.input.isKeyPressed(Input.Keys.F))
+            action2 = "attk";
+
+
+
         oWorld.step(delta, 8, 6);
         oWorld.getBodies(arrBodies);
 
         for (Body body : arrBodies) {
-            if (body.getUserData() instanceof Player) {
+            if ((body.getUserData() instanceof Player) && ((Player) body.getUserData()).getId() ==0) {
                 Player obj = (Player) body.getUserData();
                 obj.update(body, delta, accelX, accelY, action);
+            }else if((body.getUserData() instanceof Player) && ((Player) body.getUserData()).getId() ==1){
+                Player obj = (Player) body.getUserData();
+                obj.update(body, delta, accelX2, accelY2, action2);
             }
         }
     }
