@@ -34,7 +34,7 @@ public class Learn8 extends Screens {
     List eggsP2 = new ArrayList();
 
     //Utils util = new Utils();
-    Box2DDebugRenderer renderer = new Box2DDebugRenderer();
+    //Box2DDebugRenderer renderer = new Box2DDebugRenderer();
 
     public Learn8(MainLearn game) {
         super(game);
@@ -52,7 +52,7 @@ public class Learn8 extends Screens {
         player = createPlayer(1f, 3f);
         player2 = createPlayer(1f, 1f);
 
-        zombies = createZombies(20);
+        zombies = createZombies(200);
     }
 
 
@@ -151,7 +151,7 @@ public class Learn8 extends Screens {
         Float randX;
         Float randY;
         while (i <= size) {
-            randX = (float) (Math.random() * (30 - 7.8f + 1.5f) + 7.8f);
+            randX = (float) (Math.random() * (100 - 7.8f + 1.5f) + 7.8f);
             randY = (float) (Math.random() * (5 - 1 + 1.5f) + 0.5f);
             zombies.add(createZombie(randX, randY));
             i++;
@@ -387,7 +387,7 @@ public class Learn8 extends Screens {
         drawEggs((ArrayList<Egg>) eggsP2);
         drawZombies(zombies);
         spriteBatch.end();
-        renderer.render(oWorld, oCamBox2D.combined);
+        //renderer.render(oWorld, oCamBox2D.combined);
     }
 
     @Override
