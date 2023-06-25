@@ -1,31 +1,27 @@
-package com.game.tutoriales.learn8;
+package com.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.utils.Array;
-import com.game.Assets;
 import com.game.Entities.Egg;
 import com.game.Entities.Enemies.Zombie;
 import com.game.Entities.Player;
-import com.game.MainLearn;
-import com.game.Screens;
 import com.game.utils.CollisionListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Learn8 extends Screens {
+public class Game extends Screens {
 
     World oWorld;
     Player player;
     Player player2;
-    int hits1=0;
-    int hits2=0;
+    int hits1 = 0;
+    int hits2 = 0;
     ArrayList<Zombie> zombies;
     Array<Body> arrBodies;
     List eggsP1 = new ArrayList();
@@ -34,9 +30,10 @@ public class Learn8 extends Screens {
     //Utils util = new Utils();
     //Box2DDebugRenderer renderer = new Box2DDebugRenderer();
 
-    public Learn8(MainLearn game) {
+
+    public Game(MainGame game) {
         super(game);
-        AssetsLearn8.load();
+        AssetsGame.load();
 
         Vector2 gravity = new Vector2(-0.5f, 0);
         oWorld = new World(gravity, true);
@@ -83,8 +80,8 @@ public class Learn8 extends Screens {
     private void drawplayer(Player player) {
         Sprite keyframe;
         if (player.getId() == 0) {
-            keyframe = AssetsLearn8.polloBlanco;
-        } else keyframe = AssetsLearn8.polloMarron;
+            keyframe = AssetsGame.polloBlanco;
+        } else keyframe = AssetsGame.polloMarron;
 
         keyframe.setOrigin(player.getDraw_width() / 2, player.getDraw_height() / 2);
         keyframe.setRotation(player.angle);
@@ -101,11 +98,11 @@ public class Learn8 extends Screens {
         Sprite sprite = null;
 
         if (rand2 == 0) {
-            sprite = AssetsLearn8.zm.get((int) (Math.random() * (AssetsLearn8.zm.size())));
+            sprite = AssetsGame.zm.get((int) (Math.random() * (AssetsGame.zm.size())));
         } else if (rand2 == 1) {
-            sprite = AssetsLearn8.zw.get((int) (Math.random() * (AssetsLearn8.wz.size())));
+            sprite = AssetsGame.zw.get((int) (Math.random() * (AssetsGame.wz.size())));
         } else {
-            sprite = AssetsLearn8.wz.get((int) (Math.random() * (AssetsLearn8.wz.size())));
+            sprite = AssetsGame.wz.get((int) (Math.random() * (AssetsGame.wz.size())));
         }
         return sprite;
     }
@@ -166,7 +163,7 @@ public class Learn8 extends Screens {
             keyframe.setSize(zombie.getDraw_width(), zombie.getDraw_height());
             keyframe.setScale(0.5f);
         } catch (NullPointerException npe) {
-            keyframe = AssetsLearn8.zm.get(0);
+            keyframe = AssetsGame.zm.get(0);
         }
         keyframe.draw(spriteBatch);
 
@@ -177,11 +174,11 @@ public class Learn8 extends Screens {
         Sprite keyframe = null;
         try {
             while (i < zombies.size()) {
-                if(zombies.get(i).getState() == zombies.get(i).getSTATE_NORMAL()){
+                if (zombies.get(i).getState() == zombies.get(i).getSTATE_NORMAL()) {
                     drawZombie(zombies.get(i));
-                }else if (zombies.get(i).getState() != zombies.get(i).getSTATE_NORMAL()) {
+                } else if (zombies.get(i).getState() != zombies.get(i).getSTATE_NORMAL()) {
                     System.out.println("xd");
-                    keyframe = AssetsLearn8.bum.getKeyFrame(zombies.get(i).getStateTime(), true);
+                    keyframe = AssetsGame.bum.getKeyFrame(zombies.get(i).getStateTime(), true);
                     keyframe.setPosition(zombies.get(i).getX() + zombies.get(i).getDraw_width() / 2, zombies.get(i).getY() - zombies.get(i).getDraw_height() / 2 + .25f);
                     keyframe.setSize(-zombies.get(i).getDraw_width(), zombies.get(i).getDraw_height());
                     keyframe.draw(spriteBatch);
@@ -227,7 +224,7 @@ public class Learn8 extends Screens {
     }
 
     private void drawEgg(Egg egg) {
-        Sprite keyframe = AssetsLearn8.guebo;
+        Sprite keyframe = AssetsGame.guebo;
         try {
             keyframe.setOrigin(egg.getDraw_width() / 2, egg.getDraw_height() / 2);
             keyframe.setRotation(egg.angle);
@@ -235,7 +232,7 @@ public class Learn8 extends Screens {
             keyframe.setSize(egg.getDraw_width(), egg.getDraw_height());
             keyframe.setScale(0.5f);
         } catch (NullPointerException npe) {
-            keyframe = AssetsLearn8.zm.get(0);
+            keyframe = AssetsGame.zm.get(0);
         }
         keyframe.draw(spriteBatch);
 
@@ -335,9 +332,8 @@ public class Learn8 extends Screens {
                     zombies.remove(obj);
                     oWorld.destroyBody(body);
                 }
-            } else if (((body.getUserData() instanceof Egg) && (((Egg) body.getUserData()).getX()< SCREEN_WIDTH)) && (((Egg) body.getUserData()).getX()>= 0)
-                    && (((Egg) body.getUserData()).getY()<= SCREEN_HEIGHT) && (((Egg) body.getUserData()).getY()>-0.7f))
-                 {
+            } else if (((body.getUserData() instanceof Egg) && (((Egg) body.getUserData()).getX() < SCREEN_WIDTH)) && (((Egg) body.getUserData()).getX() >= 0)
+                    && (((Egg) body.getUserData()).getY() <= SCREEN_HEIGHT) && (((Egg) body.getUserData()).getY() > -0.7f)) {
                 Egg obj = (Egg) body.getUserData();
                 obj.update(body);
                 obj.angle = (float) Math.toDegrees(body.getAngle());
@@ -365,11 +361,11 @@ public class Learn8 extends Screens {
         spriteBatch.setProjectionMatrix(oCamUI.combined);
 
         spriteBatch.begin();
-        AssetsLearn8.backgroundSprite.draw(spriteBatch);
+        AssetsGame.backgroundSprite.draw(spriteBatch);
 
-        Assets.font.draw(spriteBatch, "fps:" + Gdx.graphics.getFramesPerSecond(), 0, 20);
-        Assets.font.draw(spriteBatch, "1:  " + hits1, 0, 60);
-        Assets.font.draw(spriteBatch, "2:  " + hits2, 0, 40);
+        AssetsGame.font.draw(spriteBatch, "fps:" + Gdx.graphics.getFramesPerSecond(), 0, 20);
+        AssetsGame.font.draw(spriteBatch, "1:  " + hits1, 0, 60);
+        AssetsGame.font.draw(spriteBatch, "2:  " + hits2, 0, 40);
         spriteBatch.end();
 
         oCamBox2D.update();
@@ -390,7 +386,7 @@ public class Learn8 extends Screens {
 
     @Override
     public void dispose() {
-        AssetsLearn8.dispose();
+        AssetsGame.dispose();
         oWorld.dispose();
         super.dispose();
     }

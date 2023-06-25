@@ -19,14 +19,14 @@ public abstract class Screens extends InputAdapter implements Screen {
     public static final float WORLD_WIDTH = 8f;
     public static final float WORLD_HEIGHT = 4.8f;
 
-    public MainLearn game;
+    public MainGame game;
 
     public OrthographicCamera oCamUI;
     public OrthographicCamera oCamBox2D;
     public SpriteBatch spriteBatch;
     public Stage stage;
 
-    public Screens(MainLearn game) {
+    public Screens(MainGame game) {
         this.game = game;
 
         // We will add UI elements to the stage

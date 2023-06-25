@@ -1,21 +1,29 @@
-package com.game.tutoriales.learn8;
+package com.game;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.game.utils.Utils;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 
 import java.util.ArrayList;
 
 
-public class AssetsLearn8 {
+public class AssetsGame {
 
     public static Texture backgroundTexture;
     public static Sprite backgroundSprite;
+    public static BitmapFont font;
+    public static TextButton.TextButtonStyle txButtonStyle;
+    public static Label.LabelStyle labelStyle;
+    public static ScrollPane.ScrollPaneStyle scrollPaneStyle;
     static Sprite polloBlanco;
     static Sprite polloMarron;
     static Sprite guebo;
@@ -25,6 +33,23 @@ public class AssetsLearn8 {
     static ArrayList<Sprite> zw = new ArrayList<>();
     static ArrayList<Sprite> zm = new ArrayList<>();
     static TextureAtlas atlas;
+
+    public static void loadFonts() {
+        font = new BitmapFont();
+
+        TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("data/ui.txt"));
+
+        txButtonStyle = new TextButton.TextButtonStyle(new NinePatchDrawable(
+                atlas.createPatch("bt")), new NinePatchDrawable(
+                atlas.createPatch("btDown")), null, font);
+
+        labelStyle = new Label.LabelStyle(font, Color.GREEN);
+
+        NinePatchDrawable knob = new NinePatchDrawable(
+                atlas.createPatch("scroll"));
+        scrollPaneStyle = new ScrollPane.ScrollPaneStyle(null, knob, knob, knob, knob);
+    }
+
 
     public static void load() {
         atlas = new TextureAtlas(Gdx.files.internal("Entities/sprites.txt"));
@@ -69,7 +94,7 @@ public class AssetsLearn8 {
 
         atlas = new TextureAtlas(Gdx.files.internal("bum/bum.txt"));
 
-        bum = new Animation<>(0.05f,atlas.createSprite("explosion1"),
+        bum = new Animation<>(0.05f, atlas.createSprite("explosion1"),
                 atlas.createSprite("explosion2"),
                 atlas.createSprite("explosion3"),
                 atlas.createSprite("explosion4"),
@@ -88,7 +113,7 @@ public class AssetsLearn8 {
                 atlas.createSprite("explosion17"),
                 atlas.createSprite("explosion18"),
                 atlas.createSprite("explosion19")
-                );
+        );
     }
 
 

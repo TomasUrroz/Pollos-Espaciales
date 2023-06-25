@@ -1,9 +1,5 @@
 package com.game.Entities;
 
-import com.game.Entities.CharacterProperties.*;
-
-import java.util.ArrayList;
-
 public class Player extends Personaje {
 
     private static Integer count = 0;
@@ -18,10 +14,7 @@ public class Player extends Personaje {
     }
 
 
-
-
     //WEAPON STUFF
-
 
 
     public Integer getId() {

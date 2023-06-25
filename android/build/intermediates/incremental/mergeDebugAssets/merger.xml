@@ -1,2 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\assets"><file name="badlogic.jpg" path="C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\assets\badlogic.jpg"/><file name="bucket.png" path="C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\assets\bucket.png"/><file name="drop.wav" path="C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\assets\drop.wav"/><file name="droplet.png" path="C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\assets\droplet.png"/><file name="fish.mp4" path="C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\assets\fish.mp4"/><file name="rain.mp3" path="C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\assets\rain.mp3"/></source><source path="C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\android\build\intermediates\shader_assets\debug\out"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\android\src\debug\assets"/></dataSet></merger>
+<merger version="3">
+    <dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~">
+        <source path="C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\assets">
+            <file name="badlogic.jpg" path="C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\assets\badlogic.jpg"/>
+            <file name="bucket.png" path="C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\assets\bucket.png"/>
+            <file name="drop.wav" path="C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\assets\drop.wav"/>
+            <file name="droplet.png" path="C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\assets\droplet.png"/>
+            <file name="fish.mp4" path="C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\assets\fish.mp4"/>
+            <file name="rain.mp3" path="C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\assets\rain.mp3"/>
+        </source>
+        <source path="C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\android\build\intermediates\shader_assets\debug\out"/>
+    </dataSet>
+    <dataSet config="debug"
+             ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~">
+        <source path="C:\Users\Thomo\Desktop\UTNSurvivor\UTN-Survivor\android\src\debug\assets"/>
+    </dataSet>
+</merger>

@@ -1,7 +1,8 @@
 package com.game.Entities;
 
 import com.badlogic.gdx.physics.box2d.Body;
-import com.game.Entities.CharacterProperties.*;
+import com.game.Entities.CharacterProperties.IDeath;
+import com.game.Entities.CharacterProperties.ISpeed;
 
 public abstract class Personaje extends Entity implements ISpeed, IDeath {
     static Float speed;
