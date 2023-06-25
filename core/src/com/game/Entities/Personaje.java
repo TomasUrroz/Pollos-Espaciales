@@ -18,11 +18,7 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
     public static final Float ATTK3_FRAME_DURATION = 0.06f;
     public static final Float DEATH_FRAME_DURATION = 0.06f;
     public static final Float HURT_FRAME_DURATION = 0.03f;
-    static boolean isWalking = false;
-    static boolean isIddle = true;
-    static boolean isRunning = false;
     static boolean isAttacking = false;
-    static boolean isDying = false;
     static boolean isHurt = false;
     public Float angle ;
 
@@ -44,27 +40,10 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
 
         velocity = body.getLinearVelocity();
 
-        if((accelX != 0 || accelY !=0 ) && action.equalsIgnoreCase("")){
-            isWalking = true;
-
-            isIddle = false;
-        }else if(accelX == 0 && accelY ==0  && action.equalsIgnoreCase("")) {
-            isIddle = true;
-
-            isWalking = false;
-            isAttacking = false;
-            isDying = false;
-            isHurt = false;
-        }else if(action.equalsIgnoreCase("attk")){
+        if(action.equalsIgnoreCase("str")){
             setStraight();
         }else if(action.equalsIgnoreCase("hurt")){
             isHurt = true;
-
-            isIddle = false;
-        }else if(action.equalsIgnoreCase("dead")){
-            isDying = true;
-
-            isIddle = false;
         }
 
         if (accelX == -1) {
@@ -104,7 +83,7 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
     }
 
     public void setStraight(){
-        this.angle=0f;
+        this.angle=0.0f;
     }
 
 
@@ -119,29 +98,6 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
         Personaje.isHurt = isHurt;
     }
 
-    public static boolean isIsIddle() {
-        return isIddle;
-    }
-
-    public static void setIsIddle(boolean isIddle) {
-        Personaje.isIddle = isIddle;
-    }
-
-    public static boolean isIsWalking() {
-        return isWalking;
-    }
-
-    public static void setIsWalking(boolean isWalking) {
-        Personaje.isWalking = isWalking;
-    }
-
-    public static boolean isIsRunning() {
-        return isRunning;
-    }
-
-    public static void setIsRunning(boolean isRunning) {
-        Personaje.isRunning = isRunning;
-    }
 
     public static boolean isIsAttacking() {
         return isAttacking;
@@ -149,14 +105,6 @@ public abstract class Personaje extends Entity implements IMelee, ISpeed, IDeath
 
     public static void setIsAttacking(boolean isAttacking) {
         Personaje.isAttacking = isAttacking;
-    }
-
-    public static boolean isIsDying() {
-        return isDying;
-    }
-
-    public static void setIsDying(boolean isDying) {
-        Personaje.isDying = isDying;
     }
 
     public static float getStateTime() {

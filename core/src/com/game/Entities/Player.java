@@ -2,6 +2,7 @@ package com.game.Entities;
 
 import com.game.Entities.CharacterProperties.*;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import java.util.ArrayList;
 
 public class Player extends Personaje implements IAttackPlayer, IGrabbable {
@@ -66,6 +67,7 @@ public class Player extends Personaje implements IAttackPlayer, IGrabbable {
     public void dodge(int direction){
         //FOR A SHORT PERIOD OF TIME INVULNERAVILITY WHILE ROLLING
     }
+
 
 
 

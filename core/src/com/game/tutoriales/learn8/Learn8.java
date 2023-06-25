@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.utils.Array;
 import com.game.Assets;
+import com.game.Entities.Egg;
 import com.game.Entities.Enemies.Zombie;
 import com.game.Entities.Player;
 import com.game.MainLearn;
@@ -23,6 +24,7 @@ import com.game.psysicsEditor.PhysicsShapeCache;
 import com.game.utils.Utils;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Learn8 extends Screens {
@@ -33,28 +35,33 @@ public class Learn8 extends Screens {
     Player player2;
     ArrayList<Zombie> zombies;
     Array<Body> arrBodies;
+    List eggsP1 = new ArrayList();
+    List eggsP2 = new ArrayList();
 
-    Utils util = new Utils();
+    //Utils util = new Utils();
     Box2DDebugRenderer renderer = new Box2DDebugRenderer();
 
     public Learn8(MainLearn game) {
         super(game);
         AssetsLearn8.load();
 
-        Vector2 gravity = new Vector2(-1.5f, 0);
+        Vector2 gravity = new Vector2(-0.5f, 0);
         oWorld = new World(gravity, true);
 
         arrBodies = new Array<>();
 
 
-        util.createFloor(oWorld);
+        //util.createFloor(oWorld);
         //util.createWalls(oWorld);
 
         player = createPlayer(1f,3f);
         player2 = createPlayer(1f,1f);
-        zombies = createZombies(50);
+
+        zombies = createZombies(20);
     }
 
+
+    //PALYERS
 
     private Player createPlayer(Float x, Float y) {
         Player player = new Player(x,y);
@@ -80,7 +87,6 @@ public class Learn8 extends Screens {
         return player;
     }
 
-
     private void drawplayer(Player player) {
         Sprite keyframe;
         if (player.getId()==0){
@@ -97,12 +103,36 @@ public class Learn8 extends Screens {
     }
 
 
+
+
+
+    private Sprite getRandSprite(){
+        int rand2 = (int) (Math.random() * (2 + 1));
+        Sprite sprite = null;
+
+        if(rand2 ==0){
+            sprite = AssetsLearn8.zm.get((int) (Math.random() * (AssetsLearn8.zm.size())));
+        }else if(rand2 ==1){
+            sprite = AssetsLearn8.zw.get((int) (Math.random() * (AssetsLearn8.wz.size())));
+        }else{
+            sprite = AssetsLearn8.wz.get((int) (Math.random() * (AssetsLearn8.wz.size())));
+        }
+        return sprite;
+    }
+
+
+
+    //ZOMBIES
+
     private Zombie createZombie(Float x, Float y) {
         Zombie zombie = new Zombie(x,y);
         BodyDef bd = new BodyDef();
         bd.position.x = zombie.getX();
         bd.position.y = zombie.getY();
         bd.type = BodyType.DynamicBody;
+
+        float rand = (float) Math.random() * (90+ 1);
+        zombie.angle = rand;
 
         zombie.setDraw(getRandSprite());
 
@@ -115,8 +145,9 @@ public class Learn8 extends Screens {
         fixDef.restitution = 0;
         fixDef.density = 15;
 
+
         Body oBody = oWorld.createBody(bd);
-        oBody.setTransform(x,y,0);
+        oBody.setTransform(x,y,rand);
         oBody.createFixture(fixDef);
         oBody.setUserData(zombie);
         shape.dispose();
@@ -136,21 +167,6 @@ public class Learn8 extends Screens {
         }
         return zombies;
     }
-
-    private Sprite getRandSprite(){
-        int rand2 = (int) (Math.random() * (2 + 1));
-        Sprite sprite = null;
-
-        if(rand2 ==0){
-            sprite = AssetsLearn8.zm.get((int) (Math.random() * (AssetsLearn8.zm.size())));
-        }else if(rand2 ==1){
-            sprite = AssetsLearn8.zw.get((int) (Math.random() * (AssetsLearn8.wz.size())));
-        }else{
-            sprite = AssetsLearn8.wz.get((int) (Math.random() * (AssetsLearn8.wz.size())));
-        }
-        return sprite;
-    }
-
     private void drawZombie(Zombie zombie){
         Sprite keyframe = zombie.getDraw();
         try
@@ -179,6 +195,83 @@ public class Learn8 extends Screens {
         }
     }
 
+
+
+    private Egg shootEgg(Player player){
+        Egg egg = new Egg(player.getX()+0.4f, player.getY());
+        BodyDef bd = new BodyDef();
+        bd.position.x = egg.getX()+1f;
+        bd.position.y = egg.getY();
+        bd.type = BodyType.KinematicBody;
+
+
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(egg.getWidth(), egg.getHeight());
+
+        FixtureDef fixDef = new FixtureDef();
+        fixDef.shape = shape;
+        fixDef.friction = 0;
+        fixDef.restitution = 0;
+        fixDef.density = 15;
+
+
+        Body oBody = oWorld.createBody(bd);
+        oBody.setTransform(player.getX()+0.4f,player.getY(),0);
+        oBody.createFixture(fixDef);
+        oBody.setUserData(egg);
+        shape.dispose();
+
+        Vector2 direction = new Vector2(egg.getX(),0);
+        Vector2 linearVelocity = direction.nor().scl(5f);
+        oBody.setLinearVelocity(linearVelocity);
+        oBody.setAngularVelocity(0f);
+
+        return egg;
+    }
+
+
+    private void drawEgg(Egg egg){
+        Sprite keyframe = AssetsLearn8.guebo;
+        try
+        {
+            keyframe.setOrigin(egg.getDraw_width()/2, egg.getDraw_height()/2);
+            keyframe.setRotation(egg.angle);
+            keyframe.setPosition(egg.getX() - egg.getDraw_width() / 2, egg.getY() - egg.getDraw_height() / 2+0.03f);
+            keyframe.setSize(egg.getDraw_width(), egg.getDraw_height());
+            keyframe.setScale(0.5f);
+        }catch (NullPointerException npe){
+            keyframe = AssetsLearn8.zm.get(0);
+        }
+        keyframe.draw(spriteBatch);
+
+    }
+
+    private void drawEggs(ArrayList<Egg> egg){
+        int i = 0;
+        try {
+            while(i<egg.size() ){
+                drawEgg(egg.get(i));
+                i++;
+            }
+        }catch (NullPointerException npe){
+            drawZombie(createZombie(3f,5f));
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @Override
     public void update(float delta) {
         float accelX = 0;
@@ -188,6 +281,7 @@ public class Learn8 extends Screens {
         String action = "";
         String action2 = "";
 
+        //PLAYER1
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
             accelX = -1;
 
@@ -200,12 +294,15 @@ public class Learn8 extends Screens {
         if (Gdx.input.isKeyPressed(Input.Keys.UP))
             accelY = 1;
 
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE))
-            action = "attk";
+        if (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_0))
+            eggsP1.add(shootEgg(player));
+
+        if (Gdx.input.isKeyPressed(Input.Keys.NUMPAD_ADD))
+            action = "str";
 
 
 
-
+        //PLAYER2
         if (Gdx.input.isKeyPressed(Input.Keys.A))
             accelX2 = -1;
 
@@ -218,8 +315,11 @@ public class Learn8 extends Screens {
         if (Gdx.input.isKeyPressed(Input.Keys.W))
             accelY2 = 1;
 
-        if (Gdx.input.isKeyPressed(Input.Keys.F))
-            action2 = "attk";
+        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
+            eggsP2.add(shootEgg(player2));
+
+        if (Gdx.input.isKeyPressed(Input.Keys.Q))
+            action2 = "str";
 
 
 
@@ -229,15 +329,33 @@ public class Learn8 extends Screens {
         for (Body body : arrBodies) {
             if ((body.getUserData() instanceof Player) && ((Player) body.getUserData()).getId() ==0) {
                 Player obj = (Player) body.getUserData();
-                obj.update(body, delta, accelX, accelY, action);
                 obj.angle = (float) Math.toDegrees(body.getAngle());
+                obj.update(body, delta, accelX, accelY, action);
+
+                if (action.equalsIgnoreCase("str")){
+                    body.setTransform(body.getPosition().x,body.getPosition().y,0f);
+                    body.setAngularVelocity(0f);
+
+                }
+
             }else if((body.getUserData() instanceof Player) && ((Player) body.getUserData()).getId() ==1){
                 Player obj = (Player) body.getUserData();
-                obj.update(body, delta, accelX2, accelY2, action2);
                 obj.angle = (float) Math.toDegrees(body.getAngle());
+                obj.update(body, delta, accelX2, accelY2, action2);
+
+                if (action2.equalsIgnoreCase("str")){
+                    body.setTransform(body.getPosition().x,body.getPosition().y,0f);
+                    body.setAngularVelocity(0f);
+                }
+
             }else if ((body.getUserData() instanceof Zombie)){
                 Zombie obj = (Zombie) body.getUserData();
                 obj.update(body, delta, 0f, 0f, action2);
+                obj.angle = (float) Math.toDegrees(body.getAngle());
+            }else if(((body.getUserData() instanceof Egg) && (((Egg) body.getUserData()).getX()< SCREEN_WIDTH)) && (((Egg) body.getUserData()).getX()>= 0)
+            && (((Egg) body.getUserData()).getY()<= SCREEN_HEIGHT) && (((Egg) body.getUserData()).getY()>-0.7f)){
+                Egg obj = (Egg) body.getUserData();
+                obj.update(body);
                 obj.angle = (float) Math.toDegrees(body.getAngle());
             }
         }
@@ -262,9 +380,13 @@ public class Learn8 extends Screens {
         spriteBatch.begin();
 
         drawZombies(zombies);
-        System.out.println(player.angle);
+
         drawplayer(player);
         drawplayer(player2);
+
+        drawEggs((ArrayList<Egg>) eggsP1);
+        drawEggs((ArrayList<Egg>) eggsP2);
+
         spriteBatch.end();
         renderer.render(oWorld, oCamBox2D.combined);
     }
