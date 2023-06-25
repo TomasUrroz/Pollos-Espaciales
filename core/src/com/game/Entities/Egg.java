@@ -7,14 +7,15 @@ public class Egg {
 
     final int STATE_NORMAL = 0;
     final int STATE_HIT = 1;
-    private Float width ;
+    final int STATE_REMOVE = 2;
+    public Float angle;
+    private Float width;
     private Float height;
     private Float draw_width;
-    private Float draw_height ;
-    public Float angle ;
-
+    private Float draw_height;
     private int state;
 
+    private float stateTime = 0;
     private float angleDeg;
     private Vector2 position;
 
@@ -34,16 +35,6 @@ public class Egg {
         position.y = body.getPosition().y;
         angleDeg = (float) Math.toDegrees(body.getAngle());
     }
-
-
-
-
-
-
-
-
-
-
 
 
     public void hit() {
@@ -70,14 +61,16 @@ public class Egg {
         return position;
     }
 
-    public Float getX(){
-        return position.x;
-    }
-    public Float getY(){
-        return position.y;
-    }
     public void setPosition(Vector2 position) {
         this.position = position;
+    }
+
+    public Float getX() {
+        return position.x;
+    }
+
+    public Float getY() {
+        return position.y;
     }
 
     public int getSTATE_NORMAL() {
@@ -118,5 +111,17 @@ public class Egg {
 
     public void setDraw_height(Float draw_height) {
         this.draw_height = draw_height;
+    }
+
+    public int getSTATE_REMOVE() {
+        return STATE_REMOVE;
+    }
+
+    public float getStateTime() {
+        return stateTime;
+    }
+
+    public void setStateTime(float stateTime) {
+        this.stateTime = stateTime;
     }
 }

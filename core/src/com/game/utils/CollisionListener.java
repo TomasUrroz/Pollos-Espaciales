@@ -14,10 +14,17 @@ public class CollisionListener implements ContactListener {
         if (bodyA.getUserData() instanceof Zombie && bodyB.getUserData() instanceof Egg) {
             Zombie ZombieA = (Zombie) bodyA.getUserData();
             Egg egg = (Egg) bodyB.getUserData();
-           if (ZombieA.getState() == ZombieA.getSTATE_NORMAL() && egg.getState() == egg.getSTATE_NORMAL()) {
-                    ZombieA.hit();
-                    egg.hit();
-           }
+            if (ZombieA.getState() == ZombieA.getSTATE_NORMAL() && egg.getState() == egg.getSTATE_NORMAL()) {
+                ZombieA.hit();
+                egg.hit();
+            }
+        } else if (bodyA.getUserData() instanceof Egg && bodyB.getUserData() instanceof Zombie) {
+            Egg egg = (Egg) bodyA.getUserData();
+            Zombie zombie = (Zombie) bodyB.getUserData();
+            if (egg.getState() == egg.getSTATE_NORMAL() && zombie.getState() == zombie.getSTATE_NORMAL()) {
+                zombie.hit();
+                egg.hit();
+            }
         }
     }
 
@@ -36,6 +43,14 @@ public class CollisionListener implements ContactListener {
             Egg egg = (Egg) bodyB.getUserData();
 
             if (ZombieA.getState() != ZombieA.getSTATE_NORMAL() || egg.getState() != egg.getSTATE_NORMAL())
+                contact.setEnabled(false);
+            else
+                contact.setEnabled(true);
+        } else if (bodyA.getUserData() instanceof Egg && bodyB.getUserData() instanceof Zombie) {
+            Egg egg = (Egg) bodyA.getUserData();
+            Zombie zombie = (Zombie) bodyB.getUserData();
+
+            if (egg.getState() != egg.getSTATE_NORMAL() || zombie.getState() != zombie.getSTATE_NORMAL())
                 contact.setEnabled(false);
             else
                 contact.setEnabled(true);

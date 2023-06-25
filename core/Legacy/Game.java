@@ -31,11 +31,9 @@ public class Game extends ApplicationAdapter {
     static final int POSITION_ITERATIONS = 2;
     static final float SCALE = 0.05f;
     static final int COUNT = 10;
-
+    final HashMap<String, Sprite> sprites = new HashMap<String, Sprite>();
     TextureAtlas textureAtlas;
     SpriteBatch batch;
-    final HashMap<String, Sprite> sprites = new HashMap<String, Sprite>();
-
     OrthographicCamera camera;
     ExtendViewport viewport;
 
@@ -122,8 +120,8 @@ ataques
 
         createGround();
 
-        createWalls(wallLeft,0,0, 1.5708F);
-        createWalls(wallRight,84,0,1.5708F);
+        createWalls(wallLeft, 0, 0, 1.5708F);
+        createWalls(wallRight, 84, 0, 1.5708F);
     }
 
     private void createGround() {

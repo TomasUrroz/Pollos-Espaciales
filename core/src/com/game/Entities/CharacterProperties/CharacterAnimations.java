@@ -1,14 +1,14 @@
 package com.game.Entities.CharacterProperties;
 
 public class CharacterAnimations {
-    private Float iddle_frame_duration ;
-    private Float run_frame_duration ;
-    private Float walk_frame_duration ;
-    private Float attk1_frame_duration ;
-    private Float attk2_frame_duration ;
-    private Float attk3_frame_duration ;
-    private Float death_frame_duration ;
-    private Float hurt_frame_duration ;
+    private Float iddle_frame_duration;
+    private Float run_frame_duration;
+    private Float walk_frame_duration;
+    private Float attk1_frame_duration;
+    private Float attk2_frame_duration;
+    private Float attk3_frame_duration;
+    private Float death_frame_duration;
+    private Float hurt_frame_duration;
 
     public CharacterAnimations(Float iddle_frame_duration, Float run_frame_duration, Float walk_frame_duration, Float attk1_frame_duration, Float attk2_frame_duration, Float attk3_frame_duration, Float death_frame_duration, Float hurt_frame_duration) {
         this.iddle_frame_duration = iddle_frame_duration;

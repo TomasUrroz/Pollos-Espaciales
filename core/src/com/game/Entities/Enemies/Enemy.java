@@ -1,10 +1,9 @@
 package com.game.Entities.Enemies;
 
-import com.game.Entities.CharacterProperties.CharacterAnimations;
 import com.game.Entities.CharacterProperties.SizeE;
 import com.game.Entities.CharacterProperties.Stats;
-import com.game.Entities.Personaje;
 import com.game.Entities.CharacterProperties.Weapon;
+import com.game.Entities.Personaje;
 
 public class Enemy extends Personaje {
     private Weapon weapon;

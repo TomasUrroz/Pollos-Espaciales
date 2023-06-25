@@ -3,15 +3,15 @@ package com.game.Entities;
 import com.badlogic.gdx.math.Vector2;
 
 public abstract class Entity {
+    Vector2 position = new Vector2();
+    Vector2 velocity = new Vector2();
     private Integer hp;
     private Integer maxHp;
     private Float armor;
-    Vector2 position = new Vector2();
-    Vector2 velocity = new Vector2();
-    private Float width ;
+    private Float width;
     private Float height;
     private Float draw_width;
-    private Float draw_height ;
+    private Float draw_height;
 
 
     public Entity(Integer hp, Integer maxHp, Float armor, Float x, Float y, Float width, Float height, Float draw_width, Float draw_height) {
@@ -29,12 +29,17 @@ public abstract class Entity {
     public Integer getHp() {
         return hp;
     }
+
+    public void setHp(Integer hp) {
+        this.hp = hp;
+    }
+
     public Integer getMaxHp() {
         return maxHp;
     }
 
-    public void setHp(Integer hp) {
-        this.hp = hp;
+    public void setMaxHp(Integer maxHp) {
+        this.maxHp = maxHp;
     }
 
     public Float getArmor() {
@@ -61,7 +66,6 @@ public abstract class Entity {
         this.position.y = y;
     }
 
-
     public Vector2 getVelocity() {
         return velocity;
     }
@@ -70,13 +74,14 @@ public abstract class Entity {
         this.velocity = velocity;
     }
 
+    public void setVelocity(Float velocityX) {
+        this.velocity.x = velocityX;
+    }
+
     public Float getVelocityX() {
         return velocity.x;
     }
 
-    public void setVelocity(Float velocityX) {
-        this.velocity.x = velocityX;
-    }
     public Float getVelocityY() {
         return velocity.x;
     }
@@ -85,29 +90,28 @@ public abstract class Entity {
         this.velocity.y = velocityY;
     }
 
-    public void setMaxHp(Integer maxHp) {
-        this.maxHp = maxHp;
-    }
-
     public Vector2 getPosition() {
         return position;
+    }
+
+    public void setPosition(Vector2 position) {
+        this.position = position;
     }
 
     public Float setPositoinX() {
         return position.x;
     }
+
     public void gettPositoinX(Float posX) {
         position.x = posX;
     }
+
     public Float setPositoinY() {
         return position.y;
     }
+
     public void gettPositoinY(Float posY) {
         position.y = posY;
-    }
-
-    public void setPosition(Vector2 position) {
-        this.position = position;
     }
 
     public Float getWidth() {

@@ -2,22 +2,21 @@ package com.game.Entities;
 
 import com.game.Entities.CharacterProperties.*;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import java.util.ArrayList;
 
 public class Player extends Personaje implements IAttackPlayer, IGrabbable {
 
-    private  Integer id;
-    private static Integer count =0;
+    private static Integer count = 0;
+    private Integer id;
     private Integer dodges = 2;
     private Integer ammo = 10;
     private ArrayList<Weapon> weapon = new ArrayList<>();
     private Integer selectedWeapon = 0;
-    private Boolean god=false;
+    private Boolean god = false;
 
 
     public Player(Float x, Float y) {
-        super(100, 100, 1.0f, x, y, 0.38f, 0.47f, 1f,1.38f,20f);
+        super(100, 100, 1.0f, x, y, 0.38f, 0.47f, 1f, 1.38f, 50f);
         this.id = this.count;
         ++this.count;
         this.dodges = 2;
@@ -25,8 +24,9 @@ public class Player extends Personaje implements IAttackPlayer, IGrabbable {
         this.selectedWeapon = 0;
         this.god = false;
     }
+
     public Player(Float x, Float y, Weapon weapon) {
-        super(100, 100, 1.0f, x, y, .45f, .25f, 1.3f,1.7f,10f);
+        super(100, 100, 1.0f, x, y, .45f, .25f, 1.3f, 1.7f, 50f);
         this.dodges = 2;
         this.weapon.add(weapon);
         this.selectedWeapon = 0;
@@ -34,21 +34,21 @@ public class Player extends Personaje implements IAttackPlayer, IGrabbable {
     }
 
     public Player(Integer hp, Integer maxHp, Float armor, Float x, Float y, Float width, Float height, Float draw_width, Float draw_height, Integer dodges, Integer ammo, ArrayList<Weapon> weapon, Integer selectedWeapon, Boolean god, Float speed) {
-        super(hp, maxHp, armor, x, y, width, height, draw_width, draw_height,speed);
+        super(hp, maxHp, armor, x, y, width, height, draw_width, draw_height, speed);
         this.dodges = dodges;
         this.ammo = ammo;
         this.weapon = weapon;
         this.selectedWeapon = selectedWeapon;
         this.god = god;
     }
+
     public Player(Stats stats, SizeE sizeE, ArrayList<Weapon> weapon) {
-        super(stats,sizeE);
+        super(stats, sizeE);
         this.dodges = 2;
         this.weapon = weapon;
         this.selectedWeapon = 0;
         this.god = false;
     }
-
 
 
     //DODGE STUFF
@@ -64,11 +64,9 @@ public class Player extends Personaje implements IAttackPlayer, IGrabbable {
         this.god = god;
     }
 
-    public void dodge(int direction){
+    public void dodge(int direction) {
         //FOR A SHORT PERIOD OF TIME INVULNERAVILITY WHILE ROLLING
     }
-
-
 
 
     //WEAPON STUFF
@@ -86,17 +84,16 @@ public class Player extends Personaje implements IAttackPlayer, IGrabbable {
 
     @Override
     public void switchWeapon() {
-        if(weapon.size()<selectedWeapon)
-        {
+        if (weapon.size() < selectedWeapon) {
             selectedWeapon++;
-        } else selectedWeapon =0;
+        } else selectedWeapon = 0;
     }
 
-    public  Integer getId() {
+    public Integer getId() {
         return id;
     }
 
-    public  void setId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -107,7 +104,6 @@ public class Player extends Personaje implements IAttackPlayer, IGrabbable {
     public void setAmmo(Integer ammo) {
         this.ammo = ammo;
     }
-
 
 
 }

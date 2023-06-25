@@ -12,6 +12,7 @@ public class Utils {
     static public TextureRegion getRegion(String path) {
         return new TextureRegion(new Texture(Gdx.files.internal(path)));
     }
+
     public void createFloor(World oWorld) {
 
         BodyDef bd = new BodyDef();
@@ -33,7 +34,7 @@ public class Utils {
         bd2.type = BodyDef.BodyType.StaticBody;
 
         EdgeShape shape2 = new EdgeShape();
-        shape2.set(0, WORLD_HEIGHT-0.58F, WORLD_WIDTH, WORLD_HEIGHT-0.58F);
+        shape2.set(0, WORLD_HEIGHT - 0.58F, WORLD_WIDTH, WORLD_HEIGHT - 0.58F);
 
         FixtureDef fixDef2 = new FixtureDef();
         fixDef2.shape = shape2;

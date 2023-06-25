@@ -3,24 +3,27 @@ package com.game.tutoriales.learn8;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.game.utils.Utils;
 
 import java.util.ArrayList;
 
 
 public class AssetsLearn8 {
 
+    public static Texture backgroundTexture;
+    public static Sprite backgroundSprite;
     static Sprite polloBlanco;
     static Sprite polloMarron;
     static Sprite guebo;
     static Sprite pata;
+    static Animation<Sprite> bum;
     static ArrayList<Sprite> wz = new ArrayList<>();
     static ArrayList<Sprite> zw = new ArrayList<>();
     static ArrayList<Sprite> zm = new ArrayList<>();
-    public static Texture backgroundTexture;
-    public static Sprite backgroundSprite;
-
     static TextureAtlas atlas;
 
     public static void load() {
@@ -28,10 +31,10 @@ public class AssetsLearn8 {
         polloBlanco = atlas.createSprite("chiquen1");
         polloMarron = atlas.createSprite("brown chicken");
         guebo = atlas.createSprite("egg");
-        pata  = atlas.createSprite("pata");
+        pata = atlas.createSprite("pata");
 
         backgroundTexture = new Texture("Entities/Space Background.png");
-        backgroundSprite =new Sprite(backgroundTexture);
+        backgroundSprite = new Sprite(backgroundTexture);
 
         atlas = new TextureAtlas(Gdx.files.internal("Entities/Wild Zombie/WZ.txt"));
         wz.add(atlas.createSprite("Attack_1_C"));
@@ -63,6 +66,29 @@ public class AssetsLearn8 {
         zw.add(atlas.createSprite("Jump_C"));
         zw.add(atlas.createSprite("Run_C"));
 
+
+        atlas = new TextureAtlas(Gdx.files.internal("bum/bum.txt"));
+
+        bum = new Animation<>(0.05f,atlas.createSprite("explosion1"),
+                atlas.createSprite("explosion2"),
+                atlas.createSprite("explosion3"),
+                atlas.createSprite("explosion4"),
+                atlas.createSprite("explosion5"),
+                atlas.createSprite("explosion6"),
+                atlas.createSprite("explosion7"),
+                atlas.createSprite("explosion8"),
+                atlas.createSprite("explosion9"),
+                atlas.createSprite("explosion10"),
+                atlas.createSprite("explosion11"),
+                atlas.createSprite("explosion12"),
+                atlas.createSprite("explosion13"),
+                atlas.createSprite("explosion14"),
+                atlas.createSprite("explosion15"),
+                atlas.createSprite("explosion16"),
+                atlas.createSprite("explosion17"),
+                atlas.createSprite("explosion18"),
+                atlas.createSprite("explosion19")
+                );
     }
 
 

@@ -4,6 +4,11 @@ public class Weapon {
     private Integer dmg;
     private Integer range;
 
+    public Weapon(Integer dmg, Integer range) {
+        this.dmg = dmg;
+        this.range = range;
+    }
+
     public Integer getDmg() {
         return dmg;
     }
@@ -17,11 +22,6 @@ public class Weapon {
     }
 
     public void setRange(Integer range) {
-        this.range = range;
-    }
-
-    public Weapon(Integer dmg, Integer range) {
-        this.dmg = dmg;
         this.range = range;
     }
 }

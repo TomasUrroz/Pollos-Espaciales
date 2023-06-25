@@ -1,0 +1,139 @@
+
+bum.png
+size: 547, 146
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+explosion1
+  rotate: false
+  xy: 513, 20
+  size: 32, 31
+  orig: 70, 69
+  offset: 19, 19
+  index: -1
+explosion10
+  rotate: false
+  xy: 216, 79
+  size: 66, 65
+  orig: 70, 69
+  offset: 2, 2
+  index: -1
+explosion11
+  rotate: false
+  xy: 144, 7
+  size: 68, 67
+  orig: 70, 69
+  offset: 1, 1
+  index: -1
+explosion12
+  rotate: false
+  xy: 74, 5
+  size: 68, 69
+  orig: 70, 69
+  offset: 1, 0
+  index: -1
+explosion13
+  rotate: false
+  xy: 2, 4
+  size: 70, 69
+  orig: 70, 69
+  offset: 0, 0
+  index: -1
+explosion14
+  rotate: false
+  xy: 2, 75
+  size: 70, 69
+  orig: 70, 69
+  offset: 0, 0
+  index: -1
+explosion15
+  rotate: false
+  xy: 74, 76
+  size: 70, 68
+  orig: 70, 69
+  offset: 0, 1
+  index: -1
+explosion16
+  rotate: false
+  xy: 146, 79
+  size: 68, 65
+  orig: 70, 69
+  offset: 1, 2
+  index: -1
+explosion17
+  rotate: false
+  xy: 282, 14
+  size: 66, 63
+  orig: 70, 69
+  offset: 2, 3
+  index: -1
+explosion18
+  rotate: false
+  xy: 472, 100
+  size: 56, 44
+  orig: 70, 69
+  offset: 7, 13
+  index: -1
+explosion19
+  rotate: false
+  xy: 412, 2
+  size: 45, 21
+  orig: 70, 69
+  offset: 12, 24
+  index: -1
+explosion2
+  rotate: false
+  xy: 472, 14
+  size: 39, 37
+  orig: 70, 69
+  offset: 15, 16
+  index: -1
+explosion3
+  rotate: false
+  xy: 472, 53
+  size: 47, 45
+  orig: 70, 69
+  offset: 11, 12
+  index: -1
+explosion4
+  rotate: false
+  xy: 416, 93
+  size: 54, 51
+  orig: 70, 69
+  offset: 8, 9
+  index: -1
+explosion5
+  rotate: false
+  xy: 412, 25
+  size: 58, 56
+  orig: 70, 69
+  offset: 6, 7
+  index: -1
+explosion6
+  rotate: false
+  xy: 350, 22
+  size: 60, 59
+  orig: 70, 69
+  offset: 5, 5
+  index: -1
+explosion7
+  rotate: false
+  xy: 350, 83
+  size: 64, 61
+  orig: 70, 69
+  offset: 3, 4
+  index: -1
+explosion8
+  rotate: false
+  xy: 284, 81
+  size: 64, 63
+  orig: 70, 69
+  offset: 3, 3
+  index: -1
+explosion9
+  rotate: false
+  xy: 214, 12
+  size: 66, 65
+  orig: 70, 69
+  offset: 2, 2
+  index: -1
