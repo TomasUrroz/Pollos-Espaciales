@@ -11,6 +11,7 @@ import com.game.Entities.Egg;
 import com.game.Entities.Enemies.Zombie;
 import com.game.Entities.Player;
 import com.game.utils.CollisionListener;
+import sun.jvm.hotspot.debugger.posix.elf.ELFException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class Game extends Screens {
     //Utils util = new Utils();
     //Box2DDebugRenderer renderer = new Box2DDebugRenderer();
 
-
+//AGREGAR , Integer choice EN EL CONSTRUCTOR
     public Game(MainGame game) {
         super(game);
         AssetsGame.load();
@@ -56,7 +57,15 @@ public class Game extends Screens {
         player = createPlayer(1f, 3f);
         player2 = createPlayer(1f, 1f);
 
-        zombies = createZombies(300);
+
+        //DESCOMENTAR ESTO UNA VEZ AGREGADO EL CHOICE AL CONSTRUCTORR
+        /*if(choice == 0){*/
+            zombies = createZombies(150);
+        /*}else if(choice ==1){
+            zombies = createZombies(300);
+        }else{
+            zombies = createZombies(1000);
+        }*/
     }
 
 
@@ -441,8 +450,9 @@ public class Game extends Screens {
             bgX=0f;
         }
 
-        AssetsGame.font.draw(spriteBatch, "1:  " + player.getHp(), 0, 60);
-        AssetsGame.font.draw(spriteBatch, "2:  " + player2.getHp(), 0, 40);
+        AssetsGame.font.draw(spriteBatch, "P1  HP:  " + player.getHp() + "   Kills: "+ hits1, 0, 470);
+        AssetsGame.font.draw(spriteBatch, "P2  HP:  " + player2.getHp()+ "   Kills: "+ hits2, 0, 455);
+
         spriteBatch.end();
 
         oCamBox2D.update();
@@ -465,8 +475,17 @@ public class Game extends Screens {
             chkBum = drawBum(bumX,bumY, delta,true);
         }
 
+
         if(player.getHp() == 0 && player2.getHp() == 0){
             //ACA EL IR A LA PANTALLA DE PERDISTE WN
+        } else if (player.getHp() != 0 && player2.getHp() != 0 && zombies.size()==0) {
+            if(hits1 > hits2){
+                //GANA EL JUGADOR 1
+            } else if (hits1<hits2) {
+                //GANA EL JUGADOR 2
+            }else if(hits1 == hits2){
+                //EMPATE? XD
+            }
         }
 
 
