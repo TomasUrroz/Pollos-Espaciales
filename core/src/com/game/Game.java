@@ -22,7 +22,8 @@ public class Game extends Screens {
     Player player2;
     int hits1 = 0;
     int hits2 = 0;
-    Boolean didP = false;
+    Boolean zomBum = false;
+    Boolean chkBum = false;
     Float bumX ;
     Float bumY ;
     Float bgX = 0f;
@@ -55,7 +56,7 @@ public class Game extends Screens {
         player = createPlayer(1f, 3f);
         player2 = createPlayer(1f, 1f);
 
-        zombies = createZombies(200);
+        zombies = createZombies(300);
     }
 
 
@@ -91,13 +92,17 @@ public class Game extends Screens {
             keyframe = AssetsGame.polloBlanco;
         } else keyframe = AssetsGame.polloMarron;
 
-        keyframe.setOrigin(player.getDraw_width() / 2, player.getDraw_height() / 2);
-        keyframe.setRotation(player.angle);
-        keyframe.setPosition(player.getX() - player.getDraw_width() / 2, player.getY() - player.getDraw_height() / 2 + 0.03f);
-        keyframe.setSize(player.getDraw_width(), player.getDraw_height());
-        keyframe.setScale(0.8f);
+        if(player.isAlive() == false) {
+            keyframe = AssetsGame.pata;
+        }
+            keyframe.setOrigin(player.getDraw_width() / 2, player.getDraw_height() / 2);
+            keyframe.setRotation(player.angle);
+            keyframe.setPosition(player.getX() - player.getDraw_width() / 2, player.getY() - player.getDraw_height() / 2 + 0.03f);
+            keyframe.setSize(player.getDraw_width(), player.getDraw_height());
+            keyframe.setScale(0.8f);
 
         keyframe.draw(spriteBatch);
+
     }
 
 
@@ -254,16 +259,27 @@ public class Game extends Screens {
 
     }
 
-    private Boolean drawBum(Float x, Float y, float delta){
+    private Boolean drawBum(Float x, Float y, float delta, boolean chk){
         if(x != y && x!=0){
             Sprite keyframe = null;
             Float time = 0f;
-            while(time<=0.095f){
-                keyframe = AssetsGame.bum.getKeyFrame(time, true);
-                keyframe.setPosition(x +0.1f, y -0.2f);
-                keyframe.setSize(-0.5f, 0.5f);
-                keyframe.draw(spriteBatch);
-                time+= delta;
+            if(chk ==false){
+                while(time<=0.095f){
+                    keyframe = AssetsGame.bum.getKeyFrame(time, true);
+                    keyframe.setPosition(x +0.1f, y -0.2f);
+                    keyframe.setSize(-0.5f, 0.5f);
+                    keyframe.draw(spriteBatch);
+                    time+= delta;
+                }
+            }else {
+                while(time<=0.095f){
+                    keyframe = AssetsGame.bum.getKeyFrame(time, true);
+                    keyframe.setPosition(x +0.1f, y -0.2f);
+                    keyframe.setSize(-1.5f, 1.5f);
+                    keyframe.draw(spriteBatch);
+                    time+= delta;
+                }
+
             }
         }
         return true;
@@ -284,44 +300,48 @@ public class Game extends Screens {
         String action2 = "";
 
         //PLAYER1
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
-            accelX = -1;
+        if(player.isAlive()){
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
+                accelX = -1;
 
-        else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
-            accelX = 1;
+            else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
+                accelX = 1;
 
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
-            accelY = -1;
+            if (Gdx.input.isKeyPressed(Input.Keys.DOWN))
+                accelY = -1;
 
-        if (Gdx.input.isKeyPressed(Input.Keys.UP))
-            accelY = 1;
+            if (Gdx.input.isKeyPressed(Input.Keys.UP))
+                accelY = 1;
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_0))
-            eggsP1.add(shootEgg(player));
+            if (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_0))
+                eggsP1.add(shootEgg(player));
 
-        if (Gdx.input.isKeyPressed(Input.Keys.NUMPAD_ADD))
-            action = "str";
+            if (Gdx.input.isKeyPressed(Input.Keys.NUMPAD_ADD))
+                action = "str";
+        }
 
+        if(player2.isAlive()) {
 
-        //PLAYER2
-        if (Gdx.input.isKeyPressed(Input.Keys.A))
-            accelX2 = -1;
+            //PLAYER2
+            if (Gdx.input.isKeyPressed(Input.Keys.A))
+                accelX2 = -1;
 
-        else if (Gdx.input.isKeyPressed(Input.Keys.D))
-            accelX2 = 1;
+            else if (Gdx.input.isKeyPressed(Input.Keys.D))
+                accelX2 = 1;
 
-        if (Gdx.input.isKeyPressed(Input.Keys.S))
-            accelY2 = -1;
+            if (Gdx.input.isKeyPressed(Input.Keys.S))
+                accelY2 = -1;
 
-        if (Gdx.input.isKeyPressed(Input.Keys.W))
-            accelY2 = 1;
+            if (Gdx.input.isKeyPressed(Input.Keys.W))
+                accelY2 = 1;
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
-            eggsP2.add(shootEgg(player2));
+            if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
+                eggsP2.add(shootEgg(player2));
 
-        if (Gdx.input.isKeyPressed(Input.Keys.Q))
-            action2 = "str";
+            if (Gdx.input.isKeyPressed(Input.Keys.Q))
+                action2 = "str";
 
+        }
 
         oWorld.step(delta, 8, 6);
         oWorld.getBodies(arrBodies);
@@ -335,7 +355,19 @@ public class Game extends Screens {
                 if (action.equalsIgnoreCase("str")) {
                     body.setTransform(body.getPosition().x, body.getPosition().y, 0f);
                     body.setAngularVelocity(0f);
+                }
 
+                if (obj.getState() == 1) {
+                    obj.setHp(obj.getHp()-5);
+                    obj.setState(0);
+                }
+
+                if (obj.getHp() ==0) {
+                    bumX = obj.getX();
+                    bumY = obj.getY();
+                    /*
+                    chkBum = false;
+                    oWorld.destroyBody(body);*/
                 }
 
             } else if ((body.getUserData() instanceof Player) && ((Player) body.getUserData()).getId() == 1) {
@@ -348,6 +380,19 @@ public class Game extends Screens {
                     body.setAngularVelocity(0f);
                 }
 
+                if (obj.getState() == 1) {
+                    obj.setHp(obj.getHp()-5);
+                    obj.setState(0);
+                }
+
+                if (obj.getHp() ==0) {
+                    bumX = obj.getX();
+                    bumY = obj.getY();
+                    /*
+                    chkBum = false;
+                    oWorld.destroyBody(body);*/
+                }
+
             } else if ((body.getUserData() instanceof Zombie)) {
                 Zombie obj = (Zombie) body.getUserData();
                 obj.update(body, delta, 0f, 0f, action2);
@@ -356,7 +401,7 @@ public class Game extends Screens {
                 if (obj.getState() == 1) {
                     bumX = obj.getX();
                     bumY = obj.getY();
-                    didP = false;
+                    zomBum = false;
                     zombies.remove(obj);
                     oWorld.destroyBody(body);
                 }
@@ -396,8 +441,8 @@ public class Game extends Screens {
             bgX=0f;
         }
 
-        AssetsGame.font.draw(spriteBatch, "1:  " + hits1, 0, 60);
-        AssetsGame.font.draw(spriteBatch, "2:  " + hits2, 0, 40);
+        AssetsGame.font.draw(spriteBatch, "1:  " + player.getHp(), 0, 60);
+        AssetsGame.font.draw(spriteBatch, "2:  " + player2.getHp(), 0, 40);
         spriteBatch.end();
 
         oCamBox2D.update();
@@ -413,9 +458,17 @@ public class Game extends Screens {
         drawEggs((ArrayList<Egg>) eggsP2);
         drawZombies(zombies);
 
-        if(didP == false){
-            didP = drawBum(bumX,bumY, delta);
+        if(zomBum == false){
+            zomBum = drawBum(bumX,bumY, delta,false);
         }
+        if(chkBum == false){
+            chkBum = drawBum(bumX,bumY, delta,true);
+        }
+
+        if(player.getHp() == 0 && player2.getHp() == 0){
+            //ACA EL IR A LA PANTALLA DE PERDISTE WN
+        }
+
 
         spriteBatch.end();
         //renderer.render(oWorld, oCamBox2D.combined);

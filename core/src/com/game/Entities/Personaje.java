@@ -10,10 +10,19 @@ public abstract class Personaje extends Entity implements ISpeed, IDeath {
     static boolean isHurt = false;
     static float stateTime = 0;
     public Float angle;
+    final int STATE_NORMAL = 0;
+    final int STATE_EXPLODE = 1;
+    final int STATE_REMOVE = 2;
+    int state;
+    static final float EXPLOSION_DURATION = 0.95f;
+    float angleDeg;
+
 
     public Personaje(Integer hp, Integer maxHp, Float armor, Float x, Float y, Float width, Float height, Float draw_width, Float draw_height, Float speed) {
         super(hp, maxHp, armor, x, y, width, height, draw_width, draw_height);
         this.speed = speed;
+        state = STATE_NORMAL;
+
     }
 
 
@@ -85,7 +94,7 @@ public abstract class Personaje extends Entity implements ISpeed, IDeath {
 
     @Override
     public Boolean isAlive() {
-        if (super.getHp() > 0) return true;
+        if (this.getHp() > 0) return true;
         else return false;
     }
 
@@ -93,5 +102,51 @@ public abstract class Personaje extends Entity implements ISpeed, IDeath {
         this.angle = 0.0f;
     }
 
+    public int getSTATE_NORMAL() {
+        return STATE_NORMAL;
+    }
 
+    public int getSTATE_EXPLODE() {
+        return STATE_EXPLODE;
+    }
+
+    public int getSTATE_REMOVE() {
+        return STATE_REMOVE;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+    public void update(Body body, float delta) {
+        if (state == STATE_NORMAL) {
+            position.x = body.getPosition().x;
+            position.y = body.getPosition().y;
+            angleDeg = (float) Math.toDegrees(body.getAngle());
+        } else if (state == STATE_EXPLODE) {
+            if (stateTime >= EXPLOSION_DURATION) {
+                state = STATE_REMOVE;
+                stateTime = 0;
+            }
+        }
+        stateTime += delta;
+    }
+
+    public void hit() {
+        if (state == STATE_NORMAL) {
+            state = STATE_EXPLODE;
+            stateTime = 0;
+        }
+    }
+
+    public float getAngleDeg() {
+        return angleDeg;
+    }
+
+    public void setAngleDeg(float angleDeg) {
+        this.angleDeg = angleDeg;
+    }
 }

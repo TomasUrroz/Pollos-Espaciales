@@ -3,6 +3,7 @@ package com.game.utils;
 import com.badlogic.gdx.physics.box2d.*;
 import com.game.Entities.Egg;
 import com.game.Entities.Enemies.Zombie;
+import com.game.Entities.Player;
 
 public class CollisionListener implements ContactListener {
 
@@ -11,6 +12,7 @@ public class CollisionListener implements ContactListener {
         Body bodyA = contact.getFixtureA().getBody();
         Body bodyB = contact.getFixtureB().getBody();
 
+        //WEBO ZOMBIE
         if (bodyA.getUserData() instanceof Zombie && bodyB.getUserData() instanceof Egg) {
             Zombie ZombieA = (Zombie) bodyA.getUserData();
             Egg egg = (Egg) bodyB.getUserData();
@@ -24,6 +26,24 @@ public class CollisionListener implements ContactListener {
             if (egg.getState() == egg.getSTATE_NORMAL() && zombie.getState() == zombie.getSTATE_NORMAL()) {
                 zombie.hit();
                 egg.hit();
+            }
+        }
+
+
+        //PLAYER ZOMBIE
+        if (bodyA.getUserData() instanceof Player && bodyB.getUserData() instanceof Zombie) {
+            Player player = (Player) bodyA.getUserData();
+            Zombie zombie = (Zombie) bodyB.getUserData();
+            if (player.getState() == player.getSTATE_NORMAL() && zombie.getState() == zombie.getSTATE_NORMAL()) {
+                player.hit();
+                zombie.hit();
+            }
+        } else if (bodyA.getUserData() instanceof Zombie && bodyB.getUserData() instanceof Player) {
+            Zombie zombie = (Zombie) bodyA.getUserData();
+            Player player = (Player) bodyB.getUserData();
+            if (zombie.getState() == zombie.getSTATE_NORMAL() && player.getState() == player.getSTATE_NORMAL()) {
+                zombie.hit();
+                player.hit();
             }
         }
     }
