@@ -11,7 +11,6 @@ import com.game.Entities.Egg;
 import com.game.Entities.Enemies.Zombie;
 import com.game.Entities.Player;
 import com.game.utils.CollisionListener;
-import sun.jvm.hotspot.debugger.posix.elf.ELFException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +24,8 @@ public class Game extends Screens {
     int hits2 = 0;
     Boolean zomBum = false;
     Boolean chkBum = false;
-    Float bumX ;
-    Float bumY ;
+    Float bumX;
+    Float bumY;
     Float bgX = 0f;
     Float bgS = 0.5f;
 
@@ -38,7 +37,7 @@ public class Game extends Screens {
     //Utils util = new Utils();
     //Box2DDebugRenderer renderer = new Box2DDebugRenderer();
 
-//AGREGAR , Integer choice EN EL CONSTRUCTOR
+    //AGREGAR , Integer choice EN EL CONSTRUCTOR
     public Game(MainGame game) {
         super(game);
         AssetsGame.load();
@@ -60,7 +59,7 @@ public class Game extends Screens {
 
         //DESCOMENTAR ESTO UNA VEZ AGREGADO EL CHOICE AL CONSTRUCTORR
         /*if(choice == 0){*/
-            zombies = createZombies(150);
+        zombies = createZombies(150);
         /*}else if(choice ==1){
             zombies = createZombies(300);
         }else{
@@ -101,14 +100,14 @@ public class Game extends Screens {
             keyframe = AssetsGame.polloBlanco;
         } else keyframe = AssetsGame.polloMarron;
 
-        if(player.isAlive() == false) {
+        if (player.isAlive() == false) {
             keyframe = AssetsGame.pata;
         }
-            keyframe.setOrigin(player.getDraw_width() / 2, player.getDraw_height() / 2);
-            keyframe.setRotation(player.angle);
-            keyframe.setPosition(player.getX() - player.getDraw_width() / 2, player.getY() - player.getDraw_height() / 2 + 0.03f);
-            keyframe.setSize(player.getDraw_width(), player.getDraw_height());
-            keyframe.setScale(0.8f);
+        keyframe.setOrigin(player.getDraw_width() / 2, player.getDraw_height() / 2);
+        keyframe.setRotation(player.angle);
+        keyframe.setPosition(player.getX() - player.getDraw_width() / 2, player.getY() - player.getDraw_height() / 2 + 0.03f);
+        keyframe.setSize(player.getDraw_width(), player.getDraw_height());
+        keyframe.setScale(0.8f);
 
         keyframe.draw(spriteBatch);
 
@@ -180,12 +179,12 @@ public class Game extends Screens {
         Sprite keyframe = zombie.getDraw();
 
         try {
-            if(zombie.getState() == zombie.getSTATE_NORMAL()){
-            keyframe.setOrigin(zombie.getDraw_width() / 2, zombie.getDraw_height() / 2);
-            keyframe.setRotation(zombie.angle);
-            keyframe.setPosition(zombie.getX() - zombie.getDraw_width() / 2, zombie.getY() - zombie.getDraw_height() / 2 + 0.03f);
-            keyframe.setSize(zombie.getDraw_width(), zombie.getDraw_height());
-            keyframe.setScale(0.5f);
+            if (zombie.getState() == zombie.getSTATE_NORMAL()) {
+                keyframe.setOrigin(zombie.getDraw_width() / 2, zombie.getDraw_height() / 2);
+                keyframe.setRotation(zombie.angle);
+                keyframe.setPosition(zombie.getX() - zombie.getDraw_width() / 2, zombie.getY() - zombie.getDraw_height() / 2 + 0.03f);
+                keyframe.setSize(zombie.getDraw_width(), zombie.getDraw_height());
+                keyframe.setScale(0.5f);
             }
 
         } catch (NullPointerException npe) {
@@ -268,35 +267,31 @@ public class Game extends Screens {
 
     }
 
-    private Boolean drawBum(Float x, Float y, float delta, boolean chk){
-        if(x != y && x!=0){
+    private Boolean drawBum(Float x, Float y, float delta, boolean chk) {
+        if (x != y && x != 0) {
             Sprite keyframe = null;
             Float time = 0f;
-            if(chk ==false){
-                while(time<=0.095f){
+            if (chk == false) {
+                while (time <= 0.095f) {
                     keyframe = AssetsGame.bum.getKeyFrame(time, true);
-                    keyframe.setPosition(x +0.1f, y -0.2f);
+                    keyframe.setPosition(x + 0.1f, y - 0.2f);
                     keyframe.setSize(-0.5f, 0.5f);
                     keyframe.draw(spriteBatch);
-                    time+= delta;
+                    time += delta;
                 }
-            }else {
-                while(time<=0.095f){
+            } else {
+                while (time <= 0.095f) {
                     keyframe = AssetsGame.bum.getKeyFrame(time, true);
-                    keyframe.setPosition(x +0.1f, y -0.2f);
+                    keyframe.setPosition(x + 0.1f, y - 0.2f);
                     keyframe.setSize(-1.5f, 1.5f);
                     keyframe.draw(spriteBatch);
-                    time+= delta;
+                    time += delta;
                 }
 
             }
         }
         return true;
     }
-
-
-
-
 
 
     @Override
@@ -309,7 +304,7 @@ public class Game extends Screens {
         String action2 = "";
 
         //PLAYER1
-        if(player.isAlive()){
+        if (player.isAlive()) {
             if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
                 accelX = -1;
 
@@ -329,7 +324,7 @@ public class Game extends Screens {
                 action = "str";
         }
 
-        if(player2.isAlive()) {
+        if (player2.isAlive()) {
 
             //PLAYER2
             if (Gdx.input.isKeyPressed(Input.Keys.A))
@@ -367,11 +362,11 @@ public class Game extends Screens {
                 }
 
                 if (obj.getState() == 1) {
-                    obj.setHp(obj.getHp()-5);
+                    obj.setHp(obj.getHp() - 5);
                     obj.setState(0);
                 }
 
-                if (obj.getHp() ==0) {
+                if (obj.getHp() == 0) {
                     bumX = obj.getX();
                     bumY = obj.getY();
                     /*
@@ -390,11 +385,11 @@ public class Game extends Screens {
                 }
 
                 if (obj.getState() == 1) {
-                    obj.setHp(obj.getHp()-5);
+                    obj.setHp(obj.getHp() - 5);
                     obj.setState(0);
                 }
 
-                if (obj.getHp() ==0) {
+                if (obj.getHp() == 0) {
                     bumX = obj.getX();
                     bumY = obj.getY();
                     /*
@@ -446,12 +441,12 @@ public class Game extends Screens {
         spriteBatch.draw(AssetsGame.backgroundSprite, bgX, 0);
         bgX -= bgS;
 
-        if(bgX == -2000){
-            bgX=0f;
+        if (bgX == -2000) {
+            bgX = 0f;
         }
 
-        AssetsGame.font.draw(spriteBatch, "P1  HP:  " + player.getHp() + "   Kills: "+ hits1, 0, 470);
-        AssetsGame.font.draw(spriteBatch, "P2  HP:  " + player2.getHp()+ "   Kills: "+ hits2, 0, 455);
+        AssetsGame.font.draw(spriteBatch, "P1  HP:  " + player.getHp() + "   Kills: " + hits1, 0, 470);
+        AssetsGame.font.draw(spriteBatch, "P2  HP:  " + player2.getHp() + "   Kills: " + hits2, 0, 455);
 
         spriteBatch.end();
 
@@ -468,22 +463,22 @@ public class Game extends Screens {
         drawEggs((ArrayList<Egg>) eggsP2);
         drawZombies(zombies);
 
-        if(zomBum == false){
-            zomBum = drawBum(bumX,bumY, delta,false);
+        if (zomBum == false) {
+            zomBum = drawBum(bumX, bumY, delta, false);
         }
-        if(chkBum == false){
-            chkBum = drawBum(bumX,bumY, delta,true);
+        if (chkBum == false) {
+            chkBum = drawBum(bumX, bumY, delta, true);
         }
 
 
-        if(player.getHp() == 0 && player2.getHp() == 0){
+        if (player.getHp() == 0 && player2.getHp() == 0) {
             //ACA EL IR A LA PANTALLA DE PERDISTE WN
-        } else if (player.getHp() != 0 && player2.getHp() != 0 && zombies.size()==0) {
-            if(hits1 > hits2){
+        } else if (player.getHp() != 0 && player2.getHp() != 0 && zombies.size() == 0) {
+            if (hits1 > hits2) {
                 //GANA EL JUGADOR 1
-            } else if (hits1<hits2) {
+            } else if (hits1 < hits2) {
                 //GANA EL JUGADOR 2
-            }else if(hits1 == hits2){
+            } else if (hits1 == hits2) {
                 //EMPATE? XD
             }
         }

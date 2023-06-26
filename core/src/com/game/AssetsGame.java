@@ -35,7 +35,6 @@ public class AssetsGame {
     static TextureAtlas atlas;
 
 
-
     public static void loadFonts() {
         font = new BitmapFont();
 
@@ -61,9 +60,9 @@ public class AssetsGame {
         guebo = atlas.createSprite("egg");
         pata = atlas.createSprite("pata");
 
-        rand = (int) (Math.random() * (14-1 + 1)+1);
+        rand = (int) (Math.random() * (14 - 1 + 1) + 1);
 
-        backgroundTexture = new Texture("backgrounds/Space Background(" + rand + ").png" );
+        backgroundTexture = new Texture("backgrounds/Space Background(" + rand + ").png");
         backgroundSprite = new Sprite(backgroundTexture);
 
         atlas = new TextureAtlas(Gdx.files.internal("Entities/Wild Zombie/WZ.txt"));

@@ -5,16 +5,16 @@ import com.game.Entities.CharacterProperties.IDeath;
 import com.game.Entities.CharacterProperties.ISpeed;
 
 public abstract class Personaje extends Entity implements ISpeed, IDeath {
+    static final float EXPLOSION_DURATION = 0.95f;
     static Float speed;
     static boolean isAttacking = false;
     static boolean isHurt = false;
     static float stateTime = 0;
-    public Float angle;
     final int STATE_NORMAL = 0;
     final int STATE_EXPLODE = 1;
     final int STATE_REMOVE = 2;
+    public Float angle;
     int state;
-    static final float EXPLOSION_DURATION = 0.95f;
     float angleDeg;
 
 
@@ -121,6 +121,7 @@ public abstract class Personaje extends Entity implements ISpeed, IDeath {
     public void setState(int state) {
         this.state = state;
     }
+
     public void update(Body body, float delta) {
         if (state == STATE_NORMAL) {
             position.x = body.getPosition().x;

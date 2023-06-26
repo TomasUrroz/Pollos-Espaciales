@@ -2,7 +2,6 @@ package com.game.Entities.Enemies;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 
 
 public class Zombie extends Enemy {
@@ -22,10 +21,6 @@ public class Zombie extends Enemy {
     public void setDraw(Sprite draw) {
         this.draw = draw;
     }
-
-
-
-
 
 
 }
