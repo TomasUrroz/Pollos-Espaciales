@@ -22,6 +22,10 @@ public class Game extends Screens {
     Player player2;
     int hits1 = 0;
     int hits2 = 0;
+
+    Float bgX = 0f;
+    Float bgS = 0.5f;
+
     ArrayList<Zombie> zombies;
     Array<Body> arrBodies;
     List eggsP1 = new ArrayList();
@@ -37,7 +41,9 @@ public class Game extends Screens {
 
         Vector2 gravity = new Vector2(-0.5f, 0);
         oWorld = new World(gravity, true);
+
         oWorld.setContactListener(new CollisionListener());
+
         arrBodies = new Array<>();
 
 
@@ -361,7 +367,8 @@ public class Game extends Screens {
         spriteBatch.setProjectionMatrix(oCamUI.combined);
 
         spriteBatch.begin();
-        AssetsGame.backgroundSprite.draw(spriteBatch);
+        spriteBatch.draw(AssetsGame.backgroundSprite, bgX, 0);
+        bgX -= bgS;
 
         AssetsGame.font.draw(spriteBatch, "fps:" + Gdx.graphics.getFramesPerSecond(), 0, 20);
         AssetsGame.font.draw(spriteBatch, "1:  " + hits1, 0, 60);

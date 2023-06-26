@@ -34,6 +34,8 @@ public class AssetsGame {
     static ArrayList<Sprite> zm = new ArrayList<>();
     static TextureAtlas atlas;
 
+
+
     public static void loadFonts() {
         font = new BitmapFont();
 
@@ -52,13 +54,16 @@ public class AssetsGame {
 
 
     public static void load() {
+        int rand;
         atlas = new TextureAtlas(Gdx.files.internal("Entities/sprites.txt"));
         polloBlanco = atlas.createSprite("chiquen1");
         polloMarron = atlas.createSprite("brown chicken");
         guebo = atlas.createSprite("egg");
         pata = atlas.createSprite("pata");
 
-        backgroundTexture = new Texture("Entities/Space Background.png");
+        rand = (int) (Math.random() * (14 + 1));
+
+        backgroundTexture = new Texture("backgrounds/Space Background(" + rand + ").png" );
         backgroundSprite = new Sprite(backgroundTexture);
 
         atlas = new TextureAtlas(Gdx.files.internal("Entities/Wild Zombie/WZ.txt"));
