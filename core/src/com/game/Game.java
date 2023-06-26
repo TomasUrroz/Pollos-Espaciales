@@ -22,7 +22,9 @@ public class Game extends Screens {
     Player player2;
     int hits1 = 0;
     int hits2 = 0;
-
+    Boolean didP = false;
+    Float bumX ;
+    Float bumY ;
     Float bgX = 0f;
     Float bgS = 0.5f;
 
@@ -162,12 +164,16 @@ public class Game extends Screens {
 
     private void drawZombie(Zombie zombie) {
         Sprite keyframe = zombie.getDraw();
+
         try {
+            if(zombie.getState() == zombie.getSTATE_NORMAL()){
             keyframe.setOrigin(zombie.getDraw_width() / 2, zombie.getDraw_height() / 2);
             keyframe.setRotation(zombie.angle);
             keyframe.setPosition(zombie.getX() - zombie.getDraw_width() / 2, zombie.getY() - zombie.getDraw_height() / 2 + 0.03f);
             keyframe.setSize(zombie.getDraw_width(), zombie.getDraw_height());
             keyframe.setScale(0.5f);
+            }
+
         } catch (NullPointerException npe) {
             keyframe = AssetsGame.zm.get(0);
         }
@@ -177,17 +183,10 @@ public class Game extends Screens {
 
     private void drawZombies(ArrayList<Zombie> zombies) {
         int i = 0;
-        Sprite keyframe = null;
         try {
             while (i < zombies.size()) {
                 if (zombies.get(i).getState() == zombies.get(i).getSTATE_NORMAL()) {
                     drawZombie(zombies.get(i));
-                } else if (zombies.get(i).getState() != zombies.get(i).getSTATE_NORMAL()) {
-                    System.out.println("xd");
-                    keyframe = AssetsGame.bum.getKeyFrame(zombies.get(i).getStateTime(), true);
-                    keyframe.setPosition(zombies.get(i).getX() + zombies.get(i).getDraw_width() / 2, zombies.get(i).getY() - zombies.get(i).getDraw_height() / 2 + .25f);
-                    keyframe.setSize(-zombies.get(i).getDraw_width(), zombies.get(i).getDraw_height());
-                    keyframe.draw(spriteBatch);
                 }
                 i++;
             }
@@ -254,6 +253,25 @@ public class Game extends Screens {
         }
 
     }
+
+    private Boolean drawBum(Float x, Float y, float delta){
+        if(x != y && x!=0){
+            Sprite keyframe = null;
+            Float time = 0f;
+            while(time<=0.095f){
+                keyframe = AssetsGame.bum.getKeyFrame(time, true);
+                keyframe.setPosition(x +0.1f, y -0.2f);
+                keyframe.setSize(-0.5f, 0.5f);
+                keyframe.draw(spriteBatch);
+                time+= delta;
+            }
+        }
+        return true;
+    }
+
+
+
+
 
 
     @Override
@@ -334,7 +352,11 @@ public class Game extends Screens {
                 Zombie obj = (Zombie) body.getUserData();
                 obj.update(body, delta, 0f, 0f, action2);
                 obj.angle = (float) Math.toDegrees(body.getAngle());
+
                 if (obj.getState() == 1) {
+                    bumX = obj.getX();
+                    bumY = obj.getY();
+                    didP = false;
                     zombies.remove(obj);
                     oWorld.destroyBody(body);
                 }
@@ -370,7 +392,10 @@ public class Game extends Screens {
         spriteBatch.draw(AssetsGame.backgroundSprite, bgX, 0);
         bgX -= bgS;
 
-        AssetsGame.font.draw(spriteBatch, "fps:" + Gdx.graphics.getFramesPerSecond(), 0, 20);
+        if(bgX == -2000){
+            bgX=0f;
+        }
+
         AssetsGame.font.draw(spriteBatch, "1:  " + hits1, 0, 60);
         AssetsGame.font.draw(spriteBatch, "2:  " + hits2, 0, 40);
         spriteBatch.end();
@@ -387,6 +412,11 @@ public class Game extends Screens {
         drawEggs((ArrayList<Egg>) eggsP1);
         drawEggs((ArrayList<Egg>) eggsP2);
         drawZombies(zombies);
+
+        if(didP == false){
+            didP = drawBum(bumX,bumY, delta);
+        }
+
         spriteBatch.end();
         //renderer.render(oWorld, oCamBox2D.combined);
     }

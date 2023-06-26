@@ -61,7 +61,7 @@ public class AssetsGame {
         guebo = atlas.createSprite("egg");
         pata = atlas.createSprite("pata");
 
-        rand = (int) (Math.random() * (14 + 1));
+        rand = (int) (Math.random() * (14-1 + 1)+1);
 
         backgroundTexture = new Texture("backgrounds/Space Background(" + rand + ").png" );
         backgroundSprite = new Sprite(backgroundTexture);
@@ -99,7 +99,8 @@ public class AssetsGame {
 
         atlas = new TextureAtlas(Gdx.files.internal("bum/bum.txt"));
 
-        bum = new Animation<>(0.05f, atlas.createSprite("explosion1"),
+        bum = new Animation<>(0.005f,
+                atlas.createSprite("explosion1"),
                 atlas.createSprite("explosion2"),
                 atlas.createSprite("explosion3"),
                 atlas.createSprite("explosion4"),
