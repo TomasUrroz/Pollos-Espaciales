@@ -9,3 +9,5 @@ El trabajo hace uso de herencia, excepciones, colecciones, persistencia de datos
 Tiene animaciones, arte, fisicas, coliciones y menus!
 Hicimos uso de GitHub para controlar las versiones.
 
+Si no se corre clickear en el graddle -> desktop -> other -> run
+![image](https://github.com/TomasUrroz/Pollos-Espaciales/assets/73548701/10393abb-6995-4d88-bff6-35ea2d61b758)
