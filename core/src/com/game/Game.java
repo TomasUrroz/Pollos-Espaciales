@@ -2,22 +2,29 @@ package com.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Json;
 import com.game.Entities.Egg;
 import com.game.Entities.Enemies.Zombie;
 import com.game.Entities.Player;
 import com.game.utils.CollisionListener;
 import sun.jvm.hotspot.debugger.posix.elf.ELFException;
-
+import java.io.File;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Game extends Screens {
 
+    static Integer juego = 0;
     World oWorld;
     Player player;
     Player player2;
@@ -439,60 +446,77 @@ public class Game extends Screens {
 
     @Override
     public void draw(float delta) {
-        oCamUI.update();
-        spriteBatch.setProjectionMatrix(oCamUI.combined);
+        if(juego == 0){
+            oCamUI.update();
+            spriteBatch.setProjectionMatrix(oCamUI.combined);
 
-        spriteBatch.begin();
-        spriteBatch.draw(AssetsGame.backgroundSprite, bgX, 0);
-        bgX -= bgS;
+            spriteBatch.begin();
+            spriteBatch.draw(AssetsGame.backgroundSprite, bgX, 0);
+            bgX -= bgS;
 
-        if(bgX == -2000){
-            bgX=0f;
-        }
-
-        AssetsGame.font.draw(spriteBatch, "P1  HP:  " + player.getHp() + "   Kills: "+ hits1, 0, 470);
-        AssetsGame.font.draw(spriteBatch, "P2  HP:  " + player2.getHp()+ "   Kills: "+ hits2, 0, 455);
-
-        spriteBatch.end();
-
-        oCamBox2D.update();
-
-        spriteBatch.setProjectionMatrix(oCamBox2D.combined);
-        spriteBatch.begin();
-
-
-        drawplayer(player);
-        drawplayer(player2);
-
-        drawEggs((ArrayList<Egg>) eggsP1);
-        drawEggs((ArrayList<Egg>) eggsP2);
-        drawZombies(zombies);
-
-        if(zomBum == false){
-            zomBum = drawBum(bumX,bumY, delta,false);
-        }
-        if(chkBum == false){
-            chkBum = drawBum(bumX,bumY, delta,true);
-        }
-
-
-        if(player.getHp() == 0 && player2.getHp() == 0){
-            //ACA EL IR A LA PANTALLA DE PERDISTE WN
-        } else if (player.getHp() != 0 && player2.getHp() != 0 && zombies.size()==0) {
-            if(hits1 > hits2){
-                //GANA EL JUGADOR 1
-            } else if (hits1<hits2) {
-                //GANA EL JUGADOR 2
-            }else if(hits1 == hits2){
-                //EMPATE? XD
+            if(bgX == -2000){
+                bgX=0f;
             }
+
+            AssetsGame.font.draw(spriteBatch, "P1  HP:  " + player.getHp() + "   Kills: "+ hits1, 0, 470);
+            AssetsGame.font.draw(spriteBatch, "P2  HP:  " + player2.getHp()+ "   Kills: "+ hits2, 0, 455);
+
+            spriteBatch.end();
+
+            oCamBox2D.update();
+
+            spriteBatch.setProjectionMatrix(oCamBox2D.combined);
+            spriteBatch.begin();
+
+
+            drawplayer(player);
+            drawplayer(player2);
+
+            drawEggs((ArrayList<Egg>) eggsP1);
+            drawEggs((ArrayList<Egg>) eggsP2);
+            drawZombies(zombies);
+
+            if(zomBum == false){
+                zomBum = drawBum(bumX,bumY, delta,false);
+            }
+            if(chkBum == false){
+                chkBum = drawBum(bumX,bumY, delta,true);
+            }
+
+
+            if(player.getHp() == 95 ){
+                juego =1;
+            } else if (player.getHp() != 0 && player2.getHp() != 0 && zombies.size()==0) {
+                if(hits1 > hits2){
+                    juego =2;
+                } else if (hits1<hits2) {
+                    juego = 3;
+                }else if(hits1 == hits2){
+                    juego = 4;
+                }
+            }
+            spriteBatch.end();
+            //renderer.render(oWorld, oCamBox2D.combined);
+        }else{
+            escribirPuntos();
+            return;
         }
-
-
-        spriteBatch.end();
-        //renderer.render(oWorld, oCamBox2D.combined);
     }
-
+    public void escribirPuntos() {
+        Array<Integer> array = new Array<>();
+        array.add(hits1);
+        array.add(hits2);
+        Json json = new Json();
+        json.setOutputType(JsonWriter.OutputType.json);
+        String jsonStr = json.toJson(array);
+        String filePath = "core/file.json";
+        try (FileWriter fileWriter = new FileWriter(filePath)) {
+            fileWriter.write(jsonStr);
+            System.out.println("JSON file saved successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public void dispose() {
         AssetsGame.dispose();
