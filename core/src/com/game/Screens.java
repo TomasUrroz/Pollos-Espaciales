@@ -1,21 +1,19 @@
 package com.game;
 
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.game.utils.State;
 
 
 public abstract class Screens extends InputAdapter implements Screen {
     public static final float SCREEN_WIDTH = 800;
     public static final float SCREEN_HEIGHT = 480;
-
+    private State state = State.RUN;
     public static final float WORLD_WIDTH = 8f;
     public static final float WORLD_HEIGHT = 4.8f;
 
@@ -47,24 +45,41 @@ public abstract class Screens extends InputAdapter implements Screen {
         spriteBatch = new SpriteBatch();
     }
 
-    // This functions will be called automatically 60 times per second (60 FPS)
+    public void setGameState(State s){
+        this.state = s;
+    }
+    public State getGameState(){
+        return this.state;
+    }
     @Override
     public void render(float delta) {
+        switch (state)
+        {
+            case RUN:
+                update(delta);
 
-        // Update all the physics of the game
-        update(delta);
+                stage.act(delta);
 
-        // Update the stage (mostly UI elements)
-        stage.act(delta);
+                if(this.state != State.PAUSE){
+                    draw(delta);
+                }
 
-        // Clear everything on the screen
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+                stage.draw();
 
-        // Draw the game elements on the screen
-        draw(delta);
+                break;
+            case PAUSE:
+                Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+                //si tan solo supiera poner un menu xd
+                if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) && getGameState() == State.PAUSE)
+                    resume();
+                break;
+            case RESUME:
 
-        // Draw the stage element on the screen
-        stage.draw();
+                break;
+
+            default:
+                break;
+        }
     }
 
     public abstract void draw(float delta);
@@ -88,26 +103,17 @@ public abstract class Screens extends InputAdapter implements Screen {
 
     @Override
     public void pause() {
-
+        this.state = State.PAUSE;
     }
 
     @Override
     public void resume() {
-
+        this.state = State.RUN;
     }
 
     @Override
     public void dispose() {
     }
 
-    @Override
-    public boolean keyDown(int keycode) {
-        if (keycode == Keys.ESCAPE || keycode == Keys.BACK)
-            if (this instanceof MainMenuScreen) {
-                Gdx.app.exit();
-            } else {
-                game.setScreen(new MainMenuScreen(game));
-            }
-        return super.keyDown(keycode);
-    }
+
 }

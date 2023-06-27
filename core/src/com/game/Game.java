@@ -11,6 +11,7 @@ import com.game.Entities.Egg;
 import com.game.Entities.Enemies.Zombie;
 import com.game.Entities.Player;
 import com.game.utils.CollisionListener;
+import com.game.utils.State;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -304,6 +305,10 @@ public class Game extends Screens {
         String action2 = "";
 
         //PLAYER1
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) && getGameState() == State.RUN){
+            pause();
+        }
+
         if (player.isAlive()) {
             if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
                 accelX = -1;
@@ -494,4 +499,5 @@ public class Game extends Screens {
         oWorld.dispose();
         super.dispose();
     }
+
 }
