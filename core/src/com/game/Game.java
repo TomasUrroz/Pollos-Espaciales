@@ -32,8 +32,8 @@ public class Game extends Screens {
 
     ArrayList<Zombie> zombies;
     Array<Body> arrBodies;
-    List eggsP1 = new ArrayList();
-    List eggsP2 = new ArrayList();
+    List<Egg> eggsP1 = new ArrayList<>();
+    List<Egg> eggsP2 = new ArrayList<>();
 
     //Utils util = new Utils();
     //Box2DDebugRenderer renderer = new Box2DDebugRenderer();
@@ -101,7 +101,7 @@ public class Game extends Screens {
             keyframe = AssetsGame.polloBlanco;
         } else keyframe = AssetsGame.polloMarron;
 
-        if (player.isAlive() == false) {
+        if (!player.isAlive()) {
             keyframe = AssetsGame.pata;
         }
         keyframe.setOrigin(player.getDraw_width() / 2, player.getDraw_height() / 2);
@@ -117,7 +117,7 @@ public class Game extends Screens {
 
     private Sprite getRandSprite() {
         int rand2 = (int) (Math.random() * (2 + 1));
-        Sprite sprite = null;
+        Sprite sprite;
 
         if (rand2 == 0) {
             sprite = AssetsGame.zm.get((int) (Math.random() * (AssetsGame.zm.size())));
@@ -165,8 +165,8 @@ public class Game extends Screens {
     private ArrayList<Zombie> createZombies(int size) {
         ArrayList<Zombie> zombies = new ArrayList<>();
         int i = 0;
-        Float randX;
-        Float randY;
+        float randX;
+        float randY;
         while (i <= size) {
             randX = (float) (Math.random() * (100 - 7.8f + 1.5f) + 7.8f);
             randY = (float) (Math.random() * (5 - 1 + 1.5f) + 0.5f);
@@ -271,8 +271,8 @@ public class Game extends Screens {
     private Boolean drawBum(Float x, Float y, float delta, boolean chk) {
         if (x != y && x != 0) {
             Sprite keyframe = null;
-            Float time = 0f;
-            if (chk == false) {
+            float time = 0f;
+            if (!chk) {
                 while (time <= 0.095f) {
                     keyframe = AssetsGame.bum.getKeyFrame(time, true);
                     keyframe.setPosition(x + 0.1f, y - 0.2f);
@@ -470,10 +470,10 @@ public class Game extends Screens {
         drawEggs((ArrayList<Egg>) eggsP2);
         drawZombies(zombies);
 
-        if (zomBum == false) {
+        if (!zomBum) {
             zomBum = drawBum(bumX, bumY, delta, false);
         }
-        if (chkBum == false) {
+        if (!chkBum ) {
             chkBum = drawBum(bumX, bumY, delta, true);
         }
 
