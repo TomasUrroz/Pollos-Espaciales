@@ -4,6 +4,7 @@ import com.badlogic.gdx.*;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -69,7 +70,6 @@ public abstract class Screens extends InputAdapter implements Screen {
                 break;
             case PAUSE:
                 Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-                //si tan solo supiera poner un menu xd
                 if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) && getGameState() == State.PAUSE)
                     resume();
                 break;

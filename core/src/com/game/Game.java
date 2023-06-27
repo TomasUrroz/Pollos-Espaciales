@@ -452,6 +452,8 @@ public class Game extends Screens {
 
         AssetsGame.font.draw(spriteBatch, "P1  HP:  " + player.getHp() + "   Kills: " + hits1, 0, 470);
         AssetsGame.font.draw(spriteBatch, "P2  HP:  " + player2.getHp() + "   Kills: " + hits2, 0, 455);
+        AssetsGame.font.draw(spriteBatch, "Movimiento: WASD Q   | Flechitas + " ,550, 470);
+        AssetsGame.font.draw(spriteBatch, "Disparo:     ESPACIO   |          0"       , 550, 455);
 
         spriteBatch.end();
 
